@@ -68,9 +68,9 @@
                 <a href="#blog" class="hover:text-white">Blog</a>
             </nav>
             <!-- Bouton pour capturer des emails (Lead Gen) -->
-            <button class="bg-[#2563EB] px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition" onclick="alert('Ici vous pouvez lier un formulaire (ex: Mailchimp, ConvertKit)')">
+            <a href="#newsletter" class="bg-[#2563EB] px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition inline-block">
                 Newsletter
-            </button>
+            </a>
         </div>
     </header>
 
@@ -122,6 +122,108 @@
                 <!-- Lien affilié secondaire -->
                 <a href="LIEN_AFFILIE_OUTIL_3" class="text-blue-600 font-semibold hover:underline">Découvrir les outils →</a>
             </div>
+        </div>
+    </section>
+
+    <!-- Études de Cas -->
+    <section id="etudes-de-cas" class="py-20 bg-slate-100 px-6">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-[#0F172A] mb-4">Ils ont transformé leurs données en or</h2>
+                <p class="text-lg text-slate-600">Découvrez comment l'IA comportementale génère des résultats concrets.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Cas 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
+                        <span class="text-white text-5xl font-bold">-34%</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold uppercase text-blue-600 mb-2 block">SaaS B2B</span>
+                            <h3 class="text-xl font-bold mb-3 text-[#0F172A]">Réduction du Churn en 3 mois</h3>
+                            <p class="text-slate-600 mb-6">En analysant le comportement de connexion, cette startup a pu identifier les utilisateurs frustrés avant leur désabonnement et leur proposer une aide personnalisée.</p>
+                        </div>
+                        <a href="LIEN_AFFILIE_CAS_1" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2">
+                            Découvrir l'outil utilisé <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cas 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col">
+                    <div class="h-48 bg-gradient-to-r from-emerald-400 to-teal-500 flex items-center justify-center">
+                        <span class="text-white text-5xl font-bold">+22%</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold uppercase text-emerald-600 mb-2 block">E-Commerce</span>
+                            <h3 class="text-xl font-bold mb-3 text-[#0F172A]">Hausse des conversions via personnalisation</h3>
+                            <p class="text-slate-600 mb-6">En adaptant l'affichage des produits selon l'humeur prédictive de l'utilisateur (rapide vs flâneur), cette boutique a fait exploser ses ventes sur mobile.</p>
+                        </div>
+                        <a href="LIEN_AFFILIE_CAS_2" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2">
+                            Découvrir l'outil utilisé <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="py-20 container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-[#0F172A] mb-4">Derniers Articles & Insights</h2>
+            <p class="text-lg text-slate-600">Restez à la pointe du marketing data-driven.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Article 1 -->
+            <article class="group cursor-pointer">
+                <div class="h-48 bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Data" class="object-cover w-full h-full group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="text-blue-600 text-sm font-semibold mb-2 block">Tendance</span>
+                <h3 class="text-lg font-bold text-[#0F172A] mb-2 group-hover:text-blue-600 transition">Les 5 meilleurs outils d'Analyse de Sentiment en 2026</h3>
+                <p class="text-slate-600 text-sm">Découvrez notre comparatif des solutions les plus performantes pour décrypter les émotions de vos clients.</p>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="group cursor-pointer">
+                <div class="h-48 bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" alt="Tech" class="object-cover w-full h-full group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="text-blue-600 text-sm font-semibold mb-2 block">Stratégie</span>
+                <h3 class="text-lg font-bold text-[#0F172A] mb-2 group-hover:text-blue-600 transition">Pourquoi l'IA comportementale est l'avenir du marketing</h3>
+                <p class="text-slate-600 text-sm">Finis les personas statiques, place aux modèles dynamiques et prédictifs qui évoluent en temps réel.</p>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="group cursor-pointer">
+                <div class="h-48 bg-slate-200 rounded-xl mb-4 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="Code" class="object-cover w-full h-full group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="text-blue-600 text-sm font-semibold mb-2 block">Tutoriel</span>
+                <h3 class="text-lg font-bold text-[#0F172A] mb-2 group-hover:text-blue-600 transition">Mettre en place un modèle prédictif sans coder</h3>
+                <p class="text-slate-600 text-sm">Guide pas-à-pas pour intégrer votre première IA prédictive directement dans votre CMS habituel.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="hero-gradient py-20 px-6 mt-10">
+        <div class="container mx-auto max-w-3xl text-center text-white">
+            <h2 class="text-4xl font-extrabold mb-6">Prenez une longueur d'avance.</h2>
+            <p class="text-lg text-slate-300 mb-8">Rejoignez +15 000 marketeurs de pointe. Recevez immédiatement notre <strong>Top 10 des outils d'IA comportementale</strong> en cadeau de bienvenue.</p>
+            
+            <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto" onsubmit="event.preventDefault(); alert('Formulaire soumis ! Liez ceci à votre auto-répondeur (ex: Mailchimp).');">
+                <input type="email" placeholder="Votre meilleure adresse email..." required class="px-6 py-4 rounded-xl text-slate-900 w-full focus:outline-none focus:ring-4 focus:ring-blue-400">
+                <button type="submit" class="bg-white text-[#0F172A] font-bold px-8 py-4 rounded-xl hover:bg-slate-100 transition shadow-lg whitespace-nowrap">
+                    Je m'abonne
+                </button>
+            </form>
+            <p class="text-xs text-slate-400 mt-4">Zéro spam. Désabonnement en 1 clic.</p>
         </div>
     </section>
 

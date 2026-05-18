@@ -35,6 +35,14 @@
             text-decoration: none
         }
 
+        button {
+            font-family: inherit
+        }
+
+        input {
+            font-family: inherit
+        }
+
         /* NAV */
         nav {
             display: flex;
@@ -66,7 +74,9 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: .85rem;
-            transition: .2s
+            transition: .2s;
+            cursor: pointer;
+            border: none
         }
 
         .nav-cta:hover {
@@ -381,11 +391,19 @@
             transform: translateY(-2px)
         }
 
+        /* SCREENS */
+        .screen {
+            display: none
+        }
+
+        .screen.active {
+            display: block
+        }
+
         /* THANK YOU PAGE */
         #thankyou {
-            display: none;
             text-align: center;
-            padding: 5rem 1.5rem;
+            padding: 3rem 1.5rem;
             max-width: 600px;
             margin: auto
         }
@@ -398,54 +416,165 @@
 
         #thankyou p {
             color: var(--muted);
-            margin-bottom: 2rem
+            margin-bottom: 1.5rem
         }
 
         .check-icon {
-            font-size: 4rem
+            font-size: 3.5rem;
+            margin-bottom: 1rem
         }
 
-        .upsell-box {
-            background: var(--card);
-            border: 2px solid var(--accent);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 2rem;
-            text-align: left
+        /* AUDIT PAGE */
+        .audit-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem
         }
 
-        .upsell-box h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
+        .audit-progress {
+            margin-bottom: 2rem
+        }
+
+        .progress-bar {
+            background: #2a2a4a;
+            height: 4px;
+            border-radius: 20px;
+            overflow: hidden
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #6c3fff, #00e5a0);
+            height: 100%;
+            transition: width .3s
+        }
+
+        .progress-text {
+            font-size: .75rem;
+            color: #00e5a0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
             margin-bottom: .5rem
         }
 
-        .upsell-box .price {
-            font-size: 2rem;
+        .audit-question {
+            animation: fadeIn .3s
+        }
+
+        .audit-question h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem
+        }
+
+        .audit-options {
+            display: grid;
+            gap: .9rem
+        }
+
+        .audit-option {
+            background: #13132a;
+            border: 1px solid #2a2a4a;
+            color: #e8e8f0;
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: .95rem;
+            transition: all .2s
+        }
+
+        .audit-option:hover {
+            border-color: #6c3fff;
+            background: rgba(108, 63, 255, .1)
+        }
+
+        .audit-results {
+            text-align: center
+        }
+
+        .score-box {
+            font-size: 3.5rem;
             font-weight: 900;
-            color: var(--accent);
-            margin: .5rem 0
+            margin-bottom: .5rem
         }
 
-        .upsell-box .orig-price {
-            text-decoration: line-through;
-            color: var(--muted);
-            font-size: .9rem
+        .score-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: .5rem
         }
 
-        .upsell-list {
-            list-style: none;
-            margin: 1rem 0;
-            font-size: .9rem
+        .score-desc {
+            color: #8888aa;
+            font-size: .95rem;
+            margin-bottom: 2rem
         }
 
-        .upsell-list li::before {
-            content: "✅ ";
-            margin-right: .4rem
+        .recs-box {
+            background: linear-gradient(135deg, rgba(108, 63, 255, .15), rgba(0, 229, 160, .08));
+            border: 1px solid #2a2a4a;
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left
         }
 
-        .upsell-list li {
-            margin-bottom: .4rem
+        .rec-item {
+            background: rgba(0, 0, 0, .3);
+            border-radius: 10px;
+            padding: 1rem;
+            border-left: 3px solid #00e5a0;
+            margin-bottom: .8rem
+        }
+
+        .rec-title {
+            font-weight: 800;
+            margin-bottom: .3rem
+        }
+
+        .rec-desc {
+            font-size: .85rem;
+            color: #aaa
+        }
+
+        .cta-box {
+            background: #13132a;
+            border: 2px solid #6c3fff;
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem
+        }
+
+        .cta-box-sub {
+            color: #8888aa;
+            font-size: .85rem;
+            margin-bottom: 1rem
+        }
+
+        .cta-box h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1rem
+        }
+
+        .cta-box p {
+            color: #aaa;
+            font-size: .85rem;
+            margin-bottom: 1.2rem
+        }
+
+        .cta-box-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6c3fff, #00e5a0);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: .95rem;
+            cursor: pointer
         }
 
         /* FOOTER */
@@ -480,6 +609,18 @@
             color: var(--muted);
             align-self: center
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
     </style>
 </head>
 
@@ -487,42 +628,38 @@
 
     <!-- URGENCY BAR -->
     <div class="urgency-bar">
-        🔥 Offre limitée — Guide gratuit disponible encore <span id="bar-timer">09:47</span> min
+        🔥 Offre limitée — Guide + Audit IA gratuits encore <span id="bar-timer">09:47</span> min
     </div>
 
     <!-- NAV -->
     <nav>
         <div class="logo">DATA<span>-EMPATHY</span></div>
-        <a class="nav-cta" href="#newsletter" onclick="scrollTo('newsletter')">Obtenir le Guide Gratuit</a>
+        <button class="nav-cta" onclick="scrollTo('newsletter')">Obtenir le Guide Gratuit</button>
     </nav>
 
-    <!-- MAIN PAGE -->
-    <div id="mainpage">
-
-        <!-- HERO -->
+    <!-- ═══════════════════════════════ SCREEN 1 : LANDING PAGE ═══════════════════════════════ -->
+    <div id="landingpage" class="screen active">
         <div class="hero">
             <div class="badge">🚀 Référentiel #1 IA Comportementale</div>
             <h1>Arrêtez de perdre des clients.<br><em>Comprenez-les vraiment.</em></h1>
             <p class="sub">Recevez immédiatement notre guide "<strong>Top 10 Outils IA pour Doubler vos
-                    Conversions</strong>" — utilisé par +15 000 marketeurs.</p>
+                    Conversions</strong>" + un <strong>audit IA gratuit</strong> de votre tunnel.</p>
 
-            <!-- LEAD CAPTURE FORM -->
             <div class="form-box" id="newsletter">
                 <h2>📥 Recevez le Guide Gratuit</h2>
-                <p>Entrez votre email et recevez-le instantanément</p>
+                <p>Entrez votre email et accédez immédiatement au guide + audit IA</p>
                 <div class="field">
                     <input type="email" id="email-input" placeholder="votre@email.com" required />
-                    <button class="btn-main" onclick="handleSubmit()">Envoyer →</button>
+                    <button class="btn-main" onclick="handleEmailSubmit()">Envoyer →</button>
                 </div>
                 <p class="form-note">🔒 Zéro spam. Désabonnement en 1 clic. 100% gratuit.</p>
             </div>
         </div>
 
-        <!-- STATS BAR -->
         <div class="proof-bar">
             <div class="stat">
                 <div class="stat-n">+15K</div>
-                <div class="stat-l">Marketeurs abonnés</div>
+                <div class="stat-l">Utilisateurs</div>
             </div>
             <div class="stat">
                 <div class="stat-n">500+</div>
@@ -538,7 +675,6 @@
             </div>
         </div>
 
-        <!-- WHAT YOU GET -->
         <section>
             <div class="sec-title">Ce que vous obtenez <em style="color:var(--accent)">gratuitement</em></div>
             <div class="sec-sub">Le guide contient les outils testés et validés par notre équipe</div>
@@ -561,162 +697,223 @@
                     <p>Adaptez votre offre en temps réel selon le profil comportemental de chaque visiteur.</p>
                     <a class="card-link" href="#">Inclus dans le guide →</a>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🔥</div>
-                    <h3>Heatmaps & Sessions</h3>
-                    <p>Visualisez exactement où vos visiteurs bloquent et optimisez chaque page.</p>
-                    <a class="card-link" href="#">Inclus dans le guide →</a>
-                </div>
             </div>
         </section>
 
-        <!-- TESTIMONIALS -->
         <section>
             <div class="sec-title">Ils ont transformé leurs résultats</div>
             <div class="sec-sub">Des vrais retours de marketeurs qui ont appliqué nos recommandations</div>
             <div class="testis">
                 <div class="testi">
                     <div class="stars">★★★★★</div>
-                    <p class="testi-quote">"Grâce au guide DATA-EMPATHY, j'ai identifié l'outil parfait pour réduire mon
-                        churn SaaS de 34% en 3 mois. Incroyable."</p>
+                    <p class="testi-quote">"Grâce au guide + audit, j'ai identifié exactement où je perdais des
+                        prospects. Résultat : +34% de conversions en 90 jours."</p>
                     <div class="testi-author">
                         <div class="avatar">M</div>
-                        <div class="author-info"><strong>Marc Dupont</strong><span>CEO, SaaS B2B – Paris</span></div>
+                        <div class="author-info"><strong>Marc Dupont</strong><span>CEO SaaS – Paris</span></div>
                     </div>
                 </div>
                 <div class="testi">
                     <div class="stars">★★★★★</div>
-                    <p class="testi-quote">"+22% de conversions sur mobile en adaptant l'affichage produit selon
-                        l'humeur prédictive. Ce guide a changé mon business."</p>
+                    <p class="testi-quote">"L'audit IA a révélé que 45% de mes visiteurs abandonnaient à cause d'un
+                        formulaire trop long. J'ai corrigé, +22% conversions."</p>
                     <div class="testi-author">
                         <div class="avatar">S</div>
                         <div class="author-info"><strong>Sophie Lambert</strong><span>E-Commerce – Lyon</span></div>
                     </div>
                 </div>
-                <div class="testi">
-                    <div class="stars">★★★★★</div>
-                    <p class="testi-quote">"Les comparatifs sont ultra-détaillés, pas de blabla. J'ai gagné des heures
-                        de recherche et trouvé la solution parfaite."</p>
-                    <div class="testi-author">
-                        <div class="avatar">K</div>
-                        <div class="author-info"><strong>Karim Benali</strong><span>Growth Hacker – Freelance</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
+    </div>
 
-        <!-- FINAL CTA -->
-        <section>
-            <div class="cta-final">
-                <h2>Prêt à comprendre vos utilisateurs ?</h2>
-                <p>Rejoignez +15 000 marketeurs et recevez le guide Top 10 outils IA — <strong>100% gratuit</strong></p>
-                <div class="timer">
-                    <span class="timer-unit" id="t-min">09</span>
-                    <span class="timer-sep">:</span>
-                    <span class="timer-unit" id="t-sec">47</span>
-                </div>
-                <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.5rem">⏰ Offre disponible pendant encore ce
-                    temps</p>
-                <button class="cta-btn"
-                    onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Obtenir le Guide
-                    Gratuit →</button>
-            </div>
-        </section>
-
-    </div><!-- end mainpage -->
-
-    <!-- THANK YOU PAGE -->
-    <div id="thankyou">
+    <!-- ═══════════════════════════════ SCREEN 2 : THANK YOU ═══════════════════════════════ -->
+    <div id="thankyou" class="screen">
+        <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
+            <div class="logo">DATA<span>-EMPATHY</span></div>
+        </nav>
         <div class="check-icon">✅</div>
-        <h2>C'est dans votre boîte mail !</h2>
-        <p>Vérifiez vos emails (et vos spams) — votre guide <strong>"Top 10 Outils IA"</strong> vient d'être envoyé.</p>
-
-        <div class="upsell-box">
-            <p
-                style="font-size:.8rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em">
-                ⚡ Offre exclusive — 10 minutes seulement</p>
-            <h3>Passez à la vitesse supérieure avec le Pack Pro</h3>
-            <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 1rem">Accédez aux 50 outils premium + templates
-                + tutoriels vidéo</p>
-            <div class="orig-price">Valeur normale : 97€</div>
-            <div class="price">27€ aujourd'hui</div>
-            <ul class="upsell-list">
-                <li>50 fiches outils détaillées (vs 10 dans le guide)</li>
-                <li>Templates prêts à l'emploi pour chaque outil</li>
-                <li>3 tutoriels vidéo pas-à-pas</li>
-                <li>Accès à la communauté privée Slack</li>
-                <li>Mises à jour mensuelles à vie</li>
-            </ul>
-            <div class="timer" style="margin:.5rem 0 1.5rem">
-                <span class="timer-unit" id="upsell-min">09</span>
-                <span class="timer-sep">:</span>
-                <span class="timer-unit" id="upsell-sec">47</span>
-            </div>
-            <!-- Remplace ce href par ton lien de paiement (Gumroad, Stripe, etc.) -->
-            <a href="VOTRE_LIEN_PAIEMENT" style="display:block">
-                <button class="cta-btn" style="width:100%;font-size:1rem">Oui, je veux le Pack Pro pour 27€ →</button>
-            </a>
-            <p style="font-size:.75rem;color:var(--muted);margin-top:.8rem;text-align:center">🔒 Paiement sécurisé ·
-                Remboursement 30 jours</p>
-        </div>
-        <p style="margin-top:1.5rem;font-size:.85rem;color:var(--muted)">
-            <a href="#" onclick="showMain()" style="color:var(--muted);text-decoration:underline">Non merci, le guide
-                gratuit me suffit</a>
+        <h2>Email reçu !</h2>
+        <p>Préparez-vous à découvrir exactement où vous perdez des clients...</p>
+        <p style="font-size:1.1rem;color:var(--accent);font-weight:800;margin:1.5rem 0">Maintenant → Audit IA gratuit
         </p>
+        <button class="cta-btn" onclick="showScreen('audit')" style="font-size:.95rem;padding:.8rem 2rem">Lancer mon
+            audit gratuit →</button>
+    </div>
+
+    <!-- ═══════════════════════════════ SCREEN 3 : AUDIT IA ═══════════════════════════════ -->
+    <div id="audit" class="screen">
+        <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
+            <div class="logo">DATA<span>-EMPATHY</span></div>
+        </nav>
+        <div class="audit-container">
+            <div class="audit-progress" id="progress-section" style="display:none">
+                <div class="progress-text"><span id="question-counter">1</span> / 6</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- START AUDIT -->
+            <div id="audit-start" style="text-align:center;padding:3rem 0">
+                <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
+                <h1 style="font-size:2rem;font-weight:900;margin-bottom:.5rem">Votre tunnel perd-il des clients ?</h1>
+                <p style="color:#8888aa;margin-bottom:2rem;font-size:.95rem">Découvrez exactement où (et pourquoi) vos
+                    prospects abandonnent. Audit IA gratuit en 1 minute.</p>
+                <button class="cta-btn" onclick="startAudit()" style="font-size:1rem;padding:.9rem 2.2rem">Démarrer
+                    l'audit →</button>
+                <div
+                    style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;font-size:.8rem;color:#8888aa">
+                    <div>⚡ 1 minute</div>
+                    <div>6 questions</div>
+                    <div>100% gratuit</div>
+                </div>
+            </div>
+
+            <!-- QUIZ -->
+            <div id="audit-quiz" style="display:none">
+                <div class="audit-question" id="quiz-content"></div>
+            </div>
+
+            <!-- RESULTS -->
+            <div id="audit-results" style="display:none">
+                <div class="audit-results" id="results-content"></div>
+            </div>
+        </div>
     </div>
 
     <footer>
         <p>© 2026 DATA-EMPATHY — Référentiel IA Comportementale</p>
-        <p style="margin-top:.4rem">Divulgation : Ce site contient des liens d'affiliation. Nous pouvons recevoir une
-            commission sans coût supplémentaire pour vous.</p>
+        <p style="margin-top:.4rem">Divulgation : Ce site contient des liens d'affiliation.</p>
     </footer>
 
     <script>
-        // ── COUNTDOWN TIMER ──
+        // ── DATA ──
+        const questions = [
+            { q: "Avez-vous un système de relance automatique (email, SMS) ?", opts: [{ l: "Non, aucun", s: 0 }, { l: "Oui, basique 1-2", s: 30 }, { l: "Oui, séquence 3+", s: 100 }] },
+            { q: "Mesurez-vous le taux d'abandon du formulaire ?", opts: [{ l: "Non", s: 0 }, { l: "Oui, mais je ne fais rien", s: 40 }, { l: "Oui, j'optimise", s: 100 }] },
+            { q: "Utilisez-vous l'analyse comportementale (heatmaps) ?", opts: [{ l: "Non", s: 0 }, { l: "J'ai essayé une fois", s: 35 }, { l: "Oui, c'est central", s: 100 }] },
+            { q: "Vos CTAs sont-ils personnalisés par segment ?", opts: [{ l: "Non, même CTA", s: 0 }, { l: "2-3 variantes", s: 45 }, { l: "Hautement perso IA", s: 100 }] },
+            { q: "Avez-vous testé plusieurs versions (A/B) ?", opts: [{ l: "Non, figée", s: 0 }, { l: "2-3 tests", s: 50 }, { l: "Tests continus", s: 100 }] },
+            { q: "Offrez-vous une offre de rattrapage pour ceux qui abandonnent ?", opts: [{ l: "Non", s: 0 }, { l: "Popup générique", s: 40 }, { l: "Offre intelligente+email", s: 100 }] }
+        ];
+
+        const recs = {
+            low: [
+                { t: "🔴 Urgence : Mise en place du suivi", d: "Vous n'avez aucun système. Commencez par Hotjar gratuit." },
+                { t: "📧 Créez une séquence email", d: "Mettez en place 5 emails minimum — les gens oublient 90% après 3 jours." },
+                { t: "🎯 Optimisez votre formulaire", d: "Réduisez à 3 champs max. Chaque champ = -11% conversions." }
+            ],
+            med: [
+                { t: "📊 Augmentez la fréquence de test", d: "Vous avez les bases. Lancez un A/B test chaque semaine." },
+                { t: "🤖 Implementez la personnalisation IA", d: "Allez au-delà de 2-3 variantes avec Userpilot ou Pendo." },
+                { t: "🔗 Créez des offres de rattrapage", d: "Ceux qui abandonnent sont vos meilleurs prospects." }
+            ],
+            high: [
+                { t: "🚀 Vous êtes au top !", d: "Continuez — analysez, testez, améliorez régulièrement." },
+                { t: "💰 Optimisez la monétisation", d: "Votre tunnel convertit bien. Augmentez les prix ou ajoutez des upsells." },
+                { t: "📈 Dupliquez ce modèle", d: "Vous avez une formule gagnante. Testez-la sur d'autres segments." }
+            ]
+        };
+
+        let currentQIdx = 0;
+        let answers = [];
         let totalSecs = 9 * 60 + 47;
-        function pad(n) { return String(n).padStart(2, '0') }
+
+        // TIMER
         function tick() {
-            if (totalSecs <= 0) { totalSecs = 0 }
+            if (totalSecs <= 0) totalSecs = 0;
             let m = Math.floor(totalSecs / 60), s = totalSecs % 60;
-            let str = pad(m) + ':' + pad(s);
-            // bar
+            let str = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
             let bt = document.getElementById('bar-timer');
             if (bt) bt.textContent = str;
-            // hero timer
-            let tm = document.getElementById('t-min'), ts = document.getElementById('t-sec');
-            if (tm) tm.textContent = pad(m);
-            if (ts) ts.textContent = pad(s);
-            // upsell timer
-            let um = document.getElementById('upsell-min'), us = document.getElementById('upsell-sec');
-            if (um) um.textContent = pad(m);
-            if (us) us.textContent = pad(s);
             if (totalSecs > 0) totalSecs--;
         }
         tick();
         setInterval(tick, 1000);
 
-        // ── FORM SUBMIT ──
-        function handleSubmit() {
+        // EMAIL SUBMIT
+        function handleEmailSubmit() {
             const email = document.getElementById('email-input').value.trim();
-            if (!email || !email.includes('@')) {
-                alert('Veuillez entrer un email valide.');
+            if (!email.includes('@')) {
+                alert('Email invalide');
                 return;
             }
-            // Ici vous pouvez envoyer l'email à votre service (Mailchimp, Brevo, etc.)
-            // via leur API ou un webhook
-            console.log('Email capturé:', email);
-            showThankyou();
-        }
-
-        function showThankyou() {
-            document.getElementById('mainpage').style.display = 'none';
-            document.getElementById('thankyou').style.display = 'block';
+            showScreen('thankyou');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function showMain() {
-            document.getElementById('thankyou').style.display = 'none';
-            document.getElementById('mainpage').style.display = 'block';
+
+        // SCREENS
+        function showScreen(s) {
+            document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+            document.getElementById(s).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // AUDIT
+        function startAudit() {
+            currentQIdx = 0;
+            answers = [];
+            document.getElementById('audit-start').style.display = 'none';
+            document.getElementById('progress-section').style.display = 'block';
+            document.getElementById('audit-quiz').style.display = 'block';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            if (currentQIdx >= questions.length) return showResults();
+            const q = questions[currentQIdx];
+            document.getElementById('question-counter').textContent = currentQIdx + 1;
+            document.getElementById('progress-fill').style.width = ((currentQIdx / questions.length) * 100) + '%';
+
+            let html = `<h2>${q.q}</h2><div class="audit-options">`;
+            q.opts.forEach((opt, i) => {
+                html += `<button class="audit-option" onclick="answerQuestion(${opt.s})"> ${opt.l}</button>`;
+            });
+            html += '</div>';
+            document.getElementById('quiz-content').innerHTML = html;
+        }
+
+        function answerQuestion(score) {
+            answers.push(score);
+            currentQIdx++;
+            if (currentQIdx >= questions.length) {
+                showResults();
+            } else {
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            const avg = Math.round(answers.reduce((a, b) => a + b, 0) / answers.length);
+            const level = avg > 70 ? 'high' : avg > 40 ? 'med' : 'low';
+            const color = avg > 70 ? '#00e5a0' : avg > 40 ? '#ffaa00' : '#ff5555';
+            const title = avg > 70 ? '✅ Excellent tunnel !' : avg > 40 ? '⚠️ À améliorer' : '🔴 Critique : Vous perdez des clients';
+
+            let html = `<div style="margin-bottom:2rem"><div class="score-box" style="color:${color}">${avg}/100</div>`;
+            html += `<div class="score-title">${title}</div>`;
+            html += `<div class="score-desc">${avg > 70 ? 'Maintenez cette dynamique !' : avg > 40 ? 'Vous avez les bases mais il y a des fuites.' : 'Vous avez aucun système pour capter vos prospects.'}</div></div>`;
+
+            html += '<div class="recs-box"><h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">💡 Recommandations personnalisées</h2>';
+            recs[level].forEach(r => {
+                html += `<div class="rec-item"><div class="rec-title">${r.t}</div><div class="rec-desc">${r.d}</div></div>`;
+            });
+            html += '</div>';
+
+            html += `<div class="cta-box">
+    <div class="cta-box-sub">📊 Besoin des outils recommandés ?</div>
+    <h3>Accédez au <span style="color:#00e5a0">Top 10 Outils IA</span></h3>
+    <p>Guide complet + liens affiliés pour débuter</p>
+    <button class="cta-box-btn" onclick="alert('Remplace par ton lien guide/paiement')">Accéder au Guide Gratuit →</button>
+  </div>`;
+
+            document.getElementById('audit-quiz').style.display = 'none';
+            document.getElementById('progress-section').style.display = 'none';
+            document.getElementById('audit-results').style.display = 'block';
+            document.getElementById('results-content').innerHTML = html;
+        }
+
+        function scrollTo(el) {
+            document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>

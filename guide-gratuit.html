@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guide Gratuit | Top 10 Outils IA Comportementale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c3fff;
+            --primary-d: #5229e0;
+            --accent: #00e5a0;
+            --bg: #0a0a14;
+            --card: #13132a;
+            --text: #e8e8f0;
+            --muted: #8888aa;
+            --border: #2a2a4a;
+            --green: #00e5a0;
+            --orange: #ffaa00;
+            --red: #ff5555;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 4rem 1.5rem 3rem;
+            max-width: 800px;
+            margin: auto;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(108, 63, 255, 0.2);
+            border: 1px solid var(--primary);
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .sub {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CONTAINER & CARDS */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .intro-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .intro-box h2 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .intro-box p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1rem;
+        }
+
+        .tool-identity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tool-icon {
+            font-size: 2.2rem;
+            background: rgba(108, 63, 255, 0.15);
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            border: 1px solid rgba(108, 63, 255, 0.3);
+        }
+
+        .tool-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .tool-cat {
+            font-size: 0.72rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .difficulty-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .difficulty-badge.easy {
+            background: rgba(0, 229, 160, 0.1);
+            color: var(--green);
+            border: 1px solid rgba(0, 229, 160, 0.2);
+        }
+
+        .difficulty-badge.medium {
+            background: rgba(255, 170, 0, 0.1);
+            color: var(--orange);
+            border: 1px solid rgba(255, 170, 0, 0.2);
+        }
+
+        .tool-desc {
+            font-size: 0.92rem;
+            color: #ccc;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .use-case {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        .use-case-text {
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .tool-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-d));
+            color: #fff;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tool-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* UPSELL BOX */
+        .upsell-box {
+            background: linear-gradient(135deg, rgba(108, 63, 255, 0.2), rgba(0, 229, 160, 0.1));
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .upsell-box h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .upsell-box p {
+            font-size: 0.95rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.5;
+        }
+
+        .upsell-btn {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 229, 160, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .upsell-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="badge">🎁 Votre Cadeau Exclusif</div>
+        <h1>Top 10 Outils IA pour<br><em>Doubler vos Conversions</em></h1>
+        <p class="sub">Le référentiel complet des technologies d'analyse comportementale et d'optimisation prédictive.</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-box">
+            <h2>💡 Comment tirer le meilleur parti de ce guide ?</h2>
+            <p>Ce guide répertorie les outils indispensables pour comprendre ce que font vos visiteurs, pourquoi ils partent, et comment les retenir. Pour chaque outil, nous avons inclus un lien d'accès direct pour démarrer immédiatement.</p>
+        </div>
+
+        <div class="tools-grid">
+            <!-- 1. HOTJAR -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🧠</div>
+                        <div>
+                            <div class="tool-name">1. Hotjar</div>
+                            <div class="tool-cat">Heatmaps & Session Recordings</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge easy">Facile</span>
+                </div>
+                <p class="tool-desc">Hotjar enregistre l'écran de vos visiteurs et génère des cartes thermiques de clics et de défilement. Vous voyez exactement où ils bloquent et pourquoi ils quittent vos pages.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Regardez les enregistrements des utilisateurs qui ont ajouté un produit au panier mais n'ont pas validé : vous identifierez en 5 minutes la friction exacte (formulaire trop complexe, bug technique).</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_HOTJAR" target="_blank">Tester Hotjar Gratuitement →</a>
+                </div>
+            </div>
+
+            <!-- 2. MIXPANEL -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">📊</div>
+                        <div>
+                            <div class="tool-name">2. Mixpanel</div>
+                            <div class="tool-cat">Behavioral Funnels & Analytics</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge medium">Moyen</span>
+                </div>
+                <p class="tool-desc">Un outil puissant d'analyse comportementale permettant de suivre les parcours utilisateurs sous forme de cohortes et de mesurer la conversion étape par étape avec une précision chirurgicale.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Segmentez vos utilisateurs par source de trafic et comparez leur comportement d'achat à long terme pour investir uniquement sur les canaux les plus rentables.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_MIXPANEL" target="_blank">Découvrir Mixpanel →</a>
+                </div>
+            </div>
+
+            <!-- 3. AMPLITUDE -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🎯</div>
+                        <div>
+                            <div class="tool-name">3. Amplitude</div>
+                            <div class="tool-cat">Behavioral Cohorts</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge medium">Moyen</span>
+                </div>
+                <p class="tool-desc">Amplitude est la référence absolue pour analyser la récurrence d'achat et l'engagement. Il utilise l'IA pour prédire quelles actions mènent à une conversion ou à un désabonnement (churn).</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Trouvez le "moment clé" (Aha! Moment) qui transforme un visiteur curieux en client fidèle, puis modifiez votre tunnel pour pousser chaque prospect vers ce déclic.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_AMPLITUDE" target="_blank">Explorer Amplitude →</a>
+                </div>
+            </div>
+
+            <!-- 4. LOGROCKET -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🚀</div>
+                        <div>
+                            <div class="tool-name">4. LogRocket</div>
+                            <div class="tool-cat">Session Replay & Error Tracking</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge easy">Facile</span>
+                </div>
+                <p class="tool-desc">LogRocket combine l'enregistrement vidéo de sessions utilisateurs avec l'analyse technique des bugs. Il vous alerte automatiquement si un bouton de paiement ne fonctionne plus ou ralentit.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Détectez les "rage clicks" (les clics répétés et agacés des utilisateurs sur un élément non cliquable) et corrigez l'ergonomie pour restaurer la confiance.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_LOGROCKET" target="_blank">Essayer LogRocket →</a>
+                </div>
+            </div>
+
+            <!-- 5. LUCKY ORANGE -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🍊</div>
+                        <div>
+                            <div class="tool-name">5. Lucky Orange</div>
+                            <div class="tool-cat">All-in-One Conversion Suite</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge easy">Facile</span>
+                </div>
+                <p class="tool-desc">Un couteau suisse de la conversion. Il propose des heatmaps, des sondages ciblés en temps réel et des outils d'analyse de formulaires pour savoir quel champ fait fuir les clients.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Affichez un micro-sondage automatique uniquement aux personnes qui passent plus de 30 secondes sur la page de paiement sans acheter : "Une question avant de finaliser ?"</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_LUCKYORANGE" target="_blank">Activer Lucky Orange →</a>
+                </div>
+            </div>
+
+            <!-- 6. CRAZY EGG -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🥚</div>
+                        <div>
+                            <div class="tool-name">6. Crazy Egg</div>
+                            <div class="tool-cat">Visual A/B Testing & Heatmaps</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge easy">Facile</span>
+                </div>
+                <p class="tool-desc">Crazy Egg excelle dans la simplicité. Il vous permet de lancer des tests A/B visuels (comparer deux designs de page) en quelques clics sans toucher à une seule ligne de code.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Testez deux couleurs différentes pour votre bouton principal d'appel à l'action et laissez Crazy Egg rediriger automatiquement le trafic vers la version gagnante.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_CRAZYEGG" target="_blank">Essayer Crazy Egg →</a>
+                </div>
+            </div>
+
+            <!-- 7. USERPILOT -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🤖</div>
+                        <div>
+                            <div class="tool-name">7. Userpilot</div>
+                            <div class="tool-cat">Product Onboarding & Personalization</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge medium">Moyen</span>
+                </div>
+                <p class="tool-desc">Userpilot permet de guider pas à pas vos nouveaux clients dans l'utilisation de votre service ou site. Il affiche des messages hautement ciblés selon le comportement en temps réel.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Si un client n'a pas utilisé une fonctionnalité essentielle 48h après son inscription, déclenchez une infobulle interactive pour lui montrer comment faire.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_USERPILOT" target="_blank">Lancer Userpilot →</a>
+                </div>
+            </div>
+
+            <!-- 8. MICROSOFT CLARITY -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🛡️</div>
+                        <div>
+                            <div class="tool-name">8. Microsoft Clarity</div>
+                            <div class="tool-cat">Free User Behavior Analytics</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge easy">Facile</span>
+                </div>
+                <p class="tool-desc">L'alternative 100% gratuite de Microsoft. Il offre des cartes thermiques et des enregistrements de sessions sans aucune limite de trafic, idéal pour démarrer avec un budget serré.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Installez Clarity en 2 minutes via Google Tag Manager et commencez à récolter de la donnée comportementale immédiate sans surcharger votre budget.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="https://clarity.microsoft.com/" target="_blank">Activer Microsoft Clarity →</a>
+                </div>
+            </div>
+
+            <!-- 9. PENDO -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">📈</div>
+                        <div>
+                            <div class="tool-name">9. Pendo</div>
+                            <div class="tool-cat">Product Engagement & Feedback</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge medium">Moyen</span>
+                </div>
+                <p class="tool-desc">Pendo associe des analyses d'utilisation puissantes à des enquêtes de satisfaction in-app et des guides d'onboarding, créant ainsi une boucle de rétroaction utilisateur complète.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Déclenchez une enquête NPS (Net Promoter Score) uniquement aux utilisateurs actifs et analysez leur parcours pour cloner leur succès chez d'autres.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_PENDO" target="_blank">Découvrir Pendo →</a>
+                </div>
+            </div>
+
+            <!-- 10. MOUSEFLOW -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">🖱️</div>
+                        <div>
+                            <div class="tool-name">10. Mouseflow</div>
+                            <div class="tool-cat">Form Analytics & Friction Score</div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge easy">Facile</span>
+                </div>
+                <p class="tool-desc">Mouseflow calcule automatiquement un "score de friction" pour chaque visiteur. Il analyse précisément les formulaires pour vous dire quel champ provoque l'abandon.</p>
+                <div class="use-case">
+                    <div class="use-case-title">📈 Cas d'usage perspicace</div>
+                    <p class="use-case-text">Optimisez vos formulaires d'inscription en supprimant ou simplifiant le champ identifié par Mouseflow comme générant le plus de frustration ou d'erreurs de saisie.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="tool-btn" href="VOTRE_LIEN_AFFILIE_MOUSEFLOW" target="_blank">Essayer Mouseflow →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- UPSELL BOX -->
+        <div class="upsell-box">
+            <h2>🔥 Prêt à passer à l'action supérieure ?</h2>
+            <p>Avoir les bons outils est la première étape. Savoir <strong>comment les configurer</strong>, copier nos <strong>scripts de persuasion exacts</strong> et installer nos <strong>templates de tunnels IA</strong> est ce qui fera exploser vos ventes.</p>
+            <a class="upsell-btn" href="guide-pro.html">Découvrir la Méthode DATA-EMPATHY PRO →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 DATA-EMPATHY — Référentiel IA Comportementale</p>
+        <p style="margin-top:0.4rem">Divulgation : Ce guide contient des liens d'affiliation recommandés.</p>
+    </footer>
+
+</body>
+
+</html>

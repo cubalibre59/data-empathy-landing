@@ -731,13 +731,14 @@
         <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
             <div class="logo">DATA<span>-EMPATHY</span></div>
         </nav>
-        <div class="check-icon">✅</div>
-        <h2>Email reçu !</h2>
-        <p>Préparez-vous à découvrir exactement où vous perdez des clients...</p>
-        <p style="font-size:1.1rem;color:var(--accent);font-weight:800;margin:1.5rem 0">Maintenant → Audit IA gratuit
-        </p>
-        <button class="cta-btn" onclick="showScreen('audit')" style="font-size:.95rem;padding:.8rem 2rem">Lancer mon
-            audit gratuit →</button>
+        <div class="check-icon">📥</div>
+        <h2>C'est dans votre boîte !</h2>
+        <p>Votre Guide Gratuit (Top 10 Outils IA) a bien été envoyé et arrivera d'ici 2 minutes.</p>
+        <div style="background: rgba(108, 63, 255, 0.1); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; max-width: 500px; margin: 1.5rem auto; text-align: center;">
+            <p style="font-size:1rem;color:var(--accent);font-weight:800;margin-bottom: 0.5rem;">🔥 ÉTAPE SUIVANTE : Votre Audit Personnalisé</p>
+            <p style="font-size:0.85rem;color:var(--muted);margin-bottom: 0px;">Pendant que votre guide gratuit est en route, découvrez en 1 minute si votre propre tunnel de vente perd de l'argent.</p>
+        </div>
+        <button class="cta-btn" onclick="showScreen('audit')" style="font-size:.95rem;padding:.8rem 2rem;margin-top:0.5rem">Lancer mon audit gratuit →</button>
     </div>
 
     <!-- ═══════════════════════════════ SCREEN 3 : AUDIT IA ═══════════════════════════════ -->
@@ -899,11 +900,24 @@
             });
             html += '</div>';
 
-            html += `<div class="cta-box">
-    <div class="cta-box-sub">📊 Besoin des outils recommandés ?</div>
-    <h3>Accédez au <span style="color:#00e5a0">Top 10 Outils IA</span></h3>
-    <p>Guide complet + liens affiliés pour débuter</p>
-    <button class="cta-box-btn" onclick="alert('Remplace par ton lien guide/paiement')">Accéder au Guide Gratuit →</button>
+            html += `<div class="cta-box" style="border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(108, 63, 255, 0.25), rgba(0, 229, 160, 0.15)); padding: 2.2rem 1.5rem; text-align: center; border-radius: 16px; margin-top: 1.5rem;">
+    <div class="cta-box-sub" style="color: var(--accent); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.6rem;">🎁 Guide Gratuit Envoyé !</div>
+    <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff;">Passez au niveau supérieur avec le <span style="color: var(--accent);">Guide PRO</span></h3>
+    <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 1.5rem; line-height: 1.5; max-width: 540px; margin-left: auto; margin-right: auto;">
+        Le guide gratuit vous donne la liste des <strong>outils</strong>. <br>
+        Le <strong>Guide PRO</strong> vous livre la méthode étape par étape, les scripts psychologiques de persuasion et les templates de tunnels IA pour doubler vos conversions dès cette semaine.
+    </p>
+    
+    <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <span style="text-decoration: line-through; color: var(--muted); font-size: 0.95rem;">Valeur réelle : 47€</span>
+        <span style="background: rgba(0, 229, 160, 0.2); color: var(--accent); font-weight: 800; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid var(--accent);">PROMO AUDIT</span>
+        <span style="color: #fff; font-weight: 900; font-size: 1.3rem;">Seulement <span style="color: var(--accent);">19€</span></span>
+    </div>
+    
+    <button class="cta-box-btn" onclick="alert('Lien vers votre page de commande Stripe / Systeme.io')" style="background: linear-gradient(135deg, var(--accent), var(--primary)); text-transform: uppercase; letter-spacing: 0.05em; padding: 1.1rem; border-radius: 12px; font-size: 1rem; box-shadow: 0 4px 15px rgba(0, 229, 160, 0.35); transition: transform 0.2s, opacity 0.2s; font-weight: 900;">
+        Obtenir le Guide PRO à 19€ →
+    </button>
+    <p style="font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem;">⚡ Accès immédiat sécurisé. Garantie satisfait ou remboursé de 14 jours.</p>
   </div>`;
 
             document.getElementById('audit-quiz').style.display = 'none';

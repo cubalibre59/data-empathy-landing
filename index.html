@@ -621,10 +621,55 @@
                 transform: translateY(0)
             }
         }
+
+        /* --- ANTIGRAVITY FLOATING ANIMATIONS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes float-subtle {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero .badge {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .form-box {
+            box-shadow: 0 10px 35px rgba(108, 63, 255, 0.15);
+            animation: float-subtle 6s ease-in-out infinite;
+        }
+
+        .card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow: 0 12px 24px rgba(108, 63, 255, 0.2) !important;
+            border-color: var(--accent) !important;
+        }
+
+        #antigravity-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.55;
+        }
     </style>
 </head>
 
 <body>
+    <!-- ANTIGRAVITY PARTICLE BACKGROUND -->
+    <canvas id="antigravity-bg"></canvas>
 
     <!-- URGENCY BAR -->
     <div class="urgency-bar">
@@ -734,11 +779,15 @@
         <div class="check-icon">📥</div>
         <h2>C'est dans votre boîte !</h2>
         <p>Votre Guide Gratuit (Top 10 Outils IA) a bien été envoyé et arrivera d'ici 2 minutes.</p>
-        <div style="background: rgba(108, 63, 255, 0.1); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; max-width: 500px; margin: 1.5rem auto; text-align: center;">
-            <p style="font-size:1rem;color:var(--accent);font-weight:800;margin-bottom: 0.5rem;">🔥 ÉTAPE SUIVANTE : Votre Audit Personnalisé</p>
-            <p style="font-size:0.85rem;color:var(--muted);margin-bottom: 0px;">Pendant que votre guide gratuit est en route, découvrez en 1 minute si votre propre tunnel de vente perd de l'argent.</p>
+        <div
+            style="background: rgba(108, 63, 255, 0.1); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; max-width: 500px; margin: 1.5rem auto; text-align: center;">
+            <p style="font-size:1rem;color:var(--accent);font-weight:800;margin-bottom: 0.5rem;">🔥 ÉTAPE SUIVANTE :
+                Votre Audit Personnalisé</p>
+            <p style="font-size:0.85rem;color:var(--muted);margin-bottom: 0px;">Pendant que votre guide gratuit est en
+                route, découvrez en 1 minute si votre propre tunnel de vente perd de l'argent.</p>
         </div>
-        <button class="cta-btn" onclick="showScreen('audit')" style="font-size:.95rem;padding:.8rem 2rem;margin-top:0.5rem">Lancer mon audit gratuit →</button>
+        <button class="cta-btn" onclick="showScreen('audit')"
+            style="font-size:.95rem;padding:.8rem 2rem;margin-top:0.5rem">Lancer mon audit gratuit →</button>
     </div>
 
     <!-- ═══════════════════════════════ SCREEN 3 : AUDIT IA ═══════════════════════════════ -->
@@ -929,6 +978,60 @@
         function scrollTo(el) {
             document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
         }
+
+        // --- ANTIGRAVITY FLOATING PARTICLES ---
+        const canvas = document.getElementById('antigravity-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = -(Math.random() * 0.4 + 0.1);
+                this.color = Math.random() > 0.5 ? 'rgba(108, 63, 255, 0.4)' : 'rgba(0, 229, 160, 0.4)';
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y < -10) {
+                    this.y = canvas.height + 10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(80, Math.floor(window.innerWidth / 15));
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
     </script>
 </body>
 

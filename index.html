@@ -901,15 +901,76 @@
         tick();
         setInterval(tick, 1000);
 
-        // EMAIL SUBMIT
+        // ══════════════════════════════════════════════════════
+        // EMAIL SUBMIT → SYSTEME.IO INTEGRATION
+        // ══════════════════════════════════════════════════════
+        //
+        // 🔧 CONFIGURATION SYSTEME.IO (À PERSONNALISER) :
+        //
+        // 1. Connectez-vous à https://systeme.io
+        // 2. Créez un formulaire de capture (Tunnels → Formulaire)
+        // 3. Récupérez l'URL d'action du formulaire :
+        //    → Clic droit sur le formulaire → Inspecter
+        //    → Cherchez <form action="https://systeme.io/embedded/XXXXXX/subscribe">
+        //    → Copiez l'URL complète
+        // 4. Remplacez SYSTEME_IO_FORM_URL ci-dessous par votre URL
+        //
+        // ══════════════════════════════════════════════════════
+
+        const SYSTEME_IO_FORM_URL = 'https://systeme.io/embedded/XXXXXX/subscribe';
+        // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT SYSTEME.IO
+
         function handleEmailSubmit() {
-            const email = document.getElementById('email-input').value.trim();
-            if (!email.includes('@')) {
-                alert('Email invalide');
+            const emailInput = document.getElementById('email-input');
+            const email = emailInput.value.trim();
+
+            // Validation email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailInput.style.border = '2px solid #ff5555';
+                emailInput.setAttribute('placeholder', '⚠️ Entrez un email valide');
+                setTimeout(() => {
+                    emailInput.style.border = '';
+                    emailInput.setAttribute('placeholder', 'votre@email.com');
+                }, 2000);
                 return;
             }
-            showScreen('thankyou');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Désactiver le bouton pendant l'envoi
+            const btn = emailInput.nextElementSibling;
+            const originalText = btn.textContent;
+            btn.textContent = '⏳ Envoi...';
+            btn.disabled = true;
+
+            // ── Envoi vers Systeme.io via iframe caché ──
+            const iframe = document.createElement('iframe');
+            iframe.name = 'systemeio-frame';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = SYSTEME_IO_FORM_URL;
+            form.target = 'systemeio-frame';
+
+            const inputEmail = document.createElement('input');
+            inputEmail.type = 'hidden';
+            inputEmail.name = 'email';
+            inputEmail.value = email;
+            form.appendChild(inputEmail);
+
+            document.body.appendChild(form);
+            form.submit();
+
+            // Afficher l'écran de remerciement après un court délai
+            setTimeout(() => {
+                form.remove();
+                iframe.remove();
+                btn.textContent = originalText;
+                btn.disabled = false;
+                showScreen('thankyou');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1200);
         }
 
         // SCREENS

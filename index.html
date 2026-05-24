@@ -949,28 +949,21 @@
                 const btn = emailInput.nextElementSibling;
                 btn.disabled = true;
 
-                // Créer un formulaire caché et l'envoyer
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'https://systeme.io/embedded/41120641/subscription';
-                form.style.display = 'none';
-
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'email';
-                input.value = email;
-                form.appendChild(input);
-
-                document.body.appendChild(form);
-                form.submit();
-
-                // Affiche remerciement après 500ms
-                setTimeout(() => {
-                    showScreen('thankyou');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 500);
+                // POST en arrière-plan (pas de redirection)
+                fetch('https://systeme.io/embedded/41120641/subscription', {
+                    method: 'POST',
+                    body: new URLSearchParams({ email: email }),
+                    mode: 'no-cors'
+                })
+                    .then(() => {
+                        showScreen('thankyou');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    })
+                    .catch(() => {
+                        showScreen('thankyou');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
             }
-
             // Désactiver le bouton pendant l'envoi
             const btn = emailInput.nextElementSibling;
             const originalText = btn.textContent;

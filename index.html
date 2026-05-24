@@ -716,8 +716,12 @@
                 <p>Entrez votre email et accédez immédiatement au guide + audit IA</p>
 
                 <!-- TON FORMULAIRE SYSTEME.IO -->
-                <iframe src="https://systeme.io/embedded/41120641"
-                    style="width:100%;border:none;height:300px;border-radius:10px"></iframe>
+                <form method="post" action="https://systeme.io/embedded/41120641/subscription"
+                    style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <input type="email" name="email" placeholder="votre@email.com" required
+                        style="flex:1;padding:14px 18px;border-radius:8px;border:none;font-size:16px;min-width:220px" />
+                    <button type="submit" class="btn-main">Envoyer →</button>
+                </form>
 
                 <p class="form-note">🔒 Zéro spam. Désabonnement en 1 clic. 100% gratuit.</p>
             </div>

@@ -950,8 +950,9 @@
                 btn.disabled = true;
 
                 // POST en arrière-plan (pas de redirection)
-                fetch('https://systeme.io/embedded/41120641/subscription', {
+                fetch('https://systeme.io/embedded/41120641/subscribe', {
                     method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ email: email }),
                     mode: 'no-cors'
                 })

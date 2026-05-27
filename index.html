@@ -945,61 +945,26 @@
                     return;
                 }
 
-                // Désactiver le bouton
+                // Désactiver le bouton pendant l'envoi
                 const btn = emailInput.nextElementSibling;
+                const originalText = btn.textContent;
+                btn.textContent = '⏳ Envoi...';
                 btn.disabled = true;
 
-                // POST en arrière-plan (pas de redirection)
+                // POST en arrière-plan vers Systeme.io (pas de redirection)
                 fetch('https://systeme.io/embedded/41120641/subscribe', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ email: email }),
                     mode: 'no-cors'
                 })
-                    .then(() => {
-                        showScreen('thankyou');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    })
-                    .catch(() => {
-                        showScreen('thankyou');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    });
+                .finally(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    showScreen('thankyou');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             }
-            // Désactiver le bouton pendant l'envoi
-            const btn = emailInput.nextElementSibling;
-            const originalText = btn.textContent;
-            btn.textContent = '⏳ Envoi...';
-            btn.disabled = true;
-
-            // ── Envoi vers Systeme.io via iframe caché ──
-            const iframe = document.createElement('iframe');
-            iframe.name = 'systemeio-frame';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = SYSTEME_IO_FORM_URL;
-            form.target = 'systemeio-frame';
-
-            const inputEmail = document.createElement('input');
-            inputEmail.type = 'hidden';
-            inputEmail.name = 'email';
-            inputEmail.value = email;
-            form.appendChild(inputEmail);
-
-            document.body.appendChild(form);
-            form.submit();
-
-            // Afficher l'écran de remerciement après un court délai
-            setTimeout(() => {
-                form.remove();
-                iframe.remove();
-                btn.textContent = originalText;
-                btn.disabled = false;
-                showScreen('thankyou');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 1200);
 
 
             // SCREENS

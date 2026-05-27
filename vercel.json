@@ -3,14 +3,7 @@
     { "source": "/guide-gratuit", "destination": "/guide-gratuit.html" },
     { "source": "/guide-pro", "destination": "/guide-pro.html" }
   ],
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.data-empathy.click" }],
-      "destination": "https://data-empathy.click/$1",
-      "statusCode": 301
-    }
-  ],
+
   "headers": [
     {
       "source": "/(.*)",

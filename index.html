@@ -951,80 +951,86 @@
                 btn.textContent = '⏳ Envoi...';
                 btn.disabled = true;
 
-                // POST en arrière-plan vers Systeme.io (pas de redirection)
-                fetch('https://systeme.io/embedded/41120641/subscribe', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({ email: email }),
-                    mode: 'no-cors'
-                })
-                .finally(() => {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                    showScreen('thankyou');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
+                // Formulaire invisible qui soumet vers Systeme.io
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://systeme.io/embedded/41120641/subscription';
+                form.target = 'hidden-iframe';
 
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'email';
+                input.value = email;
+                form.appendChild(input);
 
-            // SCREENS
-            function showScreen(s) {
-                document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-                document.getElementById(s).classList.add('active');
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+
+                btn.textContent = originalText;
+                btn.disabled = false;
+                showScreen('thankyou');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
 
-            // AUDIT
-            function startAudit() {
-                currentQIdx = 0;
-                answers = [];
-                document.getElementById('audit-start').style.display = 'none';
-                document.getElementById('progress-section').style.display = 'block';
-                document.getElementById('audit-quiz').style.display = 'block';
-                renderQuestion();
-            }
 
-            function renderQuestion() {
-                if (currentQIdx >= questions.length) return showResults();
-                const q = questions[currentQIdx];
-                document.getElementById('question-counter').textContent = currentQIdx + 1;
-                document.getElementById('progress-fill').style.width = ((currentQIdx / questions.length) * 100) + '%';
+                // SCREENS
+                function showScreen(s) {
+                    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+                    document.getElementById(s).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
 
-                let html = `<h2>${q.q}</h2><div class="audit-options">`;
-                q.opts.forEach((opt, i) => {
-                    html += `<button class="audit-option" onclick="answerQuestion(${opt.s})"> ${opt.l}</button>`;
-                });
-                html += '</div>';
-                document.getElementById('quiz-content').innerHTML = html;
-            }
-
-            function answerQuestion(score) {
-                answers.push(score);
-                currentQIdx++;
-                if (currentQIdx >= questions.length) {
-                    showResults();
-                } else {
+                // AUDIT
+                function startAudit() {
+                    currentQIdx = 0;
+                    answers = [];
+                    document.getElementById('audit-start').style.display = 'none';
+                    document.getElementById('progress-section').style.display = 'block';
+                    document.getElementById('audit-quiz').style.display = 'block';
                     renderQuestion();
                 }
-            }
 
-            function showResults() {
-                const avg = Math.round(answers.reduce((a, b) => a + b, 0) / answers.length);
-                const level = avg > 70 ? 'high' : avg > 40 ? 'med' : 'low';
-                const color = avg > 70 ? '#00e5a0' : avg > 40 ? '#ffaa00' : '#ff5555';
-                const title = avg > 70 ? '✅ Excellent tunnel !' : avg > 40 ? '⚠️ À améliorer' : '🔴 Critique : Vous perdez des clients';
+                function renderQuestion() {
+                    if (currentQIdx >= questions.length) return showResults();
+                    const q = questions[currentQIdx];
+                    document.getElementById('question-counter').textContent = currentQIdx + 1;
+                    document.getElementById('progress-fill').style.width = ((currentQIdx / questions.length) * 100) + '%';
 
-                let html = `<div style="margin-bottom:2rem"><div class="score-box" style="color:${color}">${avg}/100</div>`;
-                html += `<div class="score-title">${title}</div>`;
-                html += `<div class="score-desc">${avg > 70 ? 'Maintenez cette dynamique !' : avg > 40 ? 'Vous avez les bases mais il y a des fuites.' : 'Vous avez aucun système pour capter vos prospects.'}</div></div>`;
+                    let html = `<h2>${q.q}</h2><div class="audit-options">`;
+                    q.opts.forEach((opt, i) => {
+                        html += `<button class="audit-option" onclick="answerQuestion(${opt.s})"> ${opt.l}</button>`;
+                    });
+                    html += '</div>';
+                    document.getElementById('quiz-content').innerHTML = html;
+                }
 
-                html += '<div class="recs-box"><h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">💡 Recommandations personnalisées</h2>';
-                recs[level].forEach(r => {
-                    html += `<div class="rec-item"><div class="rec-title">${r.t}</div><div class="rec-desc">${r.d}</div></div>`;
-                });
-                html += '</div>';
+                function answerQuestion(score) {
+                    answers.push(score);
+                    currentQIdx++;
+                    if (currentQIdx >= questions.length) {
+                        showResults();
+                    } else {
+                        renderQuestion();
+                    }
+                }
 
-                html += `<div class="cta-box" style="border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(108, 63, 255, 0.25), rgba(0, 229, 160, 0.15)); padding: 2.2rem 1.5rem; text-align: center; border-radius: 16px; margin-top: 1.5rem;">
+                function showResults() {
+                    const avg = Math.round(answers.reduce((a, b) => a + b, 0) / answers.length);
+                    const level = avg > 70 ? 'high' : avg > 40 ? 'med' : 'low';
+                    const color = avg > 70 ? '#00e5a0' : avg > 40 ? '#ffaa00' : '#ff5555';
+                    const title = avg > 70 ? '✅ Excellent tunnel !' : avg > 40 ? '⚠️ À améliorer' : '🔴 Critique : Vous perdez des clients';
+
+                    let html = `<div style="margin-bottom:2rem"><div class="score-box" style="color:${color}">${avg}/100</div>`;
+                    html += `<div class="score-title">${title}</div>`;
+                    html += `<div class="score-desc">${avg > 70 ? 'Maintenez cette dynamique !' : avg > 40 ? 'Vous avez les bases mais il y a des fuites.' : 'Vous avez aucun système pour capter vos prospects.'}</div></div>`;
+
+                    html += '<div class="recs-box"><h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">💡 Recommandations personnalisées</h2>';
+                    recs[level].forEach(r => {
+                        html += `<div class="rec-item"><div class="rec-title">${r.t}</div><div class="rec-desc">${r.d}</div></div>`;
+                    });
+                    html += '</div>';
+
+                    html += `<div class="cta-box" style="border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(108, 63, 255, 0.25), rgba(0, 229, 160, 0.15)); padding: 2.2rem 1.5rem; text-align: center; border-radius: 16px; margin-top: 1.5rem;">
     <div class="cta-box-sub" style="color: var(--accent); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.6rem;">🎁 Guide Gratuit Envoyé !</div>
     <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff;">Passez au niveau supérieur avec le <span style="color: var(--accent);">Guide PRO</span></h3>
     <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 1.5rem; line-height: 1.5; max-width: 540px; margin-left: auto; margin-right: auto;">
@@ -1044,70 +1050,73 @@
     <p style="font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem;">⚡ Accès immédiat sécurisé. Garantie satisfait ou remboursé de 14 jours.</p>
   </div>`;
 
-                document.getElementById('audit-quiz').style.display = 'none';
-                document.getElementById('progress-section').style.display = 'none';
-                document.getElementById('audit-results').style.display = 'block';
-                document.getElementById('results-content').innerHTML = html;
-            }
-
-            function scrollTo(el) {
-                document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // --- ANTIGRAVITY FLOATING PARTICLES ---
-            const canvas = document.getElementById('antigravity-bg');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = canvas.height + Math.random() * 100;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedY = -(Math.random() * 0.4 + 0.1);
-                    this.color = Math.random() > 0.5 ? 'rgba(108, 63, 255, 0.4)' : 'rgba(0, 229, 160, 0.4)';
+                    document.getElementById('audit-quiz').style.display = 'none';
+                    document.getElementById('progress-section').style.display = 'none';
+                    document.getElementById('audit-results').style.display = 'block';
+                    document.getElementById('results-content').innerHTML = html;
                 }
-                update() {
-                    this.y += this.speedY;
-                    if (this.y < -10) {
-                        this.y = canvas.height + 10;
+
+                function scrollTo(el) {
+                    document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // --- ANTIGRAVITY FLOATING PARTICLES ---
+                const canvas = document.getElementById('antigravity-bg');
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+
+                class Particle {
+                    constructor() {
                         this.x = Math.random() * canvas.width;
+                        this.y = canvas.height + Math.random() * 100;
+                        this.size = Math.random() * 2 + 0.5;
+                        this.speedY = -(Math.random() * 0.4 + 0.1);
+                        this.color = Math.random() > 0.5 ? 'rgba(108, 63, 255, 0.4)' : 'rgba(0, 229, 160, 0.4)';
+                    }
+                    update() {
+                        this.y += this.speedY;
+                        if (this.y < -10) {
+                            this.y = canvas.height + 10;
+                            this.x = Math.random() * canvas.width;
+                        }
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
                     }
                 }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = this.color;
-                    ctx.fill();
-                }
-            }
 
-            function initParticles() {
-                particles = [];
-                const count = Math.min(80, Math.floor(window.innerWidth / 15));
-                for (let i = 0; i < count; i++) {
-                    particles.push(new Particle());
+                function initParticles() {
+                    particles = [];
+                    const count = Math.min(80, Math.floor(window.innerWidth / 15));
+                    for (let i = 0; i < count; i++) {
+                        particles.push(new Particle());
+                    }
                 }
-            }
-            initParticles();
+                initParticles();
 
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animateParticles);
-            }
-            animateParticles();
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+                    requestAnimationFrame(animateParticles);
+                }
+                animateParticles();
         </script>
+        <!-- iframe invisible pour Systeme.io -->
+        <iframe name="hidden-iframe" style="display:none;"></iframe>
+
 </body>
 
 </html>

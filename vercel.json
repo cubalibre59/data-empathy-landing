@@ -1,4 +1,6 @@
 {
+  "buildCommand": "",
+  "outputDirectory": ".",
   "rewrites": [
     { "source": "/guide-gratuit", "destination": "/guide-gratuit.html" },
     { "source": "/guide-pro", "destination": "/guide-pro.html" }

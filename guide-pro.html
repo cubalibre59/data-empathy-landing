@@ -311,6 +311,127 @@
             margin-bottom: 0.5rem;
         }
 
+        /* TOOLS GRID (copied from guide-gratuit.html but matched with pro variables) */
+        .tools-grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .tool-num {
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(0, 229, 160, 0.1);
+            border: 1px solid var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tool-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .tool-desc {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .tool-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+        }
+
+        .tag-green {
+            background: rgba(0, 229, 160, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .tag-violet {
+            background: rgba(108, 63, 255, 0.1);
+            color: #a78bfa;
+            border: 1px solid var(--primary);
+        }
+
+        .tag-orange {
+            background: #ff8c0022;
+            color: #ff8c00;
+            border: 1px solid #ff8c0055;
+        }
+
+        .btn-tool {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-tool:hover {
+            opacity: 0.85;
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 768px) {
+            .tool-card {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+            .tool-num {
+                margin: 0 auto;
+            }
+            .tool-tags {
+                justify-content: center;
+            }
+            .tool-card:hover {
+                transform: translateY(-4px);
+            }
+        }
+
         /* FOOTER */
         footer {
             text-align: center;
@@ -339,6 +460,7 @@
             <button class="tab-btn active" onclick="switchTab('scripts', this)">✍️ Scripts de persuasion</button>
             <button class="tab-btn" onclick="switchTab('tunnels', this)">🏗️ Architecture Tunnel</button>
             <button class="tab-btn" onclick="switchTab('plan', this)">⚡ Démarrage Rapide</button>
+            <button class="tab-btn" onclick="switchTab('outils', this)">🛠️ Outils Recommandés</button>
         </div>
 
         <!-- ═══════════════════════ TAB 1 : SCRIPTS ═══════════════════════ -->
@@ -499,6 +621,185 @@
                         <li>Installez votre offre PRO et observez l'augmentation des conversions !</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════ TAB 4 : OUTILS ═══════════════════════ -->
+        <div id="outils" class="tab-content">
+            <h2 class="sec-title">🛠️ Les 10 outils IA comportementaux indispensables</h2>
+            <p class="sec-desc">Profitez des offres exclusives d'essais gratuits et augmentez l'empathie de vos tunnels.</p>
+
+            <div class="tools-grid">
+
+                <div class="tool-card">
+                    <div class="tool-num">01</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Hotjar</div>
+                        <div class="tool-desc">Heatmaps, enregistrements de sessions et sondages. Voyez exactement où vos visiteurs cliquent et où ils abandonnent.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">Essai gratuit</span>
+                            <span class="tag tag-orange">Commission 25% ✅</span>
+                            <span class="tag tag-violet">Heatmaps</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ HOTJAR -->
+                        <a href="https://www.hotjar.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">02</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Lucky Orange</div>
+                        <div class="tool-desc">Enregistrements de sessions + chat en direct + heatmaps. Solution tout-en-un pour optimiser vos tunnels.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">7 jours gratuits</span>
+                            <span class="tag tag-orange">Commission 50% ✅</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ LUCKY ORANGE -->
+                        <a href="https://www.luckyorange.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">03</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Userpilot</div>
+                        <div class="tool-desc">Onboarding produit, guides interactifs et analyse comportementale. Réduisez le churn dès les premiers jours.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">Demo gratuite</span>
+                            <span class="tag tag-orange">Commission 20% ✅</span>
+                            <span class="tag tag-violet">Onboarding</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ USERPILOT -->
+                        <a href="https://userpilot.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">04</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Mouseflow</div>
+                        <div class="tool-desc">Analyse des sessions utilisateurs avec cartes de chaleur et entonnoirs de conversion détaillés.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">Plan gratuit</span>
+                            <span class="tag tag-orange">Commission 20% ✅</span>
+                            <span class="tag tag-violet">Analytics</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ MOUSEFLOW -->
+                        <a href="https://mouseflow.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">05</div>
+                    <div class="tool-info">
+                        <div class="tool-name">ContentSquare</div>
+                        <div class="tool-desc">Analyse comportementale de niveau enterprise. Zones de clics, frustration des utilisateurs et insights IA pour booster vos conversions à grande échelle.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">Demo gratuite</span>
+                            <span class="tag tag-orange">Programme Affilié ✅</span>
+                            <span class="tag tag-violet">IA Comportementale</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ CONTENTSQUARE -->
+                        <a href="https://contentsquare.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">06</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Crazy Egg</div>
+                        <div class="tool-desc">Heatmaps, scrollmaps et enregistrements de sessions. Visualisez exactement ce qui attire ou fait fuir vos visiteurs sur chaque page.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">30 jours gratuits</span>
+                            <span class="tag tag-orange">Commission 30% ✅</span>
+                            <span class="tag tag-violet">Heatmaps</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ CRAZY EGG -->
+                        <a href="https://www.crazyegg.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">07</div>
+                    <div class="tool-info">
+                        <div class="tool-name">VWO</div>
+                        <div class="tool-desc">Plateforme A/B testing + heatmaps + analyse comportementale. Testez, mesurez et optimisez chaque élément de votre tunnel de conversion.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">30 jours gratuits</span>
+                            <span class="tool-orange">Programme Affilié ✅</span>
+                            <span class="tag tag-violet">A/B Testing</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ VWO -->
+                        <a href="https://vwo.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">08</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Intercom</div>
+                        <div class="tool-desc">Messagerie client + chatbot IA. Engagez vos visiteurs au bon moment et convertissez-les en clients fidèles automatiquement.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">14 jours gratuits</span>
+                            <span class="tag tag-orange">Commission 15% ✅</span>
+                            <span class="tag tag-violet">Chat IA</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ INTERCOM -->
+                        <a href="https://www.intercom.com" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">09</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Heap</div>
+                        <div class="tool-desc">Capture automatique de tous les événements utilisateurs sans code. Analysez rétroactivement chaque interaction et optimisez votre parcours client.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">Plan gratuit</span>
+                            <span class="tag tag-orange">Programme Affilié ✅</span>
+                            <span class="tag tag-violet">Analytics Auto</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ HEAP -->
+                        <a href="https://heap.io" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-num">10</div>
+                    <div class="tool-info">
+                        <div class="tool-name">Pendo</div>
+                        <div class="tool-desc">Analytique produit + in-app guides + NPS intégré. Réduisez le churn et augmentez l'engagement avec des parcours utilisateurs personnalisés par IA.</div>
+                        <div class="tool-tags">
+                            <span class="tag tag-green">Demo gratuite</span>
+                            <span class="tag tag-orange">Programme Affilié ✅</span>
+                            <span class="tag tag-violet">Onboarding IA</span>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <!-- REMPLACEZ PAR VOTRE LIEN AFFILIÉ PENDO -->
+                        <a href="https://pendo.io" class="btn-tool" target="_blank">Essayer →</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

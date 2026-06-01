@@ -1046,7 +1046,7 @@
 
                         let html = `<h2>${q.q}</h2><div class="audit-options">`;
                         q.opts.forEach((opt, i) => {
-                            html += `<button class="audit-option" onclick="answerQuestion(${opt.s || optcore})">${opt.l
+                            html += `<button class="audit-option" onclick="answerQuestion(${opt.s || opt.score})">${opt.l
                                 }</button>`;
                         });
 
@@ -1072,20 +1072,45 @@
                         const title = avg > 70 ? '✅ Excellent tunnel !' : avg > 40 ? '⚠️ À améliorer' : '🔴 Critique : Vous perdez des clients';
                         // AJOUT : Un wrapper principal pour isoler les résultats du reste de la page
                         let html = `<div class="audit-results-wrapper" style="width: 100%; display: block; clear: both;">`;
-                        let html = `<div style="margin-bottom:2rem"><div class="score-box" style="color:${color}">${avg}/100</div>`;
-                        html += `<div class="score-title">${title}</div>`;
-                        html += `<div class="score-desc">${avg > 70 ? 'Maintenez cette dynamique !' : avg > 40 ? 'Vous avez les bases mais il y a des fuites.' : 'Vous avez aucun système pour capter vos prospects.'}</div></div>`;
-
-                        html += '<div class="recs-box"><h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">💡 Recommandations personnalisées</h2>';
+                        html += `
+                        <div style="margin-bottom:2rem"> 
+                            <div class="score-box" style="color:${color}">
+                                ${avg}/100
+                            </div>`;
+                            <div class="score-title">${title}</div>
+                            <div class="score-desc">
+                                ${
+                                    avg > 70
+                                        ? 'Maintenez cette dynamique !'
+                                        : avg > 40 
+                                        ? 'Vous avez les bases mais il y a des fuites.'
+                                        : 'Vous avez aucun système pour capter vos prospects.'
+                                }
+                            </div>
+                        </div >
+                            `;
+      
+                        html += '
+                            <div class="recs-box">
+                            <h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+                                💡 Recommandations personnalisées
+                                </h2>
+                        ';
                         if (recs && recs[level]) {
                             recs[level].forEach(r => {
-                                html += `<div class="rec-item"><div class="rec-title">${r.t}</div><div class="rec-desc">${r.d}</div></div>`;
+                                html += `
+                            < div class="rec-item" >
+                                    <div class="rec-title">${r.t}</div>
+                                    <div class="rec-desc">${r.d}</div>
+                                </div >
+                            `;
                             });
                         }
 
                         html += '</div>';
 
-                        html += `<div class="cta-box" style="border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(108, 63, 255, 0.25), rgba(0, 229, 160, 0.15)); padding: 2.2rem 1.5rem; text-align: center; border-radius: 16px; margin-top: 1.5rem;">
+                        html += `
+                            < div class="cta-box" style = "border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(108, 63, 255, 0.25), rgba(0, 229, 160, 0.15)); padding: 2.2rem 1.5rem; text-align: center; border-radius: 16px; margin-top: 1.5rem;" >
     <div class="cta-box-sub" style="color: var(--accent); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.6rem;">🎁 Guide Gratuit Envoyé !</div>
     <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff;">Passez au niveau supérieur avec le <span style="color: var(--accent);">Guide PRO</span></h3>
     <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 1.5rem; line-height: 1.5; max-width: 540px; margin-left: auto; margin-right: auto;">
@@ -1103,7 +1128,8 @@
         Obtenir le Guide PRO à 19€ →
     </button>
     <p style="font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem;">⚡ Accès immédiat sécurisé. Garantie satisfait ou remboursé de 14 jours.</p>
-  </div>`;
+  </div > `;
+                        hml += `</div >`; // Fermeture du wrapper principal
 
                         document.getElementById('audit-quiz').style.display = 'none';
                         document.getElementById('progress-section').style.display = 'none';
@@ -1228,14 +1254,19 @@ let html = `<div style="margin-bottom:2rem">
         il y a des fuites.' : 'Vous avez aucun système pour capter vos prospects.'}</div>
 </div>`;
 
-html += '<div class="recs-box">
+html += '
+<div class="recs-box">
     <h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">💡
-        Recommandations personnalisées</h2>';
+        Recommandations personnalisées
+    </h2>
+    ';
     recs[level].forEach(r => {
-    html += `<div class="rec-item">
+    html += `
+    <div class="rec-item">
         <div class="rec-title">${r.t}</div>
         <div class="rec-desc">${r.d}</div>
-    </div>`;
+    </div>
+    `;
     });
     html += '
 </div>';
@@ -1278,7 +1309,7 @@ document.getElementById('audit-results').style.display = 'block';
 document.getElementById('results-content').innerHTML = html;
 }
 
-function scrollTo(el) {
+function scrollToId(el) {
 document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
 }
 

@@ -1073,27 +1073,27 @@
                         // AJOUT : Un wrapper principal pour isoler les résultats du reste de la page
                         let html = `<div class="audit-results-wrapper" style="width: 100%; display: block; clear: both;">`;
                         html += `
-                        <div style="margin-bottom:2rem"> 
+                        <div style="margin-bottom:2rem">
                             <div class="score-box" style="color:${color}">
                                 ${avg}/100
-                            </div>`;
-                            <div class="score-title">${title}</div>
-                            <div class="score-desc">
-                                ${
-                                    avg > 70
-                                        ? 'Maintenez cette dynamique !'
-                                        : avg > 40 
-                                        ? 'Vous avez les bases mais il y a des fuites.'
-                                        : 'Vous avez aucun système pour capter vos prospects.'
-                                }
                             </div>
-                        </div >
+
+                            <div class="score-title">${title}</div>
+
+                            <div class="score-desc">
+                                ${avg > 70
+                                ? 'Maintenez cette dynamique !'
+                                : avg > 40
+                                    ? 'Vous avez les bases mais il y a des fuites.'
+                                    : 'Vous n’avez aucun système pour capter vos prospects.'
+                            }
+                            </div>
+                        </div>
                             `;
-      
                         html += '
-                            <div class="recs-box">
-                            <h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
-                                💡 Recommandations personnalisées
+                            < div class="recs-box" >
+                                <h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+                                    💡 Recommandations personnalisées
                                 </h2>
                         ';
                         if (recs && recs[level]) {

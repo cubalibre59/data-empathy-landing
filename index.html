@@ -801,66 +801,66 @@
 
     <!-- ═══════════════════════════════ SCREEN 2 : THANK YOU ═══════════════════════════════ -->
     <div id="thankyou" class="screen">
-            <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
-                <div class="logo">DATA<span>-EMPATHY</span></div>
-            </nav>
-            <div class="check-icon">📥</div>
-            <h2>C'est dans votre boîte !</h2>
-            <p>Votre Guide Gratuit (Top 10 Outils IA) a bien été envoyé et arrivera d'ici 2 minutes.</p>
-            <div
-                style="background: rgba(108, 63, 255, 0.1); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; max-width: 500px; margin: 1.5rem auto; text-align: center;">
-                <p style="font-size:1rem;color:var(--accent);font-weight:800;margin-bottom: 0.5rem;">🔥 ÉTAPE SUIVANTE :
-                    Votre Audit Personnalisé</p>
-                <p style="font-size:0.85rem;color:var(--muted);margin-bottom: 0px;">Pendant que votre guide gratuit est
-                    en
-                    route, découvrez en 1 minute si votre propre tunnel de vente perd de l'argent.</p>
-            </div>
-            <button class="cta-btn" onclick="showScreen('audit')"
-                style="font-size:.95rem;padding:.8rem 2rem;margin-top:0.5rem">Lancer mon audit gratuit →</button>
+        <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
+            <div class="logo">DATA<span>-EMPATHY</span></div>
+        </nav>
+        <div class="check-icon">📥</div>
+        <h2>C'est dans votre boîte !</h2>
+        <p>Votre Guide Gratuit (Top 10 Outils IA) a bien été envoyé et arrivera d'ici 2 minutes.</p>
+        <div
+            style="background: rgba(108, 63, 255, 0.1); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; max-width: 500px; margin: 1.5rem auto; text-align: center;">
+            <p style="font-size:1rem;color:var(--accent);font-weight:800;margin-bottom: 0.5rem;">🔥 ÉTAPE SUIVANTE :
+                Votre Audit Personnalisé</p>
+            <p style="font-size:0.85rem;color:var(--muted);margin-bottom: 0px;">Pendant que votre guide gratuit est
+                en
+                route, découvrez en 1 minute si votre propre tunnel de vente perd de l'argent.</p>
+        </div>
+        <button class="cta-btn" onclick="showScreen('audit')"
+            style="font-size:.95rem;padding:.8rem 2rem;margin-top:0.5rem">Lancer mon audit gratuit →</button>
     </div>
     <!-- fin #thankyou -->
 
     <!-- ═══════════════════════════════ SCREEN 3 : AUDIT IA ═══════════════════════════════ -->
     <div id="audit" class="screen">
-            <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
-                <div class="logo">DATA<span>-EMPATHY</span></div>
-            </nav>
-            <div class="audit-container">
-                <div class="audit-progress" id="progress-section" style="display:none">
-                    <div class="progress-text"><span id="question-counter">1</span> / 6</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                </div>
-
-                <!-- START AUDIT -->
-                <div id="audit-start" style="text-align:center;padding:3rem 0">
-                    <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
-                    <h1 style="font-size:2rem;font-weight:900;margin-bottom:.5rem">Votre tunnel perd-il des clients ?
-                    </h1>
-                    <p style="color:#8888aa;margin-bottom:2rem;font-size:.95rem">Découvrez exactement où (et pourquoi)
-                        vos
-                        prospects abandonnent. Audit IA gratuit en 1 minute.</p>
-                    <button class="cta-btn" onclick="startAudit()" style="font-size:1rem;padding:.9rem 2.2rem">Démarrer
-                        l'audit →</button>
-                    <div
-                        style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;font-size:.8rem;color:#8888aa">
-                        <div>⚡ 1 minute</div>
-                        <div>6 questions</div>
-                        <div>100% gratuit</div>
-                    </div>
-                </div>
-
-                <!-- QUIZ -->
-                <div id="audit-quiz" style="display:none">
-                    <div class="audit-question" id="quiz-content"></div>
-                </div>
-
-                <!-- RESULTS -->
-                <div id="audit-results" style="display:none">
-                    <div class="audit-results" id="results-content"></div>
+        <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
+            <div class="logo">DATA<span>-EMPATHY</span></div>
+        </nav>
+        <div class="audit-container">
+            <div class="audit-progress" id="progress-section" style="display:none">
+                <div class="progress-text"><span id="question-counter">1</span> / 6</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
                 </div>
             </div>
+
+            <!-- START AUDIT -->
+            <div id="audit-start" style="text-align:center;padding:3rem 0">
+                <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
+                <h1 style="font-size:2rem;font-weight:900;margin-bottom:.5rem">Votre tunnel perd-il des clients ?
+                </h1>
+                <p style="color:#8888aa;margin-bottom:2rem;font-size:.95rem">Découvrez exactement où (et pourquoi)
+                    vos
+                    prospects abandonnent. Audit IA gratuit en 1 minute.</p>
+                <button class="cta-btn" onclick="startAudit()" style="font-size:1rem;padding:.9rem 2.2rem">Démarrer
+                    l'audit →</button>
+                <div
+                    style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;font-size:.8rem;color:#8888aa">
+                    <div>⚡ 1 minute</div>
+                    <div>6 questions</div>
+                    <div>100% gratuit</div>
+                </div>
+            </div>
+
+            <!-- QUIZ -->
+            <div id="audit-quiz" style="display:none">
+                <div class="audit-question" id="quiz-content"></div>
+            </div>
+
+            <!-- RESULTS -->
+            <div id="audit-results" style="display:none">
+                <div class="audit-results" id="results-content"></div>
+            </div>
+        </div>
     </div>
     <!-- fin #audit -->
 
@@ -870,170 +870,170 @@
     </footer>
 
     <script>
-            // ── DATA ──
-            const questions = [
-                { q: "Avez-vous un système de relance automatique (email, SMS) ?", opts: [{ l: "Non, aucun", s: 0 }, { l: "Oui, basique 1-2", s: 30 }, { l: "Oui, séquence 3+", s: 100 }] },
-                { q: "Mesurez-vous le taux d'abandon du formulaire ?", opts: [{ l: "Non", s: 0 }, { l: "Oui, mais je ne fais rien", s: 40 }, { l: "Oui, j'optimise", s: 100 }] },
-                { q: "Utilisez-vous l'analyse comportementale (heatmaps) ?", opts: [{ l: "Non", s: 0 }, { l: "J'ai essayé une fois", s: 35 }, { l: "Oui, c'est central", s: 100 }] },
-                { q: "Vos CTAs sont-ils personnalisés par segment ?", opts: [{ l: "Non, même CTA", s: 0 }, { l: "2-3 variantes", s: 45 }, { l: "Hautement perso IA", s: 100 }] },
-                { q: "Avez-vous testé plusieurs versions (A/B) ?", opts: [{ l: "Non, figée", s: 0 }, { l: "2-3 tests", s: 50 }, { l: "Tests continus", s: 100 }] },
-                { q: "Offrez-vous une offre de rattrapage pour ceux qui abandonnent ?", opts: [{ l: "Non", s: 0 }, { l: "Popup générique", s: 40 }, { l: "Offre intelligente+email", s: 100 }] }
-            ];
+        // ── DATA ──
+        const questions = [
+            { q: "Avez-vous un système de relance automatique (email, SMS) ?", opts: [{ l: "Non, aucun", s: 0 }, { l: "Oui, basique 1-2", s: 30 }, { l: "Oui, séquence 3+", s: 100 }] },
+            { q: "Mesurez-vous le taux d'abandon du formulaire ?", opts: [{ l: "Non", s: 0 }, { l: "Oui, mais je ne fais rien", s: 40 }, { l: "Oui, j'optimise", s: 100 }] },
+            { q: "Utilisez-vous l'analyse comportementale (heatmaps) ?", opts: [{ l: "Non", s: 0 }, { l: "J'ai essayé une fois", s: 35 }, { l: "Oui, c'est central", s: 100 }] },
+            { q: "Vos CTAs sont-ils personnalisés par segment ?", opts: [{ l: "Non, même CTA", s: 0 }, { l: "2-3 variantes", s: 45 }, { l: "Hautement perso IA", s: 100 }] },
+            { q: "Avez-vous testé plusieurs versions (A/B) ?", opts: [{ l: "Non, figée", s: 0 }, { l: "2-3 tests", s: 50 }, { l: "Tests continus", s: 100 }] },
+            { q: "Offrez-vous une offre de rattrapage pour ceux qui abandonnent ?", opts: [{ l: "Non", s: 0 }, { l: "Popup générique", s: 40 }, { l: "Offre intelligente+email", s: 100 }] }
+        ];
 
-            const recs = {
-                low: [
-                    { t: "🔴 Urgence : Mise en place du suivi", d: "Vous n'avez aucun système. Commencez par Hotjar gratuit." },
-                    { t: "📧 Créez une séquence email", d: "Mettez en place 5 emails minimum — les gens oublient 90% après 3 jours." },
-                    { t: "🎯 Optimisez votre formulaire", d: "Réduisez à 3 champs max. Chaque champ = -11% conversions." }
-                ],
-                med: [
-                    { t: "📊 Augmentez la fréquence de test", d: "Vous avez les bases. Lancez un A/B test chaque semaine." },
-                    { t: "🤖 Implementez la personnalisation IA", d: "Allez au-delà de 2-3 variantes avec Userpilot ou Pendo." },
-                    { t: "🔗 Créez des offres de rattrapage", d: "Ceux qui abandonnent sont vos meilleurs prospects." }
-                ],
-                high: [
-                    { t: "🚀 Vous êtes au top !", d: "Continuez — analysez, testez, améliorez régulièrement." },
-                    { t: "💰 Optimisez la monétisation", d: "Votre tunnel convertit bien. Augmentez les prix ou ajoutez des upsells." },
-                    { t: "📈 Dupliquez ce modèle", d: "Vous avez une formule gagnante. Testez-la sur d'autres segments." }
-                ]
-            };
+        const recs = {
+            low: [
+                { t: "🔴 Urgence : Mise en place du suivi", d: "Vous n'avez aucun système. Commencez par Hotjar gratuit." },
+                { t: "📧 Créez une séquence email", d: "Mettez en place 5 emails minimum — les gens oublient 90% après 3 jours." },
+                { t: "🎯 Optimisez votre formulaire", d: "Réduisez à 3 champs max. Chaque champ = -11% conversions." }
+            ],
+            med: [
+                { t: "📊 Augmentez la fréquence de test", d: "Vous avez les bases. Lancez un A/B test chaque semaine." },
+                { t: "🤖 Implementez la personnalisation IA", d: "Allez au-delà de 2-3 variantes avec Userpilot ou Pendo." },
+                { t: "🔗 Créez des offres de rattrapage", d: "Ceux qui abandonnent sont vos meilleurs prospects." }
+            ],
+            high: [
+                { t: "🚀 Vous êtes au top !", d: "Continuez — analysez, testez, améliorez régulièrement." },
+                { t: "💰 Optimisez la monétisation", d: "Votre tunnel convertit bien. Augmentez les prix ou ajoutez des upsells." },
+                { t: "📈 Dupliquez ce modèle", d: "Vous avez une formule gagnante. Testez-la sur d'autres segments." }
+            ]
+        };
 
-            let currentQIdx = 0;
-            let answers = [];
-            let totalSecs = 9 * 60 + 47;
+        let currentQIdx = 0;
+        let answers = [];
+        let totalSecs = 9 * 60 + 47;
 
-            // TIMER
-            function tick() {
-                if (totalSecs <= 0) totalSecs = 0;
-                let m = Math.floor(totalSecs / 60), s = totalSecs % 60;
-                let str = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                let bt = document.getElementById('bar-timer');
-                if (bt) bt.textContent = str;
-                if (totalSecs > 0) totalSecs--;
-            }
-            tick();
-            setInterval(tick, 1000);
+        // TIMER
+        function tick() {
+            if (totalSecs <= 0) totalSecs = 0;
+            let m = Math.floor(totalSecs / 60), s = totalSecs % 60;
+            let str = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+            let bt = document.getElementById('bar-timer');
+            if (bt) bt.textContent = str;
+            if (totalSecs > 0) totalSecs--;
+        }
+        tick();
+        setInterval(tick, 1000);
 
-            // ══════════════════════════════════════════════════════
-            // EMAIL SUBMIT → SYSTEME.IO INTEGRATION
-            // ══════════════════════════════════════════════════════
-            //
-            // 🔧 CONFIGURATION SYSTEME.IO (À PERSONNALISER) :
-            //
-            // 1. Connectez-vous à https://systeme.io
-            // 2. Créez un formulaire de capture (Tunnels → Formulaire)
-            // 3. Récupérez l'URL d'action du formulaire :
-            //    → Clic droit sur le formulaire → Inspecter
-            //    → Cherchez <form action="https://systeme.io/embedded/XXXXXX/subscribe">
-            //    → Copiez l'URL complète
-            // 4. Remplacez SYSTEME_IO_FORM_URL ci-dessous par votre URL
-            //
-            // ══════════════════════════════════════════════════════
+        // ══════════════════════════════════════════════════════
+        // EMAIL SUBMIT → SYSTEME.IO INTEGRATION
+        // ══════════════════════════════════════════════════════
+        //
+        // 🔧 CONFIGURATION SYSTEME.IO (À PERSONNALISER) :
+        //
+        // 1. Connectez-vous à https://systeme.io
+        // 2. Créez un formulaire de capture (Tunnels → Formulaire)
+        // 3. Récupérez l'URL d'action du formulaire :
+        //    → Clic droit sur le formulaire → Inspecter
+        //    → Cherchez <form action="https://systeme.io/embedded/XXXXXX/subscribe">
+        //    → Copiez l'URL complète
+        // 4. Remplacez SYSTEME_IO_FORM_URL ci-dessous par votre URL
+        //
+        // ══════════════════════════════════════════════════════
 
-            const SYSTEME_IO_FORM_URL = 'https://systeme.io/embedded/XXXXXX/subscribe';
-            // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT SYSTEME.IO
+        const SYSTEME_IO_FORM_URL = 'https://systeme.io/embedded/XXXXXX/subscribe';
+        // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT SYSTEME.IO
 
-            function handleEmailSubmit(event) {
-                event.preventDefault();
+        function handleEmailSubmit(event) {
+            event.preventDefault();
 
-                const emailInput = document.getElementById('email-input');
-                const email = emailInput.value.trim();
+            const emailInput = document.getElementById('email-input');
+            const email = emailInput.value.trim();
 
-                // Validation email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    emailInput.style.border = '2px solid #ff5555';
-                    emailInput.setAttribute('placeholder', '⚠️ Entrez un email valide');
-                    setTimeout(() => {
-                        emailInput.style.border = '';
-                        emailInput.setAttribute('placeholder', 'votre@email.com');
-                    }, 2000);
-                    return;
-                }
-
-                // Désactiver le bouton pendant l'envoi
-                const btn = emailInput.nextElementSibling;
-                const originalText = btn.textContent;
-                btn.textContent = '⏳ Envoi...';
-                btn.disabled = true;
-
-                // Formulaire invisible qui soumet vers Systeme.io
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'https://systeme.io/embedded/41120641/subscription';
-                form.target = 'hidden-iframe';
-
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'email';
-                input.value = email;
-                form.appendChild(input);
-
-                document.body.appendChild(form);
-                form.submit();
-                document.body.removeChild(form);
-
-                // Rediriger vers la page "Thank You" après soumission
+            // Validation email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailInput.style.border = '2px solid #ff5555';
+                emailInput.setAttribute('placeholder', '⚠️ Entrez un email valide');
                 setTimeout(() => {
-                    showScreen('thankyou');
-                }, 1000);
-
-                btn.textContent = originalText;
-                btn.disabled = false;
+                    emailInput.style.border = '';
+                    emailInput.setAttribute('placeholder', 'votre@email.com');
+                }, 2000);
+                return;
             }
 
-            // SCREENS
-            function showScreen(s) {
-                document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-                document.getElementById(s).classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            // Désactiver le bouton pendant l'envoi
+            const btn = emailInput.nextElementSibling;
+            const originalText = btn.textContent;
+            btn.textContent = '⏳ Envoi...';
+            btn.disabled = true;
 
-            // AUDIT
-            function startAudit() {
-                currentQIdx = 0;
-                answers = [];
-                document.getElementById('audit-start').style.display = 'none';
-                document.getElementById('progress-section').style.display = 'block';
-                document.getElementById('audit-quiz').style.display = 'block';
+            // Formulaire invisible qui soumet vers Systeme.io
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://systeme.io/embedded/41120641/subscription';
+            form.target = 'hidden-iframe';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'email';
+            input.value = email;
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+
+            // Rediriger vers la page "Thank You" après soumission
+            setTimeout(() => {
+                showScreen('thankyou');
+            }, 1000);
+
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+
+        // SCREENS
+        function showScreen(s) {
+            document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+            document.getElementById(s).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // AUDIT
+        function startAudit() {
+            currentQIdx = 0;
+            answers = [];
+            document.getElementById('audit-start').style.display = 'none';
+            document.getElementById('progress-section').style.display = 'block';
+            document.getElementById('audit-quiz').style.display = 'block';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            if (currentQIdx >= questions.length) return showResults();
+            const q = questions[currentQIdx];
+            document.getElementById('question-counter').textContent = currentQIdx + 1;
+            document.getElementById('progress-fill').style.width = ((currentQIdx / questions.length) * 100) + '%';
+
+            let html = `<h2>${q.q}</h2><div class="audit-options">`;
+            q.opts.forEach((opt, i) => {
+                html += `<button class="audit-option" onclick="answerQuestion(${opt.s || opt.score})">${opt.l
+                    }</button>`;
+            });
+
+            html += '</div>';
+
+            document.getElementById('quiz-content').innerHTML = html;
+        }
+
+        function answerQuestion(score) {
+            answers.push(score);
+            currentQIdx++;
+            if (currentQIdx >= questions.length) {
+                showResults();
+            } else {
                 renderQuestion();
             }
+        }
 
-            function renderQuestion() {
-                if (currentQIdx >= questions.length) return showResults();
-                const q = questions[currentQIdx];
-                document.getElementById('question-counter').textContent = currentQIdx + 1;
-                document.getElementById('progress-fill').style.width = ((currentQIdx / questions.length) * 100) + '%';
-
-                let html = `<h2>${q.q}</h2><div class="audit-options">`;
-                q.opts.forEach((opt, i) => {
-                    html += `<button class="audit-option" onclick="answerQuestion(${opt.s || opt.score})">${opt.l
-                        }</button>`;
-                });
-
-                html += '</div>';
-
-                document.getElementById('quiz-content').innerHTML = html;
-            }
-
-            function answerQuestion(score) {
-                answers.push(score);
-                currentQIdx++;
-                if (currentQIdx >= questions.length) {
-                    showResults();
-                } else {
-                    renderQuestion();
-                }
-            }
-
-            function showResults() {
-                const avg = Math.round(answers.reduce((a, b) => a + b, 0) / answers.length);
-                const level = avg > 70 ? 'high' : avg > 40 ? 'med' : 'low';
-                const color = avg > 70 ? '#00e5a0' : avg > 40 ? '#ffaa00' : '#ff5555';
-                const title = avg > 70 ? '✅ Excellent tunnel !' : avg > 40 ? '⚠️ À améliorer' : '🔴 Critique : Vous perdez des clients';
-                // AJOUT : Un wrapper principal pour isoler les résultats du reste de la page
-                let html = `<div class="audit-results-wrapper" style="width: 100%; display: block; clear: both;">`;
-                html += `
+        function showResults() {
+            const avg = Math.round(answers.reduce((a, b) => a + b, 0) / answers.length);
+            const level = avg > 70 ? 'high' : avg > 40 ? 'med' : 'low';
+            const color = avg > 70 ? '#00e5a0' : avg > 40 ? '#ffaa00' : '#ff5555';
+            const title = avg > 70 ? '✅ Excellent tunnel !' : avg > 40 ? '⚠️ À améliorer' : '🔴 Critique : Vous perdez des clients';
+            // AJOUT : Un wrapper principal pour isoler les résultats du reste de la page
+            let html = `<div class="audit-results-wrapper" style="width: 100%; display: block; clear: both;">`;
+            html += `
                         <div style="margin-bottom:2rem">
                             <div class="score-box" style="color:${color}">
                                 ${avg}/100
@@ -1043,34 +1043,34 @@
 
                             <div class="score-desc">
                                 ${avg > 70
-                        ? 'Maintenez cette dynamique !'
-                        : avg > 40
-                            ? 'Vous avez les bases mais il y a des fuites.'
-                            : 'Vous n’avez aucun système pour capter vos prospects.'
-                    }
+                    ? 'Maintenez cette dynamique !'
+                    : avg > 40
+                        ? 'Vous avez les bases mais il y a des fuites.'
+                        : 'Vous n’avez aucun système pour capter vos prospects.'
+                }
                             </div>
                         </div>
                             `;
-                html += '
-                    < div class="recs-box" >
-                        <h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
-                            💡 Recommandations personnalisées
-                        </h2>
-                ';
-                if (recs && recs[level]) {
-                    recs[level].forEach(r => {
-                        html += `
+            html += '
+                < div class="recs-box" >
+                    <h2 style="font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+                        💡 Recommandations personnalisées
+                    </h2>
+            ';
+            if (recs && recs[level]) {
+                recs[level].forEach(r => {
+                    html += `
                             < div class="rec-item" >
                                     <div class="rec-title">${r.t}</div>
                                     <div class="rec-desc">${r.d}</div>
                                 </div >
                             `;
-                    });
-                }
+                });
+            }
 
-                html += '</div>';
+            html += '</div>';
 
-                html += `
+            html += `
                             < div class="cta-box" style = "border: 2px solid var(--accent); background: linear-gradient(135deg, rgba(108, 63, 255, 0.25), rgba(0, 229, 160, 0.15)); padding: 2.2rem 1.5rem; text-align: center; border-radius: 16px; margin-top: 1.5rem;" >
     <div class="cta-box-sub" style="color: var(--accent); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.6rem;">🎁 Guide Gratuit Envoyé !</div>
     <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff;">Passez au niveau supérieur avec le <span style="color: var(--accent);">Guide PRO</span></h3>
@@ -1090,71 +1090,71 @@
     </button>
     <p style="font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem;">⚡ Accès immédiat sécurisé. Garantie satisfait ou remboursé de 14 jours.</p>
   </div > `;
-                html += `</div>`; // Fermeture du wrapper principal
+            html += `</div>`; // Fermeture du wrapper principal
 
-                document.getElementById('audit-quiz').style.display = 'none';
-                document.getElementById('progress-section').style.display = 'none';
-                document.getElementById('audit-results').style.display = 'block';
-                document.getElementById('results-content').innerHTML = html;
+            document.getElementById('audit-quiz').style.display = 'none';
+            document.getElementById('progress-section').style.display = 'none';
+            document.getElementById('audit-results').style.display = 'block';
+            document.getElementById('results-content').innerHTML = html;
+        }
+
+        function scrollTo(el) {
+            document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- ANTIGRAVITY FLOATING PARTICLES ---
+        const canvas = document.getElementById('antigravity-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = -(Math.random() * 0.4 + 0.1);
+                this.color = Math.random() > 0.5 ? 'rgba(108, 63, 255, 0.4)' : 'rgba(0, 229, 160, 0.4)';
             }
-
-            function scrollTo(el) {
-                document.getElementById(el).scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // --- ANTIGRAVITY FLOATING PARTICLES ---
-            const canvas = document.getElementById('antigravity-bg');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            class Particle {
-                constructor() {
+            update() {
+                this.y += this.speedY;
+                if (this.y < -10) {
+                    this.y = canvas.height + 10;
                     this.x = Math.random() * canvas.width;
-                    this.y = canvas.height + Math.random() * 100;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedY = -(Math.random() * 0.4 + 0.1);
-                    this.color = Math.random() > 0.5 ? 'rgba(108, 63, 255, 0.4)' : 'rgba(0, 229, 160, 0.4)';
-                }
-                update() {
-                    this.y += this.speedY;
-                    if (this.y < -10) {
-                        this.y = canvas.height + 10;
-                        this.x = Math.random() * canvas.width;
-                    }
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = this.color;
-                    ctx.fill();
                 }
             }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
 
-            function initParticles() {
-                particles = [];
-                const count = Math.min(80, Math.floor(window.innerWidth / 15));
-                for (let i = 0; i < count; i++) {
-                    particles.push(new Particle());
-                }
+        function initParticles() {
+            particles = [];
+            const count = Math.min(80, Math.floor(window.innerWidth / 15));
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
             }
-            initParticles();
+        }
+        initParticles();
 
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animateParticles);
-            }
-            animateParticles();
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
     </script>
     <!-- iframe invisible pour Systeme.io -->
     <iframe name="hidden-iframe" style="display:none;"></iframe>

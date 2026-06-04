@@ -796,9 +796,11 @@
                 </div>
             </section>
         </div>
+    </div>
+    <!-- fin #landingpage -->
 
-        <!-- ═══════════════════════════════ SCREEN 2 : THANK YOU ═══════════════════════════════ -->
-        <div id="thankyou" class="screen">
+    <!-- ═══════════════════════════════ SCREEN 2 : THANK YOU ═══════════════════════════════ -->
+    <div id="thankyou" class="screen">
             <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
                 <div class="logo">DATA<span>-EMPATHY</span></div>
             </nav>
@@ -815,10 +817,11 @@
             </div>
             <button class="cta-btn" onclick="showScreen('audit')"
                 style="font-size:.95rem;padding:.8rem 2rem;margin-top:0.5rem">Lancer mon audit gratuit →</button>
-        </div>
+    </div>
+    <!-- fin #thankyou -->
 
-        <!-- ═══════════════════════════════ SCREEN 3 : AUDIT IA ═══════════════════════════════ -->
-        <div id="audit" class="screen">
+    <!-- ═══════════════════════════════ SCREEN 3 : AUDIT IA ═══════════════════════════════ -->
+    <div id="audit" class="screen">
             <nav style="border:none;padding:1rem 0;position:relative;display:flex;justify-content:center">
                 <div class="logo">DATA<span>-EMPATHY</span></div>
             </nav>
@@ -858,14 +861,15 @@
                     <div class="audit-results" id="results-content"></div>
                 </div>
             </div>
-        </div>
+    </div>
+    <!-- fin #audit -->
 
-        <footer>
-            <p>© 2026 DATA-EMPATHY — Référentiel IA Comportementale</p>
-            <p style="margin-top:.4rem">Divulgation : Ce site contient des liens d'affiliation.</p>
-        </footer>
+    <footer>
+        <p>© 2026 DATA-EMPATHY — Référentiel IA Comportementale</p>
+        <p style="margin-top:.4rem">Divulgation : Ce site contient des liens d'affiliation.</p>
+    </footer>
 
-        <script>
+    <script>
             // ── DATA ──
             const questions = [
                 { q: "Avez-vous un système de relance automatique (email, SMS) ?", opts: [{ l: "Non, aucun", s: 0 }, { l: "Oui, basique 1-2", s: 30 }, { l: "Oui, séquence 3+", s: 100 }] },
@@ -1086,7 +1090,7 @@
     </button>
     <p style="font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem;">⚡ Accès immédiat sécurisé. Garantie satisfait ou remboursé de 14 jours.</p>
   </div > `;
-                hml += `</div >`; // Fermeture du wrapper principal
+                html += `</div>`; // Fermeture du wrapper principal
 
                 document.getElementById('audit-quiz').style.display = 'none';
                 document.getElementById('progress-section').style.display = 'none';
@@ -1151,9 +1155,9 @@
                 requestAnimationFrame(animateParticles);
             }
             animateParticles();
-        </script>
-        <!-- iframe invisible pour Systeme.io -->
-        <iframe name="hidden-iframe" style="display:none;"></iframe>
+    </script>
+    <!-- iframe invisible pour Systeme.io -->
+    <iframe name="hidden-iframe" style="display:none;"></iframe>
 
 </body>
 

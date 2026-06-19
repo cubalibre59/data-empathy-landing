@@ -1,584 +1,360 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="p:domain_verify" content="42999fdc06e63665d056206aaaf5914e" />
-  <title>DATA-EMPATHY | Top 10 Outils IA Comportementale 2026</title>
-  <meta name="description" content="Découvrez les 10 meilleurs outils IA comportementale pour doubler vos conversions. Guide gratuit + audit IA offert." />
+  <title>Deco Intérieur Maison | Les Tendances Design & Mobilier</title>
+  <meta name="description"
+    content="Découvrez nos sélections exclusives et tendances de mobilier, luminaires et objets décoratifs pour sublimer votre intérieur." />
 
-  <!-- Pinterest Rich Pin / SEO -->
-  <meta property="og:title" content="Top 10 Outils IA pour Doubler vos Conversions" />
-  <meta property="og:description" content="Guide gratuit : les outils IA comportementale testés qui font +34% de conversions en moyenne." />
+  <meta property="og:title" content="Inspirations et Mobilier Design pour la Maison" />
+  <meta property="og:description"
+    content="Découvrez notre sélection exclusive de meubles et accessoires tendances pour sublimer votre intérieur." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data-empathy-landing.vercel.app/deco/" />
-  <meta property="og:image" content="https://data-empathy-landing.vercel.app/deco/og-preview.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --primary: #6c3fff;
-      --accent:  #00e5a0;
-      --bg:      #0a0a14;
-      --card:    #13132a;
-      --text:    #e8e8f0;
-      --muted:   #8888aa;
-      --border:  #2a2a4a;
+      --accent: #00e5a0;
+      --bg: #0a0a14;
+      --card: #13132a;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --border: #2a2a4a;
+      --amazon: #ff9900;
     }
 
-    html { background: var(--bg); scroll-behavior: smooth; }
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
       color: var(--text);
       line-height: 1.6;
-      max-width: 680px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* ── FLOATING CANVAS BG ── */
     #deco-bg {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: -1; pointer-events: none; opacity: 0.5;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.5;
     }
 
-    /* ── TOP BRAND BAR ── */
+    /* BARRE DE MARQUE UPPER */
     .top-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(10,10,20,.9);
+      background: rgba(10, 10, 20, .9);
       backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 99;
+      position: sticky;
+      top: 0;
+      z-index: 99;
     }
-    .logo { font-weight: 900; font-size: 1rem; letter-spacing: .04em; }
-    .logo span { color: var(--accent); }
-    .top-cta {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff; border: none; padding: .45rem 1.1rem;
-      border-radius: 8px; font-weight: 700; font-size: .8rem;
-      cursor: pointer; font-family: inherit; transition: .2s;
-    }
-    .top-cta:hover { opacity: .85; transform: translateY(-1px); }
 
-    /* ── PIN HERO ── */
-    .pin-hero {
-      padding: 3.5rem 1.5rem 2.5rem;
-      text-align: center;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(108,63,255,.18) 0%, transparent 70%);
+    .logo {
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    /* HERO */
+    .pin-hero {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(108, 63, 255, .15) 0%, transparent 70%);
+    }
+
     .pin-badge {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: rgba(108,63,255,.2);
+      display: inline-flex;
+      align-items: center;
+      background: rgba(108, 63, 255, .2);
       border: 1px solid var(--primary);
       color: var(--accent);
-      font-size: .72rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: .35rem 1rem; border-radius: 20px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 20px;
       margin-bottom: 1.4rem;
       animation: float 4s ease-in-out infinite;
     }
+
     .pin-hero h1 {
-      font-size: clamp(1.9rem, 5vw, 2.8rem);
-      font-weight: 900; line-height: 1.15;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
       margin-bottom: 1rem;
     }
-    .pin-hero h1 em { font-style: normal; color: var(--accent); }
+
+    .pin-hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
     .pin-hero .sub {
-      font-size: .95rem; color: var(--muted);
-      max-width: 480px; margin: 0 auto 2rem;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 550px;
+      margin: 0 auto;
     }
-    .hero-cta {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff; padding: .9rem 2.2rem;
-      border-radius: 12px; font-weight: 800; font-size: 1rem;
-      border: none; cursor: pointer; font-family: inherit;
-      transition: .2s; box-shadow: 0 6px 24px rgba(108,63,255,.35);
+
+    /* VITRINE PRODUITS */
+    .section {
+      padding: 3rem 1.5rem;
     }
-    .hero-cta:hover { opacity: .9; transform: translateY(-2px); }
 
-    /* ── STATS STRIP ── */
-    .stats-strip {
-      display: flex; justify-content: space-around; flex-wrap: wrap;
-      gap: 1rem; padding: 1.8rem 1.5rem;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(108,63,255,.05);
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
-    .stat-item { text-align: center; }
-    .stat-n { font-size: 1.7rem; font-weight: 900; color: var(--accent); }
-    .stat-l { font-size: .72rem; color: var(--muted); margin-top: .2rem; }
 
-    /* ── SECTION TITLE ── */
-    .section { padding: 2.5rem 1.5rem; }
-    .section-title {
-      font-size: 1.4rem; font-weight: 800;
-      margin-bottom: .4rem;
-    }
-    .section-title em { font-style: normal; color: var(--accent); }
-    .section-sub { font-size: .85rem; color: var(--muted); margin-bottom: 1.6rem; }
-
-    /* ── TOOL CARDS (Pinterest Pin style) ── */
-    .tool-list { display: flex; flex-direction: column; gap: 1rem; }
-
-    .tool-card {
-      display: flex; align-items: flex-start; gap: 1rem;
+    .product-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px; padding: 1.2rem;
-      transition: all .3s cubic-bezier(.25,.8,.25,1);
-      position: relative; overflow: hidden;
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: all .3s cubic-bezier(.25, .8, .25, 1);
+      position: relative;
     }
-    .tool-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(180deg, var(--primary), var(--accent));
-      border-radius: 3px 0 0 3px;
-    }
-    .tool-card:hover {
+
+    .product-card:hover {
       border-color: var(--primary);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(108,63,255,.2);
-    }
-    .tool-rank {
-      min-width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: .9rem; color: #fff;
-      flex-shrink: 0;
-    }
-    .tool-info h3 { font-size: .95rem; font-weight: 700; margin-bottom: .25rem; }
-    .tool-info p { font-size: .8rem; color: var(--muted); line-height: 1.5; }
-    .tool-tag {
-      display: inline-block; margin-top: .5rem;
-      background: rgba(0,229,160,.1); border: 1px solid rgba(0,229,160,.3);
-      color: var(--accent); font-size: .68rem; font-weight: 700;
-      padding: .2rem .6rem; border-radius: 6px; letter-spacing: .04em;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(108, 63, 255, 0.15);
     }
 
-    /* ── VISUAL DIVIDER ── */
-    .divider {
-      text-align: center; padding: 1.5rem;
-      color: var(--muted); font-size: .8rem;
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-top: 0.5rem;
     }
 
-    /* ── BENEFIT GRID ── */
-    .benefit-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: .9rem;
+    .product-info h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+      line-height: 1.4;
     }
-    .benefit-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.1rem;
-      transition: .2s;
-    }
-    .benefit-item:hover { border-color: var(--primary); }
-    .benefit-icon { font-size: 1.6rem; margin-bottom: .5rem; }
-    .benefit-item h4 { font-size: .85rem; font-weight: 700; margin-bottom: .3rem; }
-    .benefit-item p { font-size: .75rem; color: var(--muted); line-height: 1.5; }
 
-    /* ── TESTIMONIAL ── */
-    .testi-section { background: rgba(108,63,255,.05); padding: 2rem 1.5rem; }
-    .testi-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 1.4rem; margin-bottom: 1rem;
+    .product-info p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
     }
-    .testi-stars { color: #f5c518; font-size: .85rem; margin-bottom: .6rem; }
-    .testi-text { font-size: .88rem; color: #ccc; line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
-    .testi-author { display: flex; align-items: center; gap: .7rem; }
-    .avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: .85rem;
-    }
-    .author-name { font-size: .82rem; font-weight: 700; }
-    .author-role { font-size: .72rem; color: var(--muted); }
 
-    /* ── FINAL CTA PIN ── */
-    .cta-pin {
-      margin: 1.5rem 1.5rem;
-      background: linear-gradient(135deg, rgba(108,63,255,.2), rgba(0,229,160,.1));
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 3rem 1.5rem;
+    .btn-amazon {
+      display: block;
       text-align: center;
-      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #ffb300, var(--amazon));
+      color: #0a0a14;
+      padding: .85rem;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: .95rem;
+      transition: .2s;
+      margin-top: auto;
+      box-shadow: 0 4px 15px rgba(255, 153, 0, 0.2);
     }
-    .cta-pin::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(circle at 70% 30%, rgba(108,63,255,.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .cta-pin > * { position: relative; z-index: 1; }
-    .cta-pin .tag {
-      font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: .7rem;
-    }
-    .cta-pin h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: .8rem; }
-    .cta-pin h2 em { font-style: normal; color: var(--accent); }
-    .cta-pin p { font-size: .85rem; color: var(--muted); margin-bottom: 1.8rem; max-width: 380px; margin-left: auto; margin-right: auto; }
-    .cta-pin-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff; padding: 1rem 2.5rem;
-      border-radius: 12px; font-weight: 900; font-size: 1rem;
-      border: none; cursor: pointer; font-family: inherit;
-      transition: .25s; box-shadow: 0 8px 28px rgba(108,63,255,.4);
-    }
-    .cta-pin-btn:hover { opacity: .9; transform: translateY(-3px) scale(1.02); }
-    .cta-note { font-size: .72rem; color: var(--muted); margin-top: 1rem; }
 
-    /* ── FOOTER ── */
+    .btn-amazon:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 153, 0, 0.35);
+    }
+
+    /* FOOTER */
     footer {
-      text-align: center; padding: 1.8rem 1.5rem;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
       border-top: 1px solid var(--border);
-      font-size: .75rem; color: var(--muted);
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: 4rem;
     }
-    footer a { color: var(--accent); }
 
-    /* ── ANIMATIONS ── */
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-6px); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in { opacity: 0; animation: fadeUp .6s ease forwards; }
-    .delay-1 { animation-delay: .1s; }
-    .delay-2 { animation-delay: .2s; }
-    .delay-3 { animation-delay: .35s; }
 
-    @media (max-width: 480px) {
-      .benefit-grid { grid-template-columns: 1fr; }
-      .pin-hero h1 { font-size: 1.7rem; }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeUp .6s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: .1s;
+    }
+
+    .delay-2 {
+      animation-delay: .2s;
     }
   </style>
 </head>
+
 <body>
 
-<!-- Particle canvas -->
-<canvas id="deco-bg"></canvas>
+  <canvas id="deco-bg"></canvas>
 
-<!-- TOP BAR -->
-<header class="top-bar">
-  <div class="logo">DATA<span>-EMPATHY</span></div>
-  <a href="https://data-empathy.click" target="_blank">
-    <button class="top-cta">Guide Gratuit →</button>
-  </a>
-</header>
+  <header class="top-bar">
+    <div class="logo">Deco Intérieur<span> Maison</span></div>
+  </header>
 
-<!-- ═══ HERO ═══ -->
-<section class="pin-hero">
-  <div class="pin-badge fade-in">🚀 Référentiel #1 IA Comportementale 2026</div>
-  <h1 class="fade-in delay-1">
-    <em>10 Outils IA</em><br>
-    pour Doubler<br>vos Conversions
-  </h1>
-  <p class="sub fade-in delay-2">
-    Guide gratuit testé sur +15 000 utilisateurs.<br>
-    +34% de conversions en moyenne. Accès immédiat.
-  </p>
-  <a href="https://data-empathy.click" target="_blank">
-    <button class="hero-cta fade-in delay-3" id="hero-cta-btn">
-      📥 Obtenir le Guide Gratuit
-    </button>
-  </a>
-</section>
+  <section class="pin-hero">
+    <div class="pin-badge fade-in">✨ Inspirations & Design 2026</div>
+    <h1 class="fade-in delay-1">
+      Sublimez Votre <em>Intérieur</em>
+    </h1>
+    <p class="sub fade-in delay-2">
+      Découvrez nos sélections de mobiliers et objets tendances trouvés sur Pinterest pour créer un espace unique et
+      chaleureux.
+    </p>
+  </section>
 
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat-item"><div class="stat-n">+15K</div><div class="stat-l">Utilisateurs</div></div>
-  <div class="stat-item"><div class="stat-n">500+</div><div class="stat-l">Outils analysés</div></div>
-  <div class="stat-item"><div class="stat-n">+34%</div><div class="stat-l">Conversion moy.</div></div>
-  <div class="stat-item"><div class="stat-n">4.9★</div><div class="stat-l">Note moyenne</div></div>
-</div>
+  <section class="section">
+    <div class="grid">
 
-<!-- ═══ TOP 10 LIST ═══ -->
-<section class="section">
-  <div class="section-title">Le <em>Top 10</em> des Outils IA</div>
-  <p class="section-sub">Sélectionnés, testés et classés par notre équipe d'experts</p>
-
-  <div class="tool-list" id="tool-list">
-
-    <div class="tool-card">
-      <div class="tool-rank">1</div>
-      <div class="tool-info">
-        <h3>ContentSquare</h3>
-        <p>Analyse comportementale avancée : zones de chaleur, sessions replay, parcours UX en temps réel.</p>
-        <span class="tool-tag">HEATMAPS IA</span>
+      <div class="product-card">
+        <div class="product-info">
+          <h3>YU YUSING Ensemble de Meubles de Salle de Bain</h3>
+          <p>Pack argenté moderne complet comprenant un meuble bas avec armoire de rangement, une vasque, un miroir
+            suspendu, 2 étagères murales et l'ensemble de robinets assortis.</p>
+          <a href="METTRE_LIEN_AMAZON_MEUBLE_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir
+            le prix sur Amazon</a>
+        </div>
       </div>
-    </div>
 
-    <div class="tool-card">
-      <div class="tool-rank">2</div>
-      <div class="tool-info">
-        <h3>Heap Analytics</h3>
-        <p>Capture automatique de chaque interaction — aucun tag manuel. Visualisez l'intention cachée de vos visiteurs.</p>
-        <span class="tool-tag">AUTO-TRACK</span>
+      <div class="product-card">
+        <div class="product-info">
+          <h3>Horloge Murale Suspendue Lumineuse à LED</h3>
+          <p>Un design minimaliste et ultra-contemporain avec rétroéclairage LED intégré. Dotée d'un mouvement à quartz
+            totalement silencieux sans tic-tac, idéal pour habiller un salon ou un bureau.</p>
+          <a href="METTRE_LIEN_AMAZON_HORLOGE_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir
+            le prix sur Amazon</a>
+        </div>
       </div>
-    </div>
 
-    <div class="tool-card">
-      <div class="tool-rank">3</div>
-      <div class="tool-info">
-        <h3>Pendo</h3>
-        <p>Personnalisation IA in-app et guides contextuels pour réduire le churn et augmenter l'adoption produit.</p>
-        <span class="tool-tag">PERSONNALISATION</span>
+      <div class="product-card">
+        <div class="product-info">
+          <h3>Jingdezhen Vase en Céramique d'Art (35 cm)</h3>
+          <p>Porcelaine d'art émaillée haut de gamme avec motifs peints traditionnels de grues blanches et pivoines. Une
+            touche d'élégance intemporelle pour habiller une console ou un buffet.</p>
+          <a href="METTRE_LIEN_AMAZON_VASE_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le
+            prix sur Amazon</a>
+        </div>
       </div>
+
     </div>
+  </section>
 
-    <div class="tool-card">
-      <div class="tool-rank">4</div>
-      <div class="tool-info">
-        <h3>VWO (Visual Website Optimizer)</h3>
-        <p>A/B testing intelligent piloté par IA. Trouve la variante gagnante 3× plus vite que les méthodes classiques.</p>
-        <span class="tool-tag">A/B TESTING IA</span>
-      </div>
-    </div>
+  <footer>
+    <p>© 2026 <strong>Deco Intérieur Maison</strong> — Sélection Tendances Habitat</p>
+    <p style="margin-top:.4rem">En tant que Partenaire Amazon, ce site réalise un bénéfice sur les achats remplissant
+      les conditions requises.</p>
+  </footer>
 
-    <div class="tool-card">
-      <div class="tool-rank">5</div>
-      <div class="tool-info">
-        <h3>Crazy Egg</h3>
-        <p>Heatmaps, scrollmaps et enregistrements de sessions pour identifier précisément les zones de friction.</p>
-        <span class="tool-tag">UX ANALYSE</span>
-      </div>
-    </div>
+  <script>
+    // Arrière-plan de particules identique à votre identité de marque
+    const canvas = document.getElementById('deco-bg');
+    const ctx = canvas.getContext('2d');
 
-    <div class="tool-card">
-      <div class="tool-rank">6</div>
-      <div class="tool-info">
-        <h3>Hotjar</h3>
-        <p>Sondages de sortie intelligents + enregistrements. Comprenez pourquoi vos visiteurs abandonnent.</p>
-        <span class="tool-tag">FEEDBACK IA</span>
-      </div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-rank">7</div>
-      <div class="tool-info">
-        <h3>Userpilot</h3>
-        <p>Onboarding IA adaptatif selon le profil comportemental. Augmente l'activation utilisateur de +45%.</p>
-        <span class="tool-tag">ONBOARDING</span>
-      </div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-rank">8</div>
-      <div class="tool-info">
-        <h3>Mixpanel</h3>
-        <p>Funnel analytics avancé avec cohortes IA. Identifiez exactement à quelle étape vos leads se perdent.</p>
-        <span class="tool-tag">FUNNEL IA</span>
-      </div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-rank">9</div>
-      <div class="tool-info">
-        <h3>Amplitude</h3>
-        <p>Prédiction du comportement futur par IA. Anticipez le churn avant qu'il ne se produise.</p>
-        <span class="tool-tag">PRÉDICTIF</span>
-      </div>
-    </div>
-
-    <div class="tool-card">
-      <div class="tool-rank">10</div>
-      <div class="tool-info">
-        <h3>FullStory</h3>
-        <p>DX Data™ — l'IA qui transforme chaque micro-frustration utilisateur en opportunité de conversion.</p>
-        <span class="tool-tag">DX DATA</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider">✦ Ce que vous obtenez gratuitement ✦</div>
-
-<!-- ═══ BENEFITS ═══ -->
-<section class="section" style="padding-top:0">
-  <div class="section-title">Dans le <em>Guide Gratuit</em></div>
-  <p class="section-sub">Tout ce dont vous avez besoin pour passer à l'action dès aujourd'hui</p>
-
-  <div class="benefit-grid">
-    <div class="benefit-item">
-      <div class="benefit-icon">🧠</div>
-      <h4>Analyse de sentiment</h4>
-      <p>Décryptez les émotions derrière chaque clic et avis client.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">📉</div>
-      <h4>Prédiction du churn</h4>
-      <p>Identifiez qui va partir avant qu'ils le fassent.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">🎯</div>
-      <h4>Personnalisation IA</h4>
-      <p>Adaptez votre offre en temps réel par profil comportemental.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">🔍</div>
-      <h4>Audit IA offert</h4>
-      <p>Quiz de diagnostic pour trouver vos fuites de conversion.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">⚡</div>
-      <h4>Accès immédiat</h4>
-      <p>Reçu par email en moins de 2 minutes. Zéro spam.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">💰</div>
-      <h4>100% Gratuit</h4>
-      <p>Aucune carte bancaire. Aucun engagement. Juste valeur.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="testi-section">
-  <div class="section-title" style="margin-bottom:.4rem">Ils ont <em>transformé</em> leurs résultats</div>
-  <p class="section-sub" style="margin-bottom:1.4rem">Des vrais retours de marketeurs qui ont appliqué le guide</p>
-
-  <div class="testi-card">
-    <div class="testi-stars">★★★★★</div>
-    <p class="testi-text">"Grâce au guide + audit, j'ai identifié exactement où je perdais des prospects. Résultat : <strong>+34% de conversions en 90 jours.</strong>"</p>
-    <div class="testi-author">
-      <div class="avatar">M</div>
-      <div>
-        <div class="author-name">Marc Dupont</div>
-        <div class="author-role">CEO SaaS – Paris</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="testi-card">
-    <div class="testi-stars">★★★★★</div>
-    <p class="testi-text">"L'audit IA a révélé que 45% de mes visiteurs abandonnaient à cause d'un formulaire trop long. J'ai corrigé : <strong>+22% conversions.</strong>"</p>
-    <div class="testi-author">
-      <div class="avatar">S</div>
-      <div>
-        <div class="author-name">Sophie Lambert</div>
-        <div class="author-role">E-Commerce – Lyon</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="testi-card">
-    <div class="testi-stars">★★★★★</div>
-    <p class="testi-text">"Les recommandations IA comportementales ont révolutionné notre tunnel. <strong>Mon churn a chuté de 28%</strong> en seulement 6 semaines."</p>
-    <div class="testi-author">
-      <div class="avatar">T</div>
-      <div>
-        <div class="author-name">Thomas Renard</div>
-        <div class="author-role">Growth Manager – Bordeaux</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FINAL CTA ═══ -->
-<div class="cta-pin">
-  <p class="tag">🎁 Accès Gratuit Immédiat</p>
-  <h2>Prêt à <em>doubler</em> vos conversions ?</h2>
-  <p>Rejoignez +15 000 marketeurs qui utilisent déjà nos outils IA comportementale pour transformer leurs prospects en clients.</p>
-  <a href="https://data-empathy.click" target="_blank">
-    <button class="cta-pin-btn" id="final-cta-btn">
-      📥 Obtenir le Guide Gratuit →
-    </button>
-  </a>
-  <p class="cta-note">🔒 Zéro spam · Désabonnement en 1 clic · 100% gratuit</p>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 <strong>DATA-EMPATHY</strong> — Référentiel IA Comportementale</p>
-  <p style="margin-top:.4rem">
-    <a href="https://data-empathy.click">data-empathy.click</a>
-    &nbsp;·&nbsp; Divulgation : Ce site contient des liens d'affiliation.
-  </p>
-</footer>
-
-<script>
-  // ── Particle background ──
-  const canvas = document.getElementById('deco-bg');
-  const ctx    = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  class P {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = canvas.height + Math.random() * 120;
-      this.r = Math.random() * 2 + .4;
-      this.vy = -(Math.random() * .45 + .1);
-      this.c = Math.random() > .5
-        ? 'rgba(108,63,255,0.45)'
-        : 'rgba(0,229,160,0.45)';
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    tick() {
-      this.y += this.vy;
-      if (this.y < -10) this.reset();
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = this.c;
-      ctx.fill();
-    }
-  }
+    window.addEventListener('resize', resize);
+    resize();
 
-  const count = Math.min(70, Math.floor(window.innerWidth / 14));
-  const particles = Array.from({ length: count }, () => new P());
-
-  (function loop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.tick(); p.draw(); });
-    requestAnimationFrame(loop);
-  })();
-
-  // ── Intersection Observer for fade-in ──
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.animationPlayState = 'running';
-        io.unobserve(e.target);
+    class P {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 120;
+        this.r = Math.random() * 2 + .4;
+        this.vy = -(Math.random() * .45 + .1);
+        this.c = Math.random() > .5 ? 'rgba(108,63,255,0.45)' : 'rgba(0,229,160,0.45)';
       }
-    });
-  }, { threshold: .15 });
+      tick() {
+        this.y += this.vy;
+        if (this.y < -10) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = this.c;
+        ctx.fill();
+      }
+    }
 
-  document.querySelectorAll('.tool-card, .benefit-item, .testi-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.animation = 'fadeUp .5s ease forwards paused';
-    io.observe(el);
-  });
+    const count = Math.min(70, Math.floor(window.innerWidth / 14));
+    const particles = Array.from({ length: count }, () => new P());
 
-  // Stagger tool cards
-  document.querySelectorAll('.tool-card').forEach((el, i) => {
-    el.style.animationDelay = (i * .07) + 's';
-  });
-</script>
+    (function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.tick(); p.draw(); });
+      requestAnimationFrame(loop);
+    })();
+  </script>
 </body>
+
 </html>

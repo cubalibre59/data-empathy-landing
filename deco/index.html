@@ -127,28 +127,32 @@
     }
 
     .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
       margin-top: 1.5rem;
     }
 
     .category-btn {
-      padding: 1.5rem 1rem;
+      padding: 1rem 1.2rem;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #fff;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .category-btn:hover {
-      transform: translateY(-4px);
+    .category-btn:hover,
+    .category-btn.active {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .cat-all {
+      background: var(--primary);
     }
 
     .cat-scand {
@@ -167,11 +171,7 @@
       background: #bfa128;
     }
 
-    .cat-zen {
-      background: #2e7d5a;
-    }
-
-    .cat-luxe {
+    .cat-tendances {
       background: #1f9e9e;
     }
 
@@ -182,8 +182,8 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
     .product-card {
@@ -194,6 +194,10 @@
       display: flex;
       flex-direction: column;
       transition: all .3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .product-card.hidden {
+      display: none !important;
     }
 
     .product-card:hover {
@@ -209,7 +213,7 @@
     }
 
     .product-info h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: .6rem;
       line-height: 1.4;
@@ -218,7 +222,6 @@
     .product-info p {
       font-size: .85rem;
       color: var(--muted);
-      line-grow: 1.5;
       margin-bottom: 1.5rem;
     }
 
@@ -227,10 +230,10 @@
       text-align: center;
       background: linear-gradient(135deg, #ffb300, var(--amazon));
       color: #0a0a14;
-      padding: .85rem;
+      padding: .8rem;
       border-radius: 10px;
       font-weight: 800;
-      font-size: .95rem;
+      font-size: .9rem;
       transition: .2s;
       margin-top: auto;
       box-shadow: 0 4px 15px rgba(255, 153, 0, 0.2);
@@ -299,7 +302,7 @@
       opacity: 0.9;
     }
 
-    /* FLOATING CHAT WIDGET (Conseil Déco) */
+    /* FLOATING CHAT WIDGET */
     .chat-widget {
       position: fixed;
       bottom: 20px;
@@ -351,6 +354,7 @@
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
+      margin-top: 0.4rem;
     }
 
     .chat-opt-btn {
@@ -361,60 +365,6 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-
-    .chat-opt-btn:hover {
-      opacity: 0.85;
-      transform: translateY(-1px);
-    }
-
-    .chat-msg.user {
-      background: #3a2e6e;
-      color: #e8e8f0;
-      align-self: flex-end;
-      text-align: right;
-    }
-
-    .chat-msg.bot {
-      background: #2a2a32;
-      color: #ddd;
-    }
-
-    .typing-indicator {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      padding: 0.5rem 0.7rem;
-    }
-
-    .typing-indicator span {
-      width: 7px;
-      height: 7px;
-      background: #c29343;
-      border-radius: 50%;
-      animation: bounce 1.2s infinite;
-    }
-
-    .typing-indicator span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .typing-indicator span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes bounce {
-
-      0%,
-      60%,
-      100% {
-        transform: translateY(0);
-      }
-
-      30% {
-        transform: translateY(-6px);
-      }
     }
 
     .chat-footer {
@@ -464,52 +414,465 @@
 
   <section class="pin-hero">
     <h1>Transformez votre <em>Intérieur</em></h1>
-    <p class="sub">
-      Découvrez les plus beaux meubles & accessoires pour votre maison.
-    </p>
+    <p class="sub">Découvrez les plus beaux meubles & accessoires pour votre maison.</p>
   </section>
 
   <section class="categories-section">
     <div class="categories-grid">
-      <button class="category-btn cat-scand">Salon Scandinave</button>
-      <button class="category-btn cat-gold">Chambre Doré</button>
-      <button class="category-btn cat-mini">Cuisine Minimaliste</button>
-      <button class="category-btn cat-bohem">Bohème Chic</button>
-      <button class="category-btn cat-zen">Nature & Zen</button>
-      <button class="category-btn cat-luxe">Côtier Luxe</button>
+      <button class="category-btn cat-all active" onclick="filterStyle('all', this)">Tout afficher</button>
+      <button class="category-btn cat-scand" onclick="filterStyle('scandinave', this)">Salon Scandinave</button>
+      <button class="category-btn cat-gold" onclick="filterStyle('dore', this)">Chambre Doré Luxe</button>
+      <button class="category-btn cat-mini" onclick="filterStyle('minimaliste', this)">Cuisine Minimaliste</button>
+      <button class="category-btn cat-bohem" onclick="filterStyle('boheme', this)">Bohème & Zen</button>
+      <button class="category-btn cat-tendances" onclick="filterStyle('tendances', this)">Idées Tendances</button>
     </div>
   </section>
 
   <section class="section">
-    <div class="grid">
+    <div class="grid" id="products-grid">
 
-      <div class="product-card">
+      <div class="product-card" data-category="scandinave">
         <div class="product-info">
-          <h3>YU YUSING Ensemble de Meubles de Salle de Bain</h3>
-          <p>Pack argenté moderne complet comprenant un meuble bas avec armoire de rangement, une vasque, un miroir
-            suspendu, 2 étagères murales et l'ensemble de robinets assortis.</p>
-          <a href="METTRE_LIEN_AMAZON_MEUBLE_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir
-            le prix sur Amazon</a>
+          <h3>YU YUSING Ensemble Salle de Bain</h3>
+          <p>Pack argenté complet comprenant meuble bas, vasque, miroir et robinets assortis.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
         </div>
       </div>
-
-      <div class="product-card">
+      <div class="product-card" data-category="scandinave">
         <div class="product-info">
-          <h3>Horloge Murale Suspendue Lumineuse à LED</h3>
-          <p>Un design minimaliste et ultra-contemporain avec rétroéclairage LED intégré. Dotée d'un mouvement à quartz
-            totalement silencieux sans tic-tac, idéal pour habiller un salon ou un bureau.</p>
-          <a href="https://amzn.to/4vwgySE" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+          <h3>[Scandinave] Produit 2</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 3</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 4</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 5</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 6</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 7</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 8</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 9</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 10</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="scandinave">
+        <div class="product-info">
+          <h3>[Scandinave] Produit 11</h3>
+          <p>Description de votre produit inspiré du style scandinave.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
             sur Amazon</a>
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="dore">
         <div class="product-info">
-          <h3>Jingdezhen Vase en Céramique d'Art (35 cm)</h3>
-          <p>Porcelaine d'art émaillée haut de gamme avec motifs peints traditionnels de grues blanches et pivoines. Une
-            touche d'élégance intemporelle pour habiller une console ou un buffet.</p>
-          <a href="METTRE_LIEN_AMAZON_VASE_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le
-            prix sur Amazon</a>
+          <h3>Horloge Murale Suspendue Lumineuse LED</h3>
+          <p>Design minimaliste contemporain avec rétroéclairage LED intégré et mouvement silencieux.</p>
+          <a href="https://amzn.to/4vwgySE" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 2</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 3</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 4</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 5</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 6</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 7</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 8</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 9</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 10</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="dore">
+        <div class="product-info">
+          <h3>[Chambre Doré] Produit 11</h3>
+          <p>Description de votre bel accessoire aux finitions dorées et luxueuses.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>Jingdezhen Vase en Céramique d'Art</h3>
+          <p>Porcelaine d'art émaillée haut de gamme de 35 cm avec motifs peints traditionnels élégants.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 2</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 3</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 4</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 5</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 6</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 7</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 8</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 9</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 10</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="minimaliste">
+        <div class="product-info">
+          <h3>[Minimaliste] Produit 11</h3>
+          <p>Sélection moderne et épurée pour une cuisine propre et élégante.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 1</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 2</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 3</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 4</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 5</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 6</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 7</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 8</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 9</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 10</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="boheme">
+        <div class="product-info">
+          <h3>[Bohème & Zen] Produit 11</h3>
+          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 1</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 2</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 3</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 4</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 5</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 6</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 7</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 8</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 9</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 10</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="tendances">
+        <div class="product-info">
+          <h3>[Tendances] Produit 11</h3>
+          <p>Les nouveautés et les coups de cœur décoration les plus partagés du moment.</p>
+          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
+            sur Amazon</a>
         </div>
       </div>
 
@@ -525,24 +888,23 @@
     </form>
   </section>
 
-  <div class="chat-widget" id="chatWidget">
+  <div class="chat-widget">
     <div class="chat-header">
       <span>Conseil Décoration</span>
       <button style="background:none; border:none; color:#fff; cursor:pointer;"
-        onclick="document.getElementById('chatWidget').style.display='none'">✕</button>
+        onclick="this.parentElement.parentElement.style.display='none'">✕</button>
     </div>
-    <div class="chat-body" id="chatBody">
-      <div class="chat-msg bot">Bonjour ! 👋 Pour vous conseiller au mieux, quel est votre budget pour votre projet déco
-        ?</div>
-      <div class="chat-options" id="chatOptions">
-        <button class="chat-opt-btn" onclick="chatReply('&lt; 500€')">🪙 &lt; 500€</button>
-        <button class="chat-opt-btn" onclick="chatReply('500 – 2000€')">💰 500 – 2000€</button>
-        <button class="chat-opt-btn" onclick="chatReply('2000€ et plus')">💎 2000€+</button>
+    <div class="chat-body" id="chat-conversation">
+      <div class="chat-msg">Quel est votre budget pour votre projet ?</div>
+      <div class="chat-options" id="chat-step-options">
+        <button class="chat-opt-btn" onclick="selectBudget('< 500€')">&lt; 500€</button>
+        <button class="chat-opt-btn" onclick="selectBudget('500-2000€')">500-2000€</button>
+        <button class="chat-opt-btn" onclick="selectBudget('2000€+')">2000€+</button>
       </div>
     </div>
     <div class="chat-footer">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Votre réponse..." />
-      <button class="chat-send" id="chatSendBtn">Envoyer</button>
+      <input type="text" class="chat-input" id="chat-custom-input" placeholder="Votre réponse..." />
+      <button class="chat-send" onclick="sendCustomMessage()">Envoyer</button>
     </div>
   </div>
 
@@ -553,131 +915,11 @@
   </footer>
 
   <script>
-    // =============================================
-    // CHAT WIDGET – Scénario conversationnel
-    // =============================================
-    const chatBody = document.getElementById('chatBody');
-    const chatOptions = document.getElementById('chatOptions');
-    const chatInput = document.getElementById('chatInput');
-    const chatSendBtn = document.getElementById('chatSendBtn');
-
-    let chatStep = 0; // 0=budget, 1=style, 2=final
-
-    const flows = {
-      budget: {
-        '< 500€': 'Super ! Même avec un petit budget, on peut transformer votre intérieur. 🏠 Quel style vous attire le plus ?',
-        '500 – 2000€': 'Parfait ! Avec ce budget, des pièces vraiment marquantes sont accessibles. 🎨 Quel style vous inspire ?',
-        '2000€ et plus': 'Excellent choix ! Pour un intérieur haut de gamme, tout est possible. ✨ Quel style vous attire ?',
-      },
-      styleOptions: [
-        { label: '🌿 Scandinave', value: 'Scandinave' },
-        { label: '🥇 Doré / Luxe', value: 'Doré' },
-        { label: '🌊 Bohème Chic', value: 'Bohème Chic' },
-        { label: '🤍 Minimaliste', value: 'Minimaliste' },
-      ],
-      style: {
-        default: (style) => `Excellent goût pour le style ${style} ! 🛋️ Nos sélections sont faites pour vous — cliquez ci-dessous pour voir nos coups de cœur Amazon.`,
-      }
-    };
-
-    function scrollBottom() {
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function addMsg(text, type = 'bot') {
-      const div = document.createElement('div');
-      div.className = `chat-msg ${type}`;
-      div.textContent = text;
-      chatBody.insertBefore(div, chatOptions);
-      scrollBottom();
-    }
-
-    function showTyping(callback) {
-      const t = document.createElement('div');
-      t.className = 'chat-msg bot typing-indicator';
-      t.innerHTML = '<span></span><span></span><span></span>';
-      chatBody.insertBefore(t, chatOptions);
-      scrollBottom();
-      setTimeout(() => { t.remove(); callback(); }, 900);
-    }
-
-    function setOptions(buttons) {
-      chatOptions.innerHTML = '';
-      buttons.forEach(({ label, value }) => {
-        const btn = document.createElement('button');
-        btn.className = 'chat-opt-btn';
-        btn.innerHTML = label;
-        btn.onclick = () => chatReply(value);
-        chatOptions.appendChild(btn);
-      });
-      scrollBottom();
-    }
-
-    function showCTA() {
-      chatOptions.innerHTML = '';
-      const a = document.createElement('a');
-      a.href = 'https://amzn.to/4vwgySE';
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      a.className = 'chat-opt-btn';
-      a.style.textDecoration = 'none';
-      a.style.display = 'inline-block';
-      a.innerHTML = '🔎 Voir nos sélections Amazon';
-      chatOptions.appendChild(a);
-      scrollBottom();
-    }
-
-    function chatReply(value) {
-      // Désactiver les boutons pour éviter double-clic
-      chatOptions.querySelectorAll('button').forEach(b => b.disabled = true);
-
-      addMsg(value, 'user');
-
-      if (chatStep === 0) {
-        const reply = flows.budget[value] || 'Merci ! Quel style vous inspire ?';
-        showTyping(() => {
-          addMsg(reply);
-          setOptions(flows.styleOptions);
-          chatStep = 1;
-        });
-      } else if (chatStep === 1) {
-        const reply = flows.style.default(value);
-        showTyping(() => {
-          addMsg(reply);
-          showCTA();
-          chatStep = 2;
-        });
-      } else {
-        showTyping(() => {
-          addMsg('Merci pour votre intérêt ! Consultez nos sélections ci-dessus. 😊');
-          chatOptions.innerHTML = '';
-        });
-      }
-    }
-
-    // Bouton Envoyer (texte libre)
-    function handleSend() {
-      const val = chatInput.value.trim();
-      if (!val) return;
-      chatInput.value = '';
-      chatReply(val);
-    }
-
-    chatSendBtn.addEventListener('click', handleSend);
-    chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
-
-    // =============================================
-    // Arrière-plan de particules
-    // =============================================
+    // 1. PARTICULES DE FOND
     const canvas = document.getElementById('deco-bg');
     const ctx = canvas.getContext('2d');
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
 
     class P {
       constructor() { this.reset(); }
@@ -688,26 +930,76 @@
         this.vy = -(Math.random() * .45 + .1);
         this.c = Math.random() > .5 ? 'rgba(108,63,255,0.3)' : 'rgba(194,147,67,0.3)';
       }
-      tick() {
-        this.y += this.vy;
-        if (this.y < -10) this.reset();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = this.c;
-        ctx.fill();
-      }
+      tick() { this.y += this.vy; if (this.y < -10) this.reset(); }
+      draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fillStyle = this.c; ctx.fill(); }
     }
-
     const count = Math.min(70, Math.floor(window.innerWidth / 14));
     const particles = Array.from({ length: count }, () => new P());
+    (function loop() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.tick(); p.draw(); }); requestAnimationFrame(loop); })();
 
-    (function loop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.tick(); p.draw(); });
-      requestAnimationFrame(loop);
-    })();
+    // 2. FILTRE DYNAMIQUE DES CARTES PRODUITS
+    function filterStyle(category, buttonElement) {
+      // Gérer les boutons actifs
+      const buttons = document.querySelectorAll('.category-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      buttonElement.classList.add('active');
+
+      // Filtrer les cartes
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.add('hidden');
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // 3. LOGIQUE CHAT CONSEIL
+    const conversation = document.getElementById('chat-conversation');
+    const optionsArea = document.getElementById('chat-step-options');
+
+    function appendMessage(text, isUser = false) {
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg';
+      if (isUser) { msg.style.background = '#c29343'; msg.style.color = '#fff'; msg.style.alignSelf = 'flex-end'; }
+      msg.innerText = text;
+      conversation.appendChild(msg);
+      conversation.scrollTop = conversation.scrollHeight;
+    }
+
+    function selectBudget(budget) {
+      appendMessage(budget, true); optionsArea.innerHTML = '';
+      setTimeout(() => {
+        appendMessage("Excellent ! 🛋️ Quel style d'intérieur préférez-vous le plus ?");
+        optionsArea.innerHTML = `
+        <button class="chat-opt-btn" onclick="selectStyle('Scandinave')">Scandinave</button>
+        <button class="chat-opt-btn" onclick="selectStyle('Moderne Chic')">Moderne Chic</button>
+        <button class="chat-opt-btn" onclick="selectStyle('Bohème / Zen')">Bohème / Zen</button>
+      `;
+      }, 800);
+    }
+
+    function selectStyle(style) {
+      appendMessage(style, true); optionsArea.innerHTML = '';
+      setTimeout(() => {
+        appendMessage("Choix magnifique ! Laissez votre e-mail pour recevoir notre catalogue d'offres privées adapté à votre style.");
+      }, 800);
+    }
+
+    function sendCustomMessage() {
+      const input = document.getElementById('chat-custom-input');
+      const val = input.value.trim(); if (!val) return;
+      appendMessage(val, true); input.value = '';
+      setTimeout(() => {
+        if (val.includes('@')) {
+          appendMessage("Merci beaucoup ! Votre profil déco est enregistré. Votre sélection privée arrive dans quelques instants. 🌟");
+        } else {
+          appendMessage("Bien reçu ! Si vous désirez notre catalogue exclusif par e-mail, n'hésitez pas à saisir votre adresse.");
+        }
+      }, 1000);
+    }
   </script>
 </body>
 

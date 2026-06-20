@@ -396,12 +396,25 @@
       animation: bounce 1.2s infinite;
     }
 
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
 
     @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-6px); }
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+      }
+
+      30% {
+        transform: translateY(-6px);
+      }
     }
 
     .chat-footer {
@@ -519,7 +532,8 @@
         onclick="document.getElementById('chatWidget').style.display='none'">✕</button>
     </div>
     <div class="chat-body" id="chatBody">
-      <div class="chat-msg bot">Bonjour ! 👋 Pour vous conseiller au mieux, quel est votre budget pour votre projet déco ?</div>
+      <div class="chat-msg bot">Bonjour ! 👋 Pour vous conseiller au mieux, quel est votre budget pour votre projet déco
+        ?</div>
       <div class="chat-options" id="chatOptions">
         <button class="chat-opt-btn" onclick="chatReply('&lt; 500€')">🪙 &lt; 500€</button>
         <button class="chat-opt-btn" onclick="chatReply('500 – 2000€')">💰 500 – 2000€</button>
@@ -542,9 +556,9 @@
     // =============================================
     // CHAT WIDGET – Scénario conversationnel
     // =============================================
-    const chatBody    = document.getElementById('chatBody');
+    const chatBody = document.getElementById('chatBody');
     const chatOptions = document.getElementById('chatOptions');
-    const chatInput   = document.getElementById('chatInput');
+    const chatInput = document.getElementById('chatInput');
     const chatSendBtn = document.getElementById('chatSendBtn');
 
     let chatStep = 0; // 0=budget, 1=style, 2=final

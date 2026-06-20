@@ -361,6 +361,47 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .chat-opt-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .chat-msg.user {
+      background: #3a2e6e;
+      color: #e8e8f0;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .chat-msg.bot {
+      background: #2a2a32;
+      color: #ddd;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 0.5rem 0.7rem;
+    }
+
+    .typing-indicator span {
+      width: 7px;
+      height: 7px;
+      background: #c29343;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
     }
 
     .chat-footer {
@@ -471,23 +512,23 @@
     </form>
   </section>
 
-  <div class="chat-widget">
+  <div class="chat-widget" id="chatWidget">
     <div class="chat-header">
       <span>Conseil Décoration</span>
       <button style="background:none; border:none; color:#fff; cursor:pointer;"
-        onclick="this.parentElement.parentElement.style.display='none'">✕</button>
+        onclick="document.getElementById('chatWidget').style.display='none'">✕</button>
     </div>
-    <div class="chat-body">
-      <div class="chat-msg">Quel est votre budget pour votre projet ?</div>
-      <div class="chat-options">
-        <button class="chat-opt-btn">&lt; 500€</button>
-        <button class="chat-opt-btn">500-2000€</button>
-        <button class="chat-opt-btn">2000€+</button>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-msg bot">Bonjour ! 👋 Pour vous conseiller au mieux, quel est votre budget pour votre projet déco ?</div>
+      <div class="chat-options" id="chatOptions">
+        <button class="chat-opt-btn" onclick="chatReply('&lt; 500€')">🪙 &lt; 500€</button>
+        <button class="chat-opt-btn" onclick="chatReply('500 – 2000€')">💰 500 – 2000€</button>
+        <button class="chat-opt-btn" onclick="chatReply('2000€ et plus')">💎 2000€+</button>
       </div>
     </div>
     <div class="chat-footer">
-      <input type="text" class="chat-input" placeholder="Votre réponse..." />
-      <button class="chat-send">Envoyer</button>
+      <input type="text" class="chat-input" id="chatInput" placeholder="Votre réponse..." />
+      <button class="chat-send" id="chatSendBtn">Envoyer</button>
     </div>
   </div>
 
@@ -498,7 +539,122 @@
   </footer>
 
   <script>
+    // =============================================
+    // CHAT WIDGET – Scénario conversationnel
+    // =============================================
+    const chatBody    = document.getElementById('chatBody');
+    const chatOptions = document.getElementById('chatOptions');
+    const chatInput   = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+
+    let chatStep = 0; // 0=budget, 1=style, 2=final
+
+    const flows = {
+      budget: {
+        '< 500€': 'Super ! Même avec un petit budget, on peut transformer votre intérieur. 🏠 Quel style vous attire le plus ?',
+        '500 – 2000€': 'Parfait ! Avec ce budget, des pièces vraiment marquantes sont accessibles. 🎨 Quel style vous inspire ?',
+        '2000€ et plus': 'Excellent choix ! Pour un intérieur haut de gamme, tout est possible. ✨ Quel style vous attire ?',
+      },
+      styleOptions: [
+        { label: '🌿 Scandinave', value: 'Scandinave' },
+        { label: '🥇 Doré / Luxe', value: 'Doré' },
+        { label: '🌊 Bohème Chic', value: 'Bohème Chic' },
+        { label: '🤍 Minimaliste', value: 'Minimaliste' },
+      ],
+      style: {
+        default: (style) => `Excellent goût pour le style ${style} ! 🛋️ Nos sélections sont faites pour vous — cliquez ci-dessous pour voir nos coups de cœur Amazon.`,
+      }
+    };
+
+    function scrollBottom() {
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function addMsg(text, type = 'bot') {
+      const div = document.createElement('div');
+      div.className = `chat-msg ${type}`;
+      div.textContent = text;
+      chatBody.insertBefore(div, chatOptions);
+      scrollBottom();
+    }
+
+    function showTyping(callback) {
+      const t = document.createElement('div');
+      t.className = 'chat-msg bot typing-indicator';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      chatBody.insertBefore(t, chatOptions);
+      scrollBottom();
+      setTimeout(() => { t.remove(); callback(); }, 900);
+    }
+
+    function setOptions(buttons) {
+      chatOptions.innerHTML = '';
+      buttons.forEach(({ label, value }) => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-opt-btn';
+        btn.innerHTML = label;
+        btn.onclick = () => chatReply(value);
+        chatOptions.appendChild(btn);
+      });
+      scrollBottom();
+    }
+
+    function showCTA() {
+      chatOptions.innerHTML = '';
+      const a = document.createElement('a');
+      a.href = 'https://amzn.to/4vwgySE';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'chat-opt-btn';
+      a.style.textDecoration = 'none';
+      a.style.display = 'inline-block';
+      a.innerHTML = '🔎 Voir nos sélections Amazon';
+      chatOptions.appendChild(a);
+      scrollBottom();
+    }
+
+    function chatReply(value) {
+      // Désactiver les boutons pour éviter double-clic
+      chatOptions.querySelectorAll('button').forEach(b => b.disabled = true);
+
+      addMsg(value, 'user');
+
+      if (chatStep === 0) {
+        const reply = flows.budget[value] || 'Merci ! Quel style vous inspire ?';
+        showTyping(() => {
+          addMsg(reply);
+          setOptions(flows.styleOptions);
+          chatStep = 1;
+        });
+      } else if (chatStep === 1) {
+        const reply = flows.style.default(value);
+        showTyping(() => {
+          addMsg(reply);
+          showCTA();
+          chatStep = 2;
+        });
+      } else {
+        showTyping(() => {
+          addMsg('Merci pour votre intérêt ! Consultez nos sélections ci-dessus. 😊');
+          chatOptions.innerHTML = '';
+        });
+      }
+    }
+
+    // Bouton Envoyer (texte libre)
+    function handleSend() {
+      const val = chatInput.value.trim();
+      if (!val) return;
+      chatInput.value = '';
+      chatReply(val);
+    }
+
+    chatSendBtn.addEventListener('click', handleSend);
+    chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
+
+    // =============================================
     // Arrière-plan de particules
+    // =============================================
     const canvas = document.getElementById('deco-bg');
     const ctx = canvas.getContext('2d');
 

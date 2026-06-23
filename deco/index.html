@@ -401,6 +401,39 @@
       color: var(--muted);
       margin-top: 4rem;
     }
+
+    /* CSS — l'effet "lueur dorée" + zoom*/
+    @keyframes pulseGold {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6),
+          0 0 25px 8px rgba(212, 175, 55, 0.45);
+      }
+
+      50% {
+        transform: scale(1.035);
+        box-shadow: 0 0 0 14px rgba(212, 175, 55, 0),
+          0 0 45px 18px rgba(212, 175, 55, 0.85);
+      }
+    }
+
+    .pin-highlight {
+      animation: pulseGold 1.8s ease-in-out infinite;
+      border: 2px solid #d4af37;
+      border-radius: 14px;
+      position: relative;
+      z-index: 20;
+      scroll-margin-top: 100px;
+      /* évite que le header cache la carte au scroll */
+    }
+
+    /* Effet "spotlight" optionnel : assombrit tout le reste pour forcer l'œil sur la carte */
+    body.spotlight-mode .product-card:not(.pin-highlight) {
+      filter: brightness(0.55) saturate(0.7);
+      transition: filter 0.6s ease;
+    }
   </style>
 </head>
 
@@ -431,7 +464,7 @@
   <section class="section">
     <div class="grid" id="products-grid">
 
-      <div class="product-card" data-category="scandinave">
+      <div class="product-card" id="produit-table-sapgaks" data-category="scandinave">
         <img src="https://i.pinimg.com/736x/65/7d/c4/657dc415b8cfb3a47f557d890657bcef.jpg" alt="Sapgaks Table à Manger"
           style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:1rem;">
         <div class="product-info">
@@ -1407,7 +1440,28 @@
         }
       }, 1000);
     }
+    // ==scroll +activation de l'effet spotlight sur la carte ciblée=======================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash; // ex: #produit-table-sapgaks
+      if (!hash) return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      // Léger délai pour laisser la page se stabiliser (images, layout)
+      setTimeout(() => {
+        document.body.classList.add('spotlight-mode');
+        target.classList.add('pin-highlight');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 400);
+
+      // Option : adoucir l'effet après 8s (le glow continue mais le spotlight s'éteint)
+      setTimeout(() => {
+        document.body.classList.remove('spotlight-mode');
+      }, 8000);
+    });
   </script>
+
 </body>
 
 </html>

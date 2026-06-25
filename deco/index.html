@@ -1434,6 +1434,7 @@
       appendMessage(val, true); input.value = '';
       setTimeout(() => {
         if (val.includes('@')) {
+          envoyerEmailSystemeIO(val);
           appendMessage("Merci beaucoup ! Votre profil déco est enregistré. Votre sélection privée arrive dans quelques instants. 🌟");
         } else {
           appendMessage("Bien reçu ! Si vous désirez notre catalogue exclusif par e-mail, n'hésitez pas à saisir votre adresse.");

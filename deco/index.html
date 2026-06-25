@@ -1462,33 +1462,28 @@
     });
     // Option : sytemeio 
     function envoyerEmailSystemeIO(emailUtilisateur) {
-      // URL de votre page de capture unique DATA-EMPATHY
-      // (Ajustez si l'adresse exacte de votre page de capture est différente)
-      const urlFormulaire = 'https://systeme.io/fr/form/submit';
+      // 1. On injecte l'e-mail du chat dans notre formulaire masqué
+      const inputMasque = document.getElementById('sio-email-input');
+      if (inputMasque) {
+        inputMasque.value = emailUtilisateur;
 
-      const data = new FormData();
-      data.append('email', emailUtilisateur);
+        // 2. On valide et on envoie le formulaire normalement
+        const formulaire = document.getElementById('systemeio-form-invisible');
+        formulaire.submit();
 
-      // On injecte l'ID de votre tag déco pour que Systeme.io l'ajoute automatiquement
-      data.append('tag_ids[]', '2067958');
-      // Il faut aussi envoyer l'ID de votre formulaire ou de votre page pour que Systeme.io sache d'où ça vient.
-      // Vous pouvez trouver cet ID (ex: 24117121) dans l'URL de votre tunnel !
-      data.append('page_id', '24117121');
-
-      fetch(urlFormulaire, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: data
-      })
-        .then(() => {
-          console.log('Parfait ! E-mail envoyé et tagger avec Prospect - Deco.');
-        })
-        .catch(error => {
-          console.error('Erreur lors de l\'envoi :', error);
-        });
+        console.log('Formulaire envoyé via passerelle HTML.');
+      } else {
+        console.error('Erreur : Formulaire masqué introuvable dans le HTML.');
+      }
     }
   </script>
-
+  <form id="systemeio-form-invisible" action="https://systeme.io/fr/form/submit" method="POST" style="display: none;"
+    target="iframe-invisible">
+    <input type="email" name="email" id="sio-email-input">
+    <input type="hidden" name="tag_ids[]" value="2067958">
+    <input type="hidden" name="page_id" value="24117121">
+  </form>
+  <iframe name="iframe-invisible" style="display: none;"></iframe>
 </body>
 
 </html>

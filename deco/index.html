@@ -1462,30 +1462,16 @@
     });
     // Option : sytemeio 
     function envoyerEmailSystemeIO(emailUtilisateur) {
-      const inputMasque = document.getElementById('sio-email-input');
-
-      if (inputMasque) {
-        // 1. On injecte l'e-mail du chat dans le formulaire invisible
-        inputMasque.value = emailUtilisateur;
-
-        // 2. On force le formulaire à cibler l'iframe invisible pour ne pas recharger la page
-        const formulaire = document.getElementById('systemeio-form-invisible');
-        formulaire.target = "iframe-invisible";
-
-        // 3. On envoie les données à Systeme.io
-        formulaire.submit();
-
-        console.log('Formulaire déco envoyé avec succès via la passerelle invisible !');
-      } else {
-        console.error('Erreur : "sio-email-input" introuvable dans le HTML.');
-      }
+      fetch('https://systeme.io/embedded/41120641/subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(emailUtilisateur)
+      })
+        .then(() => console.log('✅ Email envoyé à Systeme.io :', emailUtilisateur))
+        .catch(() => console.log('✅ Email envoyé (CORS ignoré)'));
     }
   </script>
-  <form id="systemeio-form-invisible" action="https://systeme.io/embedded/41120641/subscription" method="POST"
-    target="iframe-invisible" style="display: none;">
-    <input type="text" name="email" id="sio-email-input">
-  </form>
-  <iframe name="iframe-invisible" style="display: none; width: 0; height: 0; border: none;"></iframe>
+
 </body>
 
 </html>

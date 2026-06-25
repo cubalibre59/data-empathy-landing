@@ -1388,7 +1388,7 @@
         if (category === 'all' || card.getAttribute('data-category') === category) {
           card.classList.remove('hidden');
         } else {
-          card.add('hidden');
+
           card.classList.add('hidden');
         }
       });
@@ -1460,6 +1460,30 @@
         document.body.classList.remove('spotlight-mode');
       }, 8000);
     });
+    // Option : sytemeio 
+    function envoyerEmailSystemeIO(emailUtilisateur) {
+      // URL de votre page de capture unique DATA-EMPATHY
+      // (Ajustez si l'adresse exacte de votre page de capture est différente)
+      const urlFormulaire = 'https://data-empathy.click/capture-email';
+
+      const data = new FormData();
+      data.append('email', emailUtilisateur);
+
+      // On injecte l'ID de votre tag déco pour que Systeme.io l'ajoute automatiquement
+      data.append('tag_ids[]', '2067958');
+
+      fetch(urlFormulaire, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: data
+      })
+        .then(() => {
+          console.log('Parfait ! E-mail envoyé et tagger avec Prospect - Deco.');
+        })
+        .catch(error => {
+          console.error('Erreur lors de l\'envoi :', error);
+        });
+    }
   </script>
 
 </body>

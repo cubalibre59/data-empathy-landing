@@ -1464,13 +1464,16 @@
     function envoyerEmailSystemeIO(emailUtilisateur) {
       // URL de votre page de capture unique DATA-EMPATHY
       // (Ajustez si l'adresse exacte de votre page de capture est différente)
-      const urlFormulaire = 'https://data-empathy.click/capture-email';
+      const urlFormulaire = 'https://systeme.io/fr/form/submit';
 
       const data = new FormData();
       data.append('email', emailUtilisateur);
 
       // On injecte l'ID de votre tag déco pour que Systeme.io l'ajoute automatiquement
       data.append('tag_ids[]', '2067958');
+      // Il faut aussi envoyer l'ID de votre formulaire ou de votre page pour que Systeme.io sache d'où ça vient.
+      // Vous pouvez trouver cet ID (ex: 24117121) dans l'URL de votre tunnel !
+      data.append('page_id', '24117121');
 
       fetch(urlFormulaire, {
         method: 'POST',

@@ -1462,19 +1462,45 @@
     });
     // Option : sytemeio 
     function envoyerEmailSystemeIO(emailUtilisateur) {
-      // 1. On injecte l'e-mail du chat dans notre formulaire masqué
-      const inputMasque = document.getElementById('sio-email-input');
-      if (inputMasque) {
-        inputMasque.value = emailUtilisateur;
+      // On crée l'URL officielle de votre page de capture Systeme.io avec l'e-mail pré-rempli
+      // Remplissez 'page_id' et 'tag_ids' si nécessaire, mais l'URL de soumission directe fonctionne ainsi :
+      const urlSystemeIO = "https://systeme.io/fr/form/submit";
 
-        // 2. On valide et on envoie le formulaire normalement
-        const formulaire = document.getElementById('systemeio-form-invisible');
-        formulaire.submit();
+      // On ouvre une petite fenêtre pop-up invisible ou un nouvel onglet pour soumettre les données directement à Systeme.io
+      // Cela contourne TOUS les blocages de sécurité de Vercel !
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = urlSystemeIO;
+      form.target = '_blank'; // Ouvre dans un nouvel onglet pour valider l'e-mail chez Systeme.io
 
-        console.log('Formulaire envoyé via passerelle HTML.');
-      } else {
-        console.error('Erreur : Formulaire masqué introuvable dans le HTML.');
-      }
+      // Paramètre Email
+      const emailInput = document.createElement('input');
+      emailInput.type = 'hidden';
+      emailInput.name = 'email';
+      emailInput.value = emailUtilisateur;
+      form.appendChild(emailInput);
+
+      // Paramètre Page ID (Votre étape de capture Déco)
+      const pageIdInput = document.createElement('input');
+      pageIdInput.type = 'hidden';
+      pageIdInput.name = 'page_id';
+      pageIdInput.value = '24117121';
+      form.appendChild(pageIdInput);
+
+      // Paramètre Tag ID
+      const tagInput = document.createElement('input');
+      tagInput.type = 'hidden';
+      tagInput.name = 'tag_ids[]';
+      tagInput.value = '2067958';
+      form.appendChild(tagInput);
+
+      // On ajoute le formulaire à la page et on l'exécute
+      document.body.appendChild(form);
+      form.submit();
+
+      // On nettoie la page
+      document.body.removeChild(form);
+      console.log("Redirection de capture envoyée à Systeme.io");
     }
   </script>
   <form id="systemeio-form-invisible" action="https://systeme.io/fr/form/submit" method="POST" style="display: none;"

@@ -242,8 +242,9 @@
     .btn-amazon:hover {
       box-shadow: 0 6px 20px rgba(255, 153, 0, 0.35);
     }
+
     /*sticky bar style*/
-     /* SECTION DE CAPTURE EMAIL */
+    /* SECTION DE CAPTURE EMAIL */
     /* STICKY BAR EMAIL */
     .sticky-email-bar {
       position: sticky;
@@ -257,13 +258,13 @@
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
-      box-shadow: 0 2px 20px rgba(212,175,55,0.15);
+      box-shadow: 0 2px 20px rgba(212, 175, 55, 0.15);
     }
- 
+
     .sticky-email-bar.hidden {
       display: none;
     }
- 
+
     .sticky-bar-text {
       font-size: 0.82rem;
       color: var(--gold);
@@ -271,19 +272,19 @@
       white-space: nowrap;
       letter-spacing: 0.02em;
     }
- 
+
     .sticky-bar-text span {
       color: var(--accent);
     }
- 
+
     .sticky-bar-form {
       display: flex;
       gap: 8px;
       align-items: center;
     }
- 
+
     .sticky-bar-input {
-      background: rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.07);
       border: 1px solid var(--gold);
       border-radius: 6px;
       color: var(--text);
@@ -294,17 +295,17 @@
       font-family: inherit;
       transition: border-color 0.2s, background 0.2s;
     }
- 
+
     .sticky-bar-input::placeholder {
       color: var(--muted);
       font-size: 0.78rem;
     }
- 
+
     .sticky-bar-input:focus {
       border-color: var(--accent);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
     }
- 
+
     .sticky-bar-btn {
       background: var(--gold);
       color: #0a0a14;
@@ -318,12 +319,12 @@
       font-family: inherit;
       transition: background 0.2s, transform 0.1s;
     }
- 
+
     .sticky-bar-btn:hover {
       background: #e8c84a;
       transform: translateY(-1px);
     }
- 
+
     .sticky-bar-close {
       background: none;
       border: none;
@@ -334,24 +335,34 @@
       line-height: 1;
       flex-shrink: 0;
     }
- 
+
     .sticky-bar-close:hover {
       color: var(--text);
     }
- 
+
     .sticky-bar-success {
       font-size: 0.85rem;
       color: var(--accent);
       font-weight: 600;
       display: none;
     }
- 
+
     @media (max-width: 600px) {
-      .sticky-bar-text { font-size: 0.75rem; }
-      .sticky-bar-input { width: 150px; font-size: 0.75rem; }
-      .sticky-bar-btn { padding: 7px 12px; font-size: 0.75rem; }
+      .sticky-bar-text {
+        font-size: 0.75rem;
+      }
+
+      .sticky-bar-input {
+        width: 150px;
+        font-size: 0.75rem;
+      }
+
+      .sticky-bar-btn {
+        padding: 7px 12px;
+        font-size: 0.75rem;
+      }
     }
- 
+
 
     /* SECTION DE CAPTURE EMAIL */
     .newsletter-section {
@@ -554,21 +565,17 @@
   <header class="top-bar">
     <div class="logo">Transformez votre<span> Intérieur</span></div>
   </header>
-   <!-- STICKY BAR EMAIL CAPTURE -->
+  <!-- STICKY BAR EMAIL CAPTURE -->
   <div class="sticky-email-bar" id="stickyEmailBar">
     <div class="sticky-bar-text">🎁 Sélection <span>exclusive</span> chaque semaine &rarr;</div>
     <div class="sticky-bar-form" id="stickyBarForm">
-      <input
-        type="email"
-        class="sticky-bar-input"
-        id="stickyBarEmail"
-        placeholder="votre@email.com"
-        autocomplete="email"
-      />
+      <input type="email" class="sticky-bar-input" id="stickyBarEmail" placeholder="votre@email.com"
+        autocomplete="email" />
       <button class="sticky-bar-btn" onclick="stickyBarSubmit()">Recevoir</button>
     </div>
     <div class="sticky-bar-success" id="stickyBarSuccess">✅ Bienvenue ! Vérifiez vos emails.</div>
-    <button class="sticky-bar-close" onclick="document.getElementById('stickyEmailBar').classList.add('hidden')" aria-label="Fermer">✕</button>
+    <button class="sticky-bar-close" onclick="document.getElementById('stickyEmailBar').classList.add('hidden')"
+      aria-label="Fermer">✕</button>
   </div>
 
   <section class="pin-hero">
@@ -732,16 +739,7 @@
             sur Amazon</a>
         </div>
       </div>
-      <div class="product-card" id="" data-category="scandinave">
-        <img src="" alt=" xxxx "
-          style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:1rem;">
-        <div class="product-info">
-          <h3>[Scandinave] Produit 11</h3>
-          <p>Description de votre produit inspiré du style scandinave.</p>
-          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
-            sur Amazon</a>
-        </div>
-      </div>
+
 
       <div class="product-card" id="horloge-led-suspendue" data-category="tendance">
         <img src="https://i.pinimg.com/736x/f1/97/e3/f197e35a4d0289051051cd103da2e33a.jpg"
@@ -890,14 +888,7 @@
         </div>
       </div>
 
-      <div class="product-card" id="xxxx" data-category="minimaliste">
-        <div class="product-info">
-          <h3>Jingdezhen Vase en Céramique d'Art</h3>
-          <p>Porcelaine d'art émaillée haut de gamme de 35 cm avec motifs peints traditionnels élégants.</p>
-          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
-            sur Amazon</a>
-        </div>
-      </div>
+
       <div class="product-card" id="tapis-dragon-chinois" data-category="minimaliste">
         <img src="https://i.pinimg.com/736x/15/ca/63/15ca633879dad9db1d85e34afb51ed9d.jpg"
           alt=" Tapis Salon Dragon Chinois"
@@ -1191,16 +1182,6 @@
             #artmural #tableausalon #decorationinterieur #artafricain #triptyque #decotendance #"Tableau Salon# Fashion
             #3 Parties#.</p>
           <a href="https://amzn.to/4fFyYeS" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
-            sur Amazon</a>
-        </div>
-      </div>
-      <div class="product-card" id="" data-category="boheme">
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'></svg>"
-          alt="Tableau Salon XXl Fashion 3 Parties">
-        <div class="product-info">
-          <h3>[Bohème & Zen] Produit 11</h3>
-          <p>Matériaux naturels, rotin et touches apaisantes pour votre espace de vie.</p>
-          <a href="VOTRE_LIEN_AMAZON_ICI" target="_blank" rel="noopener noreferrer" class="btn-amazon">🔎 Voir le prix
             sur Amazon</a>
         </div>
       </div>
@@ -1594,13 +1575,13 @@
       if (!email || !email.includes('@')) {
         input.focus();
         input.style.borderColor = '#e34948';
-        setTimeout(function(){ input.style.borderColor = ''; }, 1500);
+        setTimeout(function () { input.style.borderColor = ''; }, 1500);
         return;
       }
       envoyerEmailSystemeIO(email);
       document.getElementById('stickyBarForm').style.display = 'none';
       document.getElementById('stickyBarSuccess').style.display = 'block';
-      setTimeout(function(){
+      setTimeout(function () {
         document.getElementById('stickyEmailBar').classList.add('hidden');
       }, 4000);
     }

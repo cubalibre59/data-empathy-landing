@@ -242,6 +242,116 @@
     .btn-amazon:hover {
       box-shadow: 0 6px 20px rgba(255, 153, 0, 0.35);
     }
+    /*sticky bar style*/
+     /* SECTION DE CAPTURE EMAIL */
+    /* STICKY BAR EMAIL */
+    .sticky-email-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg, #1a0a3a 0%, #0d1a2e 100%);
+      border-bottom: 1px solid var(--gold);
+      padding: 10px 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 20px rgba(212,175,55,0.15);
+    }
+ 
+    .sticky-email-bar.hidden {
+      display: none;
+    }
+ 
+    .sticky-bar-text {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 600;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+ 
+    .sticky-bar-text span {
+      color: var(--accent);
+    }
+ 
+    .sticky-bar-form {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+ 
+    .sticky-bar-input {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.82rem;
+      padding: 7px 14px;
+      outline: none;
+      width: 200px;
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+    }
+ 
+    .sticky-bar-input::placeholder {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+ 
+    .sticky-bar-input:focus {
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.1);
+    }
+ 
+    .sticky-bar-btn {
+      background: var(--gold);
+      color: #0a0a14;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: background 0.2s, transform 0.1s;
+    }
+ 
+    .sticky-bar-btn:hover {
+      background: #e8c84a;
+      transform: translateY(-1px);
+    }
+ 
+    .sticky-bar-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0 0 0 4px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+ 
+    .sticky-bar-close:hover {
+      color: var(--text);
+    }
+ 
+    .sticky-bar-success {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+      display: none;
+    }
+ 
+    @media (max-width: 600px) {
+      .sticky-bar-text { font-size: 0.75rem; }
+      .sticky-bar-input { width: 150px; font-size: 0.75rem; }
+      .sticky-bar-btn { padding: 7px 12px; font-size: 0.75rem; }
+    }
+ 
 
     /* SECTION DE CAPTURE EMAIL */
     .newsletter-section {
@@ -444,6 +554,22 @@
   <header class="top-bar">
     <div class="logo">Transformez votre<span> Intérieur</span></div>
   </header>
+   <!-- STICKY BAR EMAIL CAPTURE -->
+  <div class="sticky-email-bar" id="stickyEmailBar">
+    <div class="sticky-bar-text">🎁 Sélection <span>exclusive</span> chaque semaine &rarr;</div>
+    <div class="sticky-bar-form" id="stickyBarForm">
+      <input
+        type="email"
+        class="sticky-bar-input"
+        id="stickyBarEmail"
+        placeholder="votre@email.com"
+        autocomplete="email"
+      />
+      <button class="sticky-bar-btn" onclick="stickyBarSubmit()">Recevoir</button>
+    </div>
+    <div class="sticky-bar-success" id="stickyBarSuccess">✅ Bienvenue ! Vérifiez vos emails.</div>
+    <button class="sticky-bar-close" onclick="document.getElementById('stickyEmailBar').classList.add('hidden')" aria-label="Fermer">✕</button>
+  </div>
 
   <section class="pin-hero">
     <h1>Transformez votre <em>Intérieur</em></h1>
@@ -1461,7 +1587,23 @@
         document.body.classList.remove('spotlight-mode');
       }, 8000);
     });
-    // Option : sytemeio 
+    // Option : sytemeio +function stickyBar
+    function stickyBarSubmit() {
+      var input = document.getElementById('stickyBarEmail');
+      var email = input.value.trim();
+      if (!email || !email.includes('@')) {
+        input.focus();
+        input.style.borderColor = '#e34948';
+        setTimeout(function(){ input.style.borderColor = ''; }, 1500);
+        return;
+      }
+      envoyerEmailSystemeIO(email);
+      document.getElementById('stickyBarForm').style.display = 'none';
+      document.getElementById('stickyBarSuccess').style.display = 'block';
+      setTimeout(function(){
+        document.getElementById('stickyEmailBar').classList.add('hidden');
+      }, 4000);
+    }
     function envoyerEmailSystemeIO(emailUtilisateur) {
       fetch('https://systeme.io/embedded/41120641/subscription', {
         method: 'POST',

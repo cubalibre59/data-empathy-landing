@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+  publicDir: 'public',  // ← ajoute cette ligne
   build: {
     rollupOptions: {
       input: {

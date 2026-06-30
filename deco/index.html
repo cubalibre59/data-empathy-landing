@@ -568,15 +568,21 @@
   <!-- STICKY BAR EMAIL CAPTURE -->
   <div class="sticky-email-bar" id="stickyEmailBar">
     <div class="sticky-bar-text">🎁 Sélection <span>exclusive</span> chaque semaine &rarr;</div>
-    <div class="sticky-bar-form" id="stickyBarForm">
-      <input type="email" class="sticky-bar-input" id="stickyBarEmail" placeholder="votre@email.com"
-        autocomplete="email" />
-      <button class="sticky-bar-btn" onclick="stickyBarSubmit()">Recevoir</button>
-    </div>
+    <form class="sticky-bar-form" id="stickyBarForm"
+          action="https://systeme.io/embedded/41120641/subscription"
+          method="POST"
+          target="systemeio-hidden-frame"
+          onsubmit="return handleStickyBarSubmit(this)">
+      <input type="email" name="email" class="sticky-bar-input" id="stickyBarEmail" placeholder="votre@email.com"
+        autocomplete="email" required />
+      <button type="submit" class="sticky-bar-btn">Recevoir</button>
+    </form>
     <div class="sticky-bar-success" id="stickyBarSuccess">✅ Bienvenue ! Vérifiez vos emails.</div>
     <button class="sticky-bar-close" onclick="document.getElementById('stickyEmailBar').classList.add('hidden')"
       aria-label="Fermer">✕</button>
   </div>
+  <!-- Iframe caché pour recevoir la réponse Systeme.io sans rediriger la page -->
+  <iframe name="systemeio-hidden-frame" style="display:none;width:0;height:0;border:none;"></iframe>
 
   <section class="pin-hero">
     <h1>Transformez votre <em>Intérieur</em></h1>
@@ -1427,10 +1433,15 @@
 
     <h2>Recevez <em>les meilleures</em> offres</h2>
     <p>Abonnez-vous pour découvrir nos sélections exclusives & bons plans</p>
-    <form class="email-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !');">
-      <input type="email" class="email-input" placeholder="votre@email.com" required />
+    <form class="email-form" id="newsletterForm"
+          action="https://systeme.io/embedded/41120641/subscription"
+          method="POST"
+          target="systemeio-hidden-frame"
+          onsubmit="return handleNewsletterSubmit(this)">
+      <input type="email" name="email" class="email-input" id="newsletterEmail" placeholder="votre@email.com" required />
       <button type="submit" class="email-btn">M'abonner</button>
     </form>
+    <div id="newsletterSuccess" style="display:none; color:#00e5a0; font-weight:600; margin-top:1rem; font-size:0.95rem;">✅ Merci ! Vérifiez votre boîte mail.</div>
   </section>
 
   <div class="chat-widget">
@@ -1568,31 +1579,56 @@
         document.body.classList.remove('spotlight-mode');
       }, 8000);
     });
-    // Option : sytemeio +function stickyBar
-    function stickyBarSubmit() {
-      var input = document.getElementById('stickyBarEmail');
-      var email = input.value.trim();
+    // Option : sytemeio — soumission via formulaire natif (contourne CORS)
+    function handleStickyBarSubmit(form) {
+      var email = document.getElementById('stickyBarEmail').value.trim();
       if (!email || !email.includes('@')) {
-        input.focus();
-        input.style.borderColor = '#e34948';
-        setTimeout(function () { input.style.borderColor = ''; }, 1500);
-        return;
+        document.getElementById('stickyBarEmail').focus();
+        document.getElementById('stickyBarEmail').style.borderColor = '#e34948';
+        setTimeout(function () { document.getElementById('stickyBarEmail').style.borderColor = ''; }, 1500);
+        return false; // empêche la soumission
       }
-      envoyerEmailSystemeIO(email);
-      document.getElementById('stickyBarForm').style.display = 'none';
-      document.getElementById('stickyBarSuccess').style.display = 'block';
+      // Le formulaire se soumet nativement vers l'iframe caché
+      console.log('📤 Sticky-bar : soumission formulaire natif pour', email);
+      // Affiche le message de succès après soumission
+      setTimeout(function () {
+        document.getElementById('stickyBarForm').style.display = 'none';
+        document.getElementById('stickyBarSuccess').style.display = 'block';
+      }, 500);
       setTimeout(function () {
         document.getElementById('stickyEmailBar').classList.add('hidden');
-      }, 4000);
+      }, 5000);
+      return true; // autorise la soumission native
     }
+
+    function handleNewsletterSubmit(form) {
+      var email = document.getElementById('newsletterEmail').value.trim();
+      if (!email || !email.includes('@')) return false;
+      console.log('📤 Newsletter : soumission formulaire natif pour', email);
+      setTimeout(function () {
+        form.style.display = 'none';
+        document.getElementById('newsletterSuccess').style.display = 'block';
+      }, 500);
+      return true; // autorise la soumission native
+    }
+
+    // Chat: envoyer email via formulaire dynamique (aussi corrigé)
     function envoyerEmailSystemeIO(emailUtilisateur) {
-      fetch('https://systeme.io/embedded/41120641/subscription', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'email=' + encodeURIComponent(emailUtilisateur)
-      })
-        .then(() => console.log('✅ Email envoyé à Systeme.io :', emailUtilisateur))
-        .catch(() => console.log('✅ Email envoyé (CORS ignoré)'));
+      // Crée un formulaire temporaire pour soumettre via iframe
+      var tempForm = document.createElement('form');
+      tempForm.method = 'POST';
+      tempForm.action = 'https://systeme.io/embedded/41120641/subscription';
+      tempForm.target = 'systemeio-hidden-frame';
+      tempForm.style.display = 'none';
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'email';
+      input.value = emailUtilisateur;
+      tempForm.appendChild(input);
+      document.body.appendChild(tempForm);
+      tempForm.submit();
+      document.body.removeChild(tempForm);
+      console.log('📤 Chat : soumission formulaire dynamique pour', emailUtilisateur);
     }
   </script>
 

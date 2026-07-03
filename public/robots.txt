@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://data-empathy-landing.vercel.app/sitemap.xml

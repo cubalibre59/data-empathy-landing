@@ -556,6 +556,8 @@
       transition: filter 0.6s ease;
     }
   </style>
+  <!-- ajoute de la balise canonique -->
+  <link rel="canonical" href="https://data-empathy-landing.vercel.app/deco/" />
 </head>
 
 <body>
@@ -568,11 +570,8 @@
   <!-- STICKY BAR EMAIL CAPTURE -->
   <div class="sticky-email-bar" id="stickyEmailBar">
     <div class="sticky-bar-text">🎁 Sélection <span>exclusive</span> chaque semaine &rarr;</div>
-    <form class="sticky-bar-form" id="stickyBarForm"
-          action="https://systeme.io/embedded/41120641/subscription"
-          method="POST"
-          target="systemeio-hidden-frame"
-          onsubmit="return handleStickyBarSubmit(this)">
+    <form class="sticky-bar-form" id="stickyBarForm" action="https://systeme.io/embedded/41120641/subscription"
+      method="POST" target="systemeio-hidden-frame" onsubmit="return handleStickyBarSubmit(this)">
       <input type="email" name="email" class="sticky-bar-input" id="stickyBarEmail" placeholder="votre@email.com"
         autocomplete="email" required />
       <button type="submit" class="sticky-bar-btn">Recevoir</button>
@@ -1433,15 +1432,15 @@
 
     <h2>Recevez <em>les meilleures</em> offres</h2>
     <p>Abonnez-vous pour découvrir nos sélections exclusives & bons plans</p>
-    <form class="email-form" id="newsletterForm"
-          action="https://systeme.io/embedded/41120641/subscription"
-          method="POST"
-          target="systemeio-hidden-frame"
-          onsubmit="return handleNewsletterSubmit(this)">
-      <input type="email" name="email" class="email-input" id="newsletterEmail" placeholder="votre@email.com" required />
+    <form class="email-form" id="newsletterForm" action="https://systeme.io/embedded/41120641/subscription"
+      method="POST" target="systemeio-hidden-frame" onsubmit="return handleNewsletterSubmit(this)">
+      <input type="email" name="email" class="email-input" id="newsletterEmail" placeholder="votre@email.com"
+        required />
       <button type="submit" class="email-btn">M'abonner</button>
     </form>
-    <div id="newsletterSuccess" style="display:none; color:#00e5a0; font-weight:600; margin-top:1rem; font-size:0.95rem;">✅ Merci ! Vérifiez votre boîte mail.</div>
+    <div id="newsletterSuccess"
+      style="display:none; color:#00e5a0; font-weight:600; margin-top:1rem; font-size:0.95rem;">✅ Merci ! Vérifiez votre
+      boîte mail.</div>
   </section>
 
   <div class="chat-widget">

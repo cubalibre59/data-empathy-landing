@@ -935,9 +935,9 @@
         // 4. Remplacez SYSTEME_IO_FORM_URL ci-dessous par votre URL
         //
         // ══════════════════════════════════════════════════════
+        // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT brevo
+        const BREVO_FORM_URL = 'https://7896d569.sibforms.com/serve/MUIFAFk6ji3Aob8e2dq4utzSfPkq1wnpPHVORQ6en10HoiPe2gJlT3jI0PgcJQkx8FddrH_s30MKFSLz3FU0VBUuogYvyT_XMasI0qqfkmfMNSAqgR_xSBDOvKzRkDh7ZgzfFHMgTnvEpIN9R1MgOqHuh6vctXFZCl22eOJNPvsOAPxlLNqdMW2Dj6Ni2k0hCmI7Xu8EGtkxu_lAow==';
 
-        const SYSTEME_IO_FORM_URL = 'https://systeme.io/embedded/XXXXXX/subscribe';
-        // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT SYSTEME.IO
 
         function handleEmailSubmit(event) {
             event.preventDefault();
@@ -963,17 +963,30 @@
             btn.textContent = '⏳ Envoi...';
             btn.disabled = true;
 
-            // Formulaire invisible qui soumet vers Systeme.io
+            // Formulaire invisible qui soumet vers Brevo
+
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = 'https://systeme.io/embedded/41120641/subscription';
+            form.action = BREVO_FORM_URL;
             form.target = 'hidden-iframe';
 
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'email';
-            input.value = email;
-            form.appendChild(input);
+            const emailField = document.createElement('input');
+            emailField.type = 'hidden';
+            emailField.name = 'EMAIL';
+            emailField.value = email;
+            form.appendChild(emailField);
+
+            const localeField = document.createElement('input');
+            localeField.type = 'hidden';
+            localeField.name = 'locale';
+            localeField.value = 'fr';
+            form.appendChild(localeField);
+
+            const honeypot = document.createElement('input');
+            honeypot.type = 'hidden';
+            honeypot.name = 'email_address_check';
+            honeypot.value = '';
+            form.appendChild(honeypot);
 
             document.body.appendChild(form);
             form.submit();

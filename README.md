@@ -13,6 +13,7 @@
 | **Vercel**       | Hébergement Frontend (SaaS)   | [Dashboard](https://vercel.com/tamayo-s-projects) | ✅ Déployé   |
 | **Systeme.io**   | Acquisition & Tunnel de vente | [Dashboard](https://systeme.io/)                 | ⚙️ À configurer |
 | **OVH Mail/Zimbra** | Email professionnel        | `contact@data-empathy.click`                     | ⚙️ À valider |
+| **Brevo**   | Acquisition & Tunnel de vente | [Dashboard](https://brevo.com/)                 | ⚙️ À configurer |
 
 ---
 

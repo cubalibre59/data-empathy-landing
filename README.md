@@ -9,11 +9,11 @@
 
 | Service          | Rôle                          | URL / Accès                                      | Statut       |
 |------------------|-------------------------------|--------------------------------------------------|--------------|
-| **OVH**          | Domaine + DNS + Email Pro     | [Manager OVH](https://www.ovh.com/manager/)      | ⚙️ À valider |
+| **OVH**          | Domaine + DNS + Email Pro     | [Manager OVH](https://www.ovh.com/manager/)      | ✅ valide |
 | **Vercel**       | Hébergement Frontend (SaaS)   | [Dashboard](https://vercel.com/tamayo-s-projects) | ✅ Déployé   |
-| **Systeme.io**   | Acquisition & Tunnel de vente | [Dashboard](https://systeme.io/)                 | ⚙️ À configurer |
-| **OVH Mail/Zimbra** | Email professionnel        | `contact@data-empathy.click`                     | ⚙️ À valider |
-| **Brevo**   | Acquisition & Tunnel de vente | [Dashboard](https://brevo.com/)                 | ⚙️ À configurer |
+| **Systeme.io**   | Acquisition & Tunnel de vente | [Dashboard](https://systeme.io/)                 |  ✅ valide |
+| **OVH Mail/Zimbra** | Email professionnel        | `contact@data-empathy.click`                     |  ✅ valide|
+| **Brevo**   | Acquisition & Tunnel de vente | [Dashboard](https://brevo.com/)                 |  ✅ valide |
 
 ---
 

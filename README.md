@@ -155,12 +155,12 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 ✅ Templates PDF créés et liés
 ✅ Reçus de paiement Stripe activés
 
-### À faire / en cours
+### statut  valide - 27/07/2026
 
-- [ ] Compléter les mentions légales définitives (SIRET, statut juridique) dans CGV et politique de confidentialité
-- [ ] Enregistrer et intégrer les 3 tutoriels vidéo
-- [ ] Ajouter le teaser E.M.P.A.T.H.Y sur `index.html` (lien discret dans la nav, sans concurrencer le CTA principal "Obtenir le Guide Gratuit")
-- [ ] Intégration affiliation ContentSquare (lien : `https://invite.contentsquare.com/mt1dz2ujeux2`)
+✅Compléter les mentions légales définitives (SIRET, statut juridique) dans CGV et politique de confidentialité
+✅ Enregistrer et intégrer les 3 tutoriels vidéo
+✅ Ajouter le teaser E.M.P.A.T.H.Y sur `index.html` (lien discret dans la nav, sans concurrencer le CTA principal "Obtenir le Guide Gratuit")
+✅ Intégration affiliation ContentSquare (lien : `https://invite.contentsquare.com/mt1dz2ujeux2`)
 
 ### Principes de travail
 

@@ -638,7 +638,7 @@
     <form class="sticky-bar-form" id="stickyBarForm" action="https://systeme.io/embedded/41120641/subscription"
       method="POST" target="systemeio-hidden-frame" onsubmit="return handleStickyBarSubmit(this)">
       <input type="email" name="email" class="sticky-bar-input" id="stickyBarEmail" placeholder="votre@email.com"
-        autocomplete="email" required />
+        autocomplete="email" aria-label="Adresse email" required />
       <button type="submit" class="sticky-bar-btn">Recevoir</button>
     </form>
     <div class="sticky-bar-success" id="stickyBarSuccess">✅ Bienvenue ! Vérifiez vos emails.</div>
@@ -1517,7 +1517,7 @@
     <form class="email-form" id="newsletterForm" action="https://systeme.io/embedded/41120641/subscription"
       method="POST" target="systemeio-hidden-frame" onsubmit="return handleNewsletterSubmit(this)">
       <input type="email" name="email" class="email-input" id="newsletterEmail" placeholder="votre@email.com"
-        required />
+        aria-label="Adresse email pour la newsletter" required />
       <button type="submit" class="email-btn">M'abonner</button>
     </form>
     <div id="newsletterSuccess"
@@ -1540,7 +1540,7 @@
       </div>
     </div>
     <div class="chat-footer">
-      <input type="text" class="chat-input" id="chat-custom-input" placeholder="Votre réponse..." />
+      <input type="text" class="chat-input" id="chat-custom-input" placeholder="Votre réponse..." aria-label="Votre réponse au conseil décoration" />
       <button class="chat-send" onclick="sendCustomMessage()">Envoyer</button>
     </div>
   </div>

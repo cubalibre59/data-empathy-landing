@@ -2,8 +2,85 @@
 
 > **Domaine** : `data-empathy.click`  
 > **Stack** : OVH (DNS/Email) → Vercel (Frontend) → Systeme.io (Marketing Automation)
+Ce dépôt contient **deux projets distincts et indépendants**, hébergés sur le même repo GitHub / déploiement Vercel, mais **ne devant jamais être mélangés**.
 
 ---
+## ⚠️ RÈGLE ABSOLUE
+
+| Dossier | Projet | Statut |
+|---|---|---|
+| `/deco` | Tunnel Pinterest → Amazon (affiliation) | 🔒 **NE JAMAIS TOUCHER** — déjà connecté à Systeme.io |
+| `/public` (racine) | **DATA-EMPATHY** — SaaS analytics comportementale | ✅ Projet actif, en développement continu |
+
+Toute intervention (code, contenu, config) concerne **exclusivement** le projet DATA-EMPATHY, sauf demande explicite contraire.
+
+---
+
+## 🧩 Projet 1 — `/deco` (Pinterest → Amazon)
+
+- **Fonction :** tunnel d'affiliation Amazon piloté depuis des épingles Pinterest
+- **Plateforme d'automatisation :** Systeme.io (formulaires, tunnels, emails)
+- **Fichiers concernés :** `deco/index.html`, `deco/test-sticky-bar.html`
+- **Statut :** fonctionnel, autonome, ne dépend d'aucun élément du projet DATA-EMPATHY
+
+Aucune documentation supplémentaire n'est fournie ici volontairement — ce projet est hors périmètre.
+
+---
+
+## 🚀 Projet 2 — DATA-EMPATHY (SaaS)
+
+### Vue d'ensemble
+
+Plateforme d'analyse comportementale IA. Le site sert de tunnel de vente complet :
+**visiteur → lead (email) → nurturing automatisé → client payant → contenu premium débloqué.**
+
+- **Domaine :** [data-empathy.click](https://www.data-empathy.click)
+- **Repo :** `github.com/cubalibre59/data-empathy-landing`
+- **Déploiement :** Vercel (auto-deploy sur push vers `main`)
+- **Type :** site statique HTML/CSS/JS (pas de framework front, Vite présent mais non utilisé au build)
+
+### Stack technique
+
+| Brique | Outil | Rôle |
+|---|---|---|
+| Domaine | OVHcloud | Gestion DNS de data-empathy.click |
+| Hébergement | Vercel | Déploiement statique + fonctions serverless |
+| Code | GitHub | Versioning, déclenche le déploiement auto |
+| Email / CRM | Brevo | Capture de leads, automatisation, listes |
+| Paiement | Stripe | Paiement du Guide PRO (19€), vérification serverless |
+| Analytics comportemental | ContentSquare | Tracking UX (déjà installé sur les pages clés) |
+--------------------
+## 🔗 Tunnel de Vente (Flux Utilisateur)
+
+```
+Visiteur → index.html (landing + audit IA interactif)
+              │
+              ▼
+     Formulaire Brevo (email uniquement)
+              │
+              ▼
+   Liste Brevo "Guide gratuit - Data Empathy" (#7)
+              │
+              ▼
+   Automatisation Brevo — 6 emails (J0 → J+9)
+   (bienvenue, prise en main, astuce, étude de cas,
+    teaser PRO, offre finale)
+              │
+              ▼
+   Clic sur lien Stripe (19€) dans un email ou sur
+   guide-gratuit.html (CTA "Débloquer le Guide PRO")
+              │
+              ▼
+     Paiement Stripe → redirection avec session_id
+              │
+              ▼
+   guide-pro.html vérifie le paiement via
+   api/guide-pro-content.js (fonction serverless)
+              │
+              ▼
+   Contenu débloqué : méthode E.M.P.A.T.H.Y,
+   15 fiches outils, 3 templates PDF, tutoriels vidéo (à venir)
+```
 
 ## 🧩 Architecture SaaS Finale
 
@@ -21,57 +98,77 @@
 
 ```
 landing-page/
-├── index.html           ← Page principale (Landing + Audit IA + Tunnel)
-├── guide-gratuit.html   ← Guide gratuit (Top 10 Outils IA) — lead magnet
-├── guide-pro.html       ← Guide PRO (19€) — produit payant
-├── vercel.json          ← Config Vercel (redirections, headers, clean URLs)
-├── package.json         ← Scripts dev/build (Vite)
-└── README.md            ← Ce fichier
+├── api/
+│   └── guide-pro-content.js      # Vérifie le paiement Stripe, renvoie le contenu PRO
+├── public/
+│   ├── index.html                 # Landing page + audit IA interactif
+│   ├── guide-gratuit.html         # Guide gratuit (10 outils) + CTA Guide PRO
+│   ├── guide-pro.html             # Coquille protégée par paywall
+│   ├── cgv.html                   # Conditions Générales de Vente
+│   ├── politique-confidentialite.html
+│   ├── templates/
+│   │   ├── template-1-audit-tunnel.pdf
+│   │   ├── template-2-matrice-priorisation.pdf
+│   │   └── template-3-checklist-tracking.pdf
+│   ├── robots.txt
+│   └── sitemap.xml
+├── deco/                          # 🔒 Projet séparé — ne pas toucher
+├── vercel.json                    # buildCommand vide, outputDirectory "."
+├── vite.config.js                 # Présent mais non exécuté au déploiement
+└── package.json
 ```
+### La méthode E.M.P.A.T.H.Y
 
+Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
+
+| Lettre | Étape |
+|---|---|
+| **E** | Explorer le besoin métier |
+| **M** | Mapper le parcours utilisateur |
+| **P** | Préparer et collecter les données |
+| **A** | Analyser avec l'IA analytique |
+| **T** | Transformer les données en décisions |
+| **H** | Harmoniser les outils (CRM, CDP, Analytics, IA) |
+| **Y** | Yield : mesurer et améliorer en continu |
+
+- Teasing progressif : aperçu léger sur `index.html`/`guide-gratuit.html`, détail complet uniquement après paiement.
+
+### Variables d'environnement (Vercel)
+
+| Variable | Usage |
+|---|---|
+| `STRIPE_SECRET_KEY` | Vérification des paiements côté serveur dans `api/guide-pro-content.js` |
+
+### Offre Guide PRO
+
+- **Prix :** 19€ (paiement unique)
+- **Lien Stripe :** `https://buy.stripe.com/28E00i3MIbmUf1C1yNgQE00`
+- **Contenu livré :** méthode E.M.P.A.T.H.Y complète, 15 fiches outils, 3 templates PDF téléchargeables, 3 tutoriels vidéo *(en cours de production)*
+- **Accès :** consultation en ligne (pas de PDF envoyé par email) + bouton "Enregistrer en PDF" (impression navigateur) pour une copie hors-ligne
+
+### Statut actuel
+
+✅ Formulaire de capture connecté à Brevo (remplace l'ancien Systeme.io)
+✅ Automatisation 6 emails créée et activée
+✅ Paywall Stripe fonctionnel (`guide-pro.html` + `api/guide-pro-content.js`)
+✅ Pages légales (CGV, politique de confidentialité) déployées
+✅ Templates PDF créés et liés
+✅ Reçus de paiement Stripe activés
+
+### À faire / en cours
+
+- [ ] Compléter les mentions légales définitives (SIRET, statut juridique) dans CGV et politique de confidentialité
+- [ ] Enregistrer et intégrer les 3 tutoriels vidéo
+- [ ] Ajouter le teaser E.M.P.A.T.H.Y sur `index.html` (lien discret dans la nav, sans concurrencer le CTA principal "Obtenir le Guide Gratuit")
+- [ ] Intégration affiliation ContentSquare (lien : `https://invite.contentsquare.com/mt1dz2ujeux2`)
+
+### Principes de travail
+
+- Toute modification est commitée sur `main` avec un message en français, puis auto-déployée par Vercel
+- Le dossier `/deco` reste strictement hors périmètre
+- Les changements de contenu marketing (emails, CTA, prix) doivent rester cohérents entre `guide-gratuit.html`, `guide-pro.html`/`guide-pro-content.js` et les emails Brevo
 ---
 
-## 🔗 Tunnel de Vente (Flux Utilisateur)
-
-```
-Visiteur arrive sur data-empathy.click
-        │
-        ▼
-┌───────────────────────┐
-│  LANDING PAGE         │
-│  (index.html)         │
-│  • Hero + urgency bar │
-│  • Formulaire email   │
-└───────┬───────────────┘
-        │ Email soumis → Systeme.io
-        ▼
-┌───────────────────────┐
-│  THANK YOU            │
-│  (écran 2)            │
-│  • Guide gratuit      │
-│    envoyé par email   │
-│  • CTA → Audit IA    │
-└───────┬───────────────┘
-        │
-        ▼
-┌───────────────────────┐
-│  AUDIT IA             │
-│  (écran 3)            │
-│  • 6 questions        │
-│  • Score + Recommanda-│
-│    tions personnalisées│
-│  • Upsell Guide PRO  │
-└───────┬───────────────┘
-        │
-        ▼
-┌───────────────────────┐
-│  GUIDE PRO (19€)      │
-│  (guide-pro.html)     │
-│  • Page de vente      │
-│  • Paiement Stripe /  │
-│    Systeme.io         │
-└───────────────────────┘
-```
 
 ---
 

@@ -625,7 +625,36 @@
                     <a href="https://userpilot.com" class="btn-tool" target="_blank">Essayer →</a>
                 </div>
             </div>
+            <!-- Bloc recommandation Userpilot -->
+            <div
+                style="max-width:540px;margin:40px auto;background:#181828;border:1px solid #2a2a45;border-radius:16px;padding:28px 32px;font-family:'DM Sans',sans-serif;color:#e8e8f0;">
+                <h3 style="font-family:'Syne',sans-serif;color:#00e5a0;margin-bottom:8px;font-size:1.1rem;">🚀 Envie de
+                    tester Userpilot ?</h3>
+                <p style="color:#c8c8d8;font-size:0.9rem;margin-bottom:18px;">Laisse-nous ton email pro et le nom de ta
+                    boîte : on te met en relation pour une démo prioritaire.</p>
 
+                <form id="userpilot-form"
+                    action="https://7896d569.sibforms.com/serve/MUIFAED4oEeCMNDeGfmdVMUED5ZDZnFkvhQz70SK-YC8euYcojQsx-i2vpmjjUIiRmoWqcviMHDOjbcO7ju-zklnySVIT2zJSDtw_8-0uLLMFCRX-B1RDNgY4w3KEyuYoYwx1ygitZaUh9xfbp24KNnJDobfXGGUlLHk8KxACox4p9kz_Qks7Vbh3JM_K1-2_p8xGAc4tXA6C9SsQA=="
+                    method="POST" target="hidden_iframe_userpilot"
+                    onsubmit="setTimeout(function(){document.getElementById('userpilot-form').style.display='none';document.getElementById('userpilot-success').style.display='block';},300);">
+                    <input type="email" name="EMAIL" placeholder="ton-email@entreprise.com" required
+                        style="width:100%;box-sizing:border-box;padding:12px 14px;margin-bottom:12px;border-radius:8px;border:1px solid #2a2a45;background:#0a0a12;color:#e8e8f0;font-family:'DM Sans',sans-serif;" />
+                    <input type="text" name="ENTREPRISE" placeholder="Nom de ton entreprise" required
+                        style="width:100%;box-sizing:border-box;padding:12px 14px;margin-bottom:16px;border-radius:8px;border:1px solid #2a2a45;background:#0a0a12;color:#e8e8f0;font-family:'DM Sans',sans-serif;" />
+                    <input type="text" name="email_address_check" value="" style="position:absolute;left:-9999px;"
+                        tabindex="-1" autocomplete="off" />
+                    <input type="hidden" name="locale" value="fr" />
+                    <button type="submit"
+                        style="width:100%;background:linear-gradient(135deg,#7c3aed,#00e5a0);color:#fff;border:none;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;padding:12px 26px;border-radius:10px;cursor:pointer;">Je
+                        veux tester Userpilot</button>
+                </form>
+
+                <div id="userpilot-success"
+                    style="display:none;color:#00e5a0;font-family:'DM Sans',sans-serif;font-size:0.9rem;">✅ Merci ! On
+                    revient vers toi rapidement avec les infos pour ta démo Userpilot.</div>
+
+                <iframe name="hidden_iframe_userpilot" style="display:none;"></iframe>
+            </div>
             <div class="tool-card">
                 <div class="tool-num">04</div>
                 <div class="tool-info">

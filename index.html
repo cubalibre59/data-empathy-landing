@@ -139,6 +139,27 @@
             background: var(--primary-d)
         }
 
+        /* ajoute bouton  methode empathy */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        .nav-link {
+            color: #e8e8f0;
+            opacity: .8;
+            font-weight: 500;
+            font-size: .85rem;
+            text-decoration: none;
+            transition: .2s
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--accent)
+        }
+
         /* URGENCY BAR */
         .urgency-bar {
             background: linear-gradient(90deg, var(--primary), var(--primary-d));
@@ -752,11 +773,15 @@
         <div class="urgency-bar">
             🔥 Offre limitée — Guide + Audit IA gratuits encore <span id="bar-timer">09:47</span> min
         </div>
-
         <!-- NAV -->
         <nav>
             <div class="logo">DATA<span>-EMPATHY</span></div>
-            <button class="nav-cta" onclick="scrollTo('newsletter')">Obtenir le Guide Gratuit</button>
+            <div class="nav-right">
+                <a href="/bibliotheque-methode-empathy.html" class="nav-link">Méthode E.M.P.A.T.H.Y</a>
+                <button class="nav-cta"
+                    onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Obtenir le Guide
+                    Gratuit</button>
+            </div>
         </nav>
 
         <!-- ═══════════════════════════════ SCREEN 1 : LANDING PAGE ═══════════════════════════════ -->

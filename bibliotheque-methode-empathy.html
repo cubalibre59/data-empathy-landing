@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La méthode E.M.P.A.T.H.Y — Comprendre pourquoi vos visiteurs partent | Data Empathy</title>
+    <meta name="description"
+        content="Vous testez tout, rien ne change ? Découvrez la méthode E.M.P.A.T.H.Y en 7 étapes pour transformer vos données comportementales en décisions qui augmentent vos conversions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --card: #181828;
+            --border: #2a2a45;
+            --text: #e8e8f0;
+            --muted: #8888aa;
+            --muted-dim: #6a6a85;
+            --green: #00e5a0;
+            --green-soft: #00e5a022;
+            --purple: #7c3aed;
+            --purple-soft: #a78bfa;
+            --purple-bg: #7c3aed22;
+            --orange: #d85a30;
+            --orange-soft: #f0997b;
+            --orange-bg: #d85a3022;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.55;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Syne', sans-serif;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 18px;
+            letter-spacing: 0.02em;
+        }
+
+        .eyebrow--green {
+            background: var(--green-soft);
+            border: 1px solid var(--green);
+            color: var(--green);
+        }
+
+        .eyebrow--purple {
+            background: var(--purple-bg);
+            border: 1px solid var(--purple);
+            color: var(--purple-soft);
+        }
+
+        .eyebrow--orange {
+            background: var(--orange-bg);
+            border: 1px solid var(--orange);
+            color: var(--orange-soft);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            position: relative;
+            padding: 90px 0 70px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-signature {
+            width: min(520px, 90vw);
+            height: 150px;
+            margin: 0 auto 36px;
+            position: relative;
+        }
+
+        .dot {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--muted-dim);
+            opacity: 0.55;
+            animation: settle 4.5s ease-in-out infinite alternate;
+        }
+
+        .dot.on-path {
+            background: var(--green);
+            opacity: 1;
+            box-shadow: 0 0 10px #00e5a088;
+        }
+
+        @keyframes settle {
+            0% {
+                transform: translate(var(--sx), var(--sy));
+            }
+
+            45% {
+                transform: translate(var(--sx), var(--sy));
+            }
+
+            70% {
+                transform: translate(var(--ex), var(--ey));
+            }
+
+            100% {
+                transform: translate(var(--ex), var(--ey));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .dot {
+                animation: none;
+                transform: translate(var(--ex), var(--ey));
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(1.9rem, 5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 .accent {
+            color: var(--green);
+        }
+
+        .hero p.lede {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, #7c3aed, #00e5a0);
+            color: #fff;
+        }
+
+        .btn--ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn--ghost:hover {
+            border-color: var(--muted);
+        }
+
+        /* ---------- EMPATHY / PAIN ---------- */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .section-head h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 8px 0 10px;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .pain-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 14px;
+        }
+
+        .pain-list li {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 22px;
+            color: #c8c8d8;
+            font-size: 0.95rem;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .pain-list li::before {
+            content: "→";
+            color: var(--orange-soft);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pivot {
+            text-align: center;
+            padding: 44px 30px;
+            margin: 50px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pivot p.line1 {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .pivot p.line2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+
+        .pivot p.line2 .accent {
+            color: var(--green);
+        }
+
+        /* ---------- METHOD STEPS ---------- */
+        .step {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .step-letter {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-body h3 {
+            font-size: 1.02rem;
+            margin-bottom: 6px;
+        }
+
+        .step-body p {
+            color: #c8c8d8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .step--early {
+            border: 1px solid var(--border);
+        }
+
+        .step--early .step-letter {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        .step--early h3 {
+            color: var(--text);
+        }
+
+        .step--mid {
+            border: 1px solid var(--purple);
+        }
+
+        .step--mid .step-letter {
+            background: var(--purple-bg);
+            color: var(--purple-soft);
+        }
+
+        .step--mid h3 {
+            color: var(--purple-soft);
+        }
+
+        .step--late {
+            border: 1px solid var(--orange);
+        }
+
+        .step--late .step-letter {
+            background: var(--orange-bg);
+            color: var(--orange-soft);
+        }
+
+        .step--late h3 {
+            color: var(--orange-soft);
+        }
+
+        /* ---------- BENEFITS TABLE ---------- */
+        .benefit-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .benefit-list li {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 22px;
+        }
+
+        .benefit-list .what {
+            color: var(--muted-dim);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 6px;
+        }
+
+        .benefit-list .so {
+            color: var(--text);
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        /* ---------- PRICE / OFFER ---------- */
+        .offer {
+            background: var(--card);
+            border: 1px solid var(--green);
+            border-radius: 20px;
+            padding: 44px 32px;
+            text-align: center;
+            margin: 20px 0 40px;
+        }
+
+        .offer .price {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2.6rem;
+            color: var(--green);
+        }
+
+        .offer .price span {
+            font-size: 1rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .offer p.what-happens {
+            color: var(--muted);
+            font-size: 0.9rem;
+            max-width: 440px;
+            margin: 14px auto 26px;
+        }
+
+        /* ---------- SOFT CTA ---------- */
+        .soft-cta {
+            text-align: center;
+            padding: 40px 0 80px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .soft-cta a {
+            color: var(--green);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 20px;
+            text-align: center;
+            color: var(--muted-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="wrap">
+            <div class="hero-signature" id="heroSignature" aria-hidden="true"></div>
+            <span class="eyebrow eyebrow--green">MÉTHODE E.M.P.A.T.H.Y</span>
+            <h1>Vous testez tout. <span class="accent">Rien ne change vraiment.</span></h1>
+            <p class="lede">Vous avez du trafic, un produit solide, une équipe qui se démène — et pourtant les visiteurs
+                repartent sans acheter. Ce n'est pas un problème de volonté. C'est un problème de méthode.</p>
+            <div class="cta-row">
+                <a href="#methode" class="btn btn--primary">Découvrir la méthode</a>
+                <a href="#offre" class="btn btn--ghost">Voir le Guide PRO — 19€</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow eyebrow--orange">ON VOUS COMPREND</span>
+                <h2>Ça vous dit quelque chose ?</h2>
+                <p>Ce ne sont pas des suppositions. Ce sont les mêmes blocages, presque mot pour mot, que rencontre
+                    chaque équipe qui a du trafic mais pas de conversions.</p>
+            </div>
+            <ul class="pain-list">
+                <li>Vous avez installé un outil d'analytics, mais vous ne savez pas par où commencer à regarder.</li>
+                <li>Vous avez déjà changé votre page trois fois ce mois-ci, sans vraiment savoir pourquoi ça n'a rien
+                    changé.</li>
+                <li>Vous avez dix idées d'amélioration en tête, mais aucune façon de savoir laquelle traiter en premier.
+                </li>
+                <li>Vous vous demandez si le problème vient du prix, du design, du texte, ou d'autre chose — sans aucun
+                    moyen de le savoir avec certitude.</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="pivot">
+        <div class="wrap">
+            <p class="line1">Le problème n'a jamais été l'absence d'outils.</p>
+            <p class="line2">C'est l'absence d'une méthode pour transformer ce qu'ils vous montrent <span
+                    class="accent">en décision.</span></p>
+        </div>
+    </div>
+
+    <section class="section" id="methode">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow eyebrow--purple">LA MÉTHODE</span>
+                <h2>E.M.P.A.T.H.Y n'est pas un acronyme marketing</h2>
+                <p>C'est littéralement ce qui manque à la plupart des tunnels de vente : la capacité de comprendre, avec
+                    empathie, pourquoi un visiteur part — avant de pouvoir le faire rester.</p>
+            </div>
+
+            <div class="step step--early">
+                <div class="step-letter">E</div>
+                <div class="step-body">
+                    <h3>Explorer le besoin métier</h3>
+                    <p>Identifier précisément le vrai problème business avant de toucher à un seul outil.</p>
+                </div>
+            </div>
+            <div class="step step--early">
+                <div class="step-letter">M</div>
+                <div class="step-body">
+                    <h3>Mapper le parcours utilisateur</h3>
+                    <p>Voir exactement où vos visiteurs décrochent, point de contact par point de contact.</p>
+                </div>
+            </div>
+            <div class="step step--early">
+                <div class="step-letter">P</div>
+                <div class="step-body">
+                    <h3>Préparer et collecter les données</h3>
+                    <p>Mettre en place un tracking propre, sur lequel vous pouvez vraiment vous fier.</p>
+                </div>
+            </div>
+            <div class="step step--mid">
+                <div class="step-letter">A</div>
+                <div class="step-body">
+                    <h3>Analyser avec l'IA analytique</h3>
+                    <p>Repérer les signaux et segments à risque invisibles à l'œil nu.</p>
+                </div>
+            </div>
+            <div class="step step--mid">
+                <div class="step-letter">T</div>
+                <div class="step-body">
+                    <h3>Transformer les données en décisions</h3>
+                    <p>Chaque insight débouche sur une action concrète — jamais un rapport qu'on ne relit pas.</p>
+                </div>
+            </div>
+            <div class="step step--late">
+                <div class="step-letter">H</div>
+                <div class="step-body">
+                    <h3>Harmoniser les outils</h3>
+                    <p>Faire circuler les données entre vos outils, au lieu de les laisser dormir en silos.</p>
+                </div>
+            </div>
+            <div class="step step--late">
+                <div class="step-letter">Y</div>
+                <div class="step-body">
+                    <h3>Yield — mesurer et améliorer en continu</h3>
+                    <p>Suivre les bons indicateurs et recommencer la boucle. La méthode n'est jamais "finie".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow eyebrow--green">CE QUE ÇA VOUS APPORTE</span>
+                <h2>Concrètement, qu'est-ce que ça change ?</h2>
+            </div>
+            <ul class="benefit-list">
+                <li>
+                    <div class="what">La méthode complète en 7 étapes</div>
+                    <div class="so">Un plan d'action, pas une théorie — vous savez exactement quoi faire dès lundi
+                        matin.</div>
+                </li>
+                <li>
+                    <div class="what">15 fiches outils détaillées</div>
+                    <div class="so">Vous arrêtez de perdre des jours à comparer des outils vous-même — la sélection est
+                        déjà faite selon votre besoin réel.</div>
+                </li>
+                <li>
+                    <div class="what">3 templates prêts à l'emploi</div>
+                    <div class="so">Vous n'avez pas à créer vos propres grilles d'audit — vous les appliquez
+                        directement, dès aujourd'hui.</div>
+                </li>
+                <li>
+                    <div class="what">Accès en ligne + version PDF</div>
+                    <div class="so">Consultable n'importe quand, sans avoir à tout relire en entier à chaque fois.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section" id="offre">
+        <div class="wrap">
+            <div class="offer">
+                <span class="eyebrow eyebrow--green">GUIDE PRO</span>
+                <div class="price">19€ <span>— paiement unique</span></div>
+                <p class="what-happens">Pas d'abonnement, pas de surprise. Un accès complet à la méthode, aux fiches
+                    outils et aux templates, à consulter aussi longtemps que vous en avez besoin.</p>
+                <a href="https://buy.stripe.com/28E00i3MIbmUf1C1yNgQE00" class="btn btn--primary">Débloquer le Guide
+                    PRO</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="soft-cta">
+        <div class="wrap">
+            Pas encore prêt à passer à l'achat ? <a href="/guide-gratuit.html">Commencez par le guide gratuit</a> — 10
+            outils, sans engagement.
+        </div>
+    </div>
+
+    <footer>
+        Data Empathy — data-empathy.click
+    </footer>
+
+    <script>
+        // Signature visual : points épars qui se rangent en flèche — la donnée qui devient un signal clair.
+        (function () {
+            var container = document.getElementById('heroSignature');
+            if (!container) return;
+            var w = 520, h = 150;
+            // arrow target points (pointing right, symbolizing forward progress)
+            var target = [
+                [60, 120], [100, 105], [140, 90], [180, 75], [220, 60], [260, 45],
+                [300, 60], [260, 75], [220, 90], [180, 105], [140, 120], [100, 135],
+                [300, 60], [340, 45], [380, 30]
+            ];
+            var frag = document.createDocumentFragment();
+            target.forEach(function (pt, i) {
+                var d = document.createElement('div');
+                d.className = 'dot' + (i % 3 === 0 ? ' on-path' : '');
+                var sx = Math.random() * w, sy = Math.random() * h;
+                d.style.setProperty('--sx', sx + 'px');
+                d.style.setProperty('--sy', sy + 'px');
+                d.style.setProperty('--ex', pt[0] + 'px');
+                d.style.setProperty('--ey', pt[1] + 'px');
+                d.style.animationDelay = (Math.random() * 1.2) + 's';
+                frag.appendChild(d);
+            });
+            container.appendChild(frag);
+        })();
+    </script>
+
+</body>
+
+</html>

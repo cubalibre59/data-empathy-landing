@@ -171,6 +171,36 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 
 
 ---
+## 📈 Stratégie SEO — Exécution (Août 2026)
+
+### Recherche de mots-clés
+
+- Outils utilisés : SEMrush Keyword Magic Tool (quota gratuit limité), veille manuelle
+- Cluster **churn/rétention** testé et abandonné : 78/99 mots-clés à volume 0 en base France, quasi exclusivement anglophone → aucun potentiel de recherche organique FR
+- Cluster **conversion** validé : `taux de conversion saas` (40/mois), `taux de conversion landing page saas` (20/mois, moins disputé)
+- Quick win identifié : `analyse des besoins clients` (90/mois, KD 28) — déjà positionné en page 2 (~pos.15) sans contenu dédié avant l'article
+
+### Contenu publié
+
+| Article | Mot-clé cible | Étape E.M.P.A.T.H.Y | Statut |
+|---|---|---|---|
+| `taux-conversion-landing-page-saas.html` | taux de conversion landing page saas | Y (Yield) | ✅ Indexé (confirmé GSC) |
+| `analyse-besoins-clients.html` | analyse des besoins clients | E (Explorer) | ✅ Indexation demandée, à confirmer |
+
+Chaque article inclut : meta title/description optimisés, JSON-LD Article, canonical, CTA vers le Guide PRO, et maillage interne bidirectionnel avec `guide-gratuit.html` et `bibliotheque-methode-empathy.html`.
+
+### Netlinking
+
+- **Disavow complet** : ~206 domaines spam/PBN désavoués via Search Console (remplace l'ancien fichier à 43 domaines)
+- **FranceSaaS.fr** : fiche créée, badge dofollow installé et vérifié dans le footer de `index.html`, soumise pour validation manuelle
+- À faire : AlternativeTo, Crunchbase, réapplication Awin/Lucky Orange (dossier renforcé par les pages légales + premier backlink légitime)
+
+### Indexation
+
+- Chaque nouvel article est soumis manuellement via GSC "Demander une indexation" après déploiement
+- Sitemap mis à jour à chaque nouvelle page publiée
+
+---
 
 ## ⚙️ Configuration DNS (OVH → Vercel)
 

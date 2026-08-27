@@ -29,7 +29,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' https://t.contentsquare.net https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.sibforms.com https://t.contentsquare.net https://c.ba.contentsquare.net https://*.contentsquare.com; frame-src https://buy.stripe.com https://js.stripe.com https://*.sibforms.com; form-action 'self' https://*.sibforms.com;"
+          "value": "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' https://t.contentsquare.net  https://app.contentsquare.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.sibforms.com https://t.contentsquare.net https://c.ba.contentsquare.net https://*.contentsquare.com; frame-src https://buy.stripe.com https://js.stripe.com https://*.sibforms.com; form-action 'self' https://*.sibforms.com;"
         }
       ]
     }

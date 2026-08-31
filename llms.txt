@@ -1,0 +1,16 @@
+# DATA-EMPATHY
+
+> Copilote technique pour créateurs de SaaS — audit comportemental et marketing propulsé par l'IA, pour comprendre pourquoi les visiteurs n'achètent pas et corriger le tunnel de vente.
+
+DATA-EMPATHY aide les fondateurs de SaaS et créateurs de produits digitaux à identifier pourquoi leurs visiteurs partent sans acheter, en combinant analyse comportementale (heatmaps, funnels, session replay) et méthode structurée (E.M.P.A.T.H.Y : Explorer, Mapper, Préparer, Analyser, Transformer, Harmoniser, Yield).
+
+## Pages principales
+
+- [Accueil](https://www.data-empathy.click/) : présentation du guide gratuit et de l'audit IA du tunnel de vente
+- [Guide Gratuit](https://www.data-empathy.click/guide-gratuit.html) : Top 10 outils IA pour analyser le comportement des visiteurs
+- [Méthode E.M.P.A.T.H.Y](https://www.data-empathy.click/bibliotheque-methode-empathy.html) : la méthode complète pour comprendre et convertir ses visiteurs, avec le Guide PRO (19€)
+- [Étude de cas](https://www.data-empathy.click/etude-de-cas-data-empathy.html) : DATA-EMPATHY applique sa propre méthode à son propre site, résultats transparents inclus
+
+## À propos
+
+Produit solo, créé par un développeur fullstack basé à Paris. Positionnement : outil accessible pour petits créateurs SaaS, pas une plateforme enterprise.

@@ -3,8 +3,10 @@
 // 1. Reçoit un session_id (fourni par Stripe après paiement)
 // 2. Vérifie auprès de Stripe que ce paiement est bien confirmé
 // 3. Ne renvoie le contenu du Guide PRO QUE si le paiement est validé
-
+import { logWebhookMeta } from './stripe-webhook-log';
 export default async function handler(req, res) {
+  // Log l'user-agent et l'IP de chaque tentative d'accès au contenu PRO
+  logWebhookMeta(req);
   const { session_id } = req.query;
 
   if (!session_id) {

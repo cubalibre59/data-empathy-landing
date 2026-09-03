@@ -1043,33 +1043,58 @@
             //
             // ══════════════════════════════════════════════════════
             // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT brevo
+           
 const BREVO_FORM_URL = 'https://7896d569.sibforms.com/serve/MUIFAFk6ji3Aob8e2dq4utzSfPkq1wnpPHVORQ6en10HoiPe2gJlT3jI0PgcJQkx8FddrH_s30MKFSLz3FU0VBUuogYvyT_XMasI0qqfkmfMNSAqgR_xSBDOvKzRkDh7ZgzfFHMgTnvEpIN9R1MgOqHuh6vctXFZCl22eOJNPvsOAPxlLNqdMW2Dj6Ni2k0hCmI7Xu8EGtkxu_lAow==';
- 
+
+// Crée (une seule fois) une zone de message sous le champ email
+function getFeedbackEl(emailInput) {
+  let el = document.getElementById('email-feedback');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'email-feedback';
+    el.style.width = '100%';
+    el.style.fontSize = '14px';
+    el.style.marginTop = '8px';
+    el.style.fontWeight = '600';
+    // On l'insère juste après le formulaire (parent du input)
+    emailInput.closest('form').insertAdjacentElement('afterend', el);
+  }
+  return el;
+}
+
+function showFeedback(emailInput, message, type) {
+  const el = getFeedbackEl(emailInput);
+  el.textContent = message;
+  el.style.color = type === 'error' ? '#ff5555' : '#4ade80';
+  emailInput.style.border = type === 'error' ? '2px solid #ff5555' : '2px solid #4ade80';
+}
+
+function clearFeedback(emailInput) {
+  const el = document.getElementById('email-feedback');
+  if (el) el.textContent = '';
+  emailInput.style.border = '';
+}
+
 async function handleEmailSubmit(event) {
   event.preventDefault();
- 
+
   const emailInput = document.getElementById('email-input');
   const email = emailInput.value.trim();
- 
+  clearFeedback(emailInput);
+
   // Validation email (format)
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    emailInput.style.border = '2px solid #ff5555';
-    emailInput.setAttribute('placeholder', '⚠️ Entrez un email valide');
-    setTimeout(() => {
-      emailInput.style.border = '';
-      emailInput.setAttribute('placeholder', 'votre@email.com');
-    }, 2000);
+    showFeedback(emailInput, '⚠️ Entrez un email valide', 'error');
     return;
   }
- 
-  // Désactiver le bouton pendant la vérification + l'envoi
+
   const btn = emailInput.nextElementSibling;
   const originalText = btn.textContent;
   btn.textContent = '⏳ Vérification...';
   btn.disabled = true;
- 
-  // ─── NOUVEAU : vérification MX / domaines jetables ───
+
+  // ─── Vérification MX / domaines jetables ───
   try {
     const checkRes = await fetch('/api/verify-email', {
       method: 'POST',
@@ -1077,16 +1102,16 @@ async function handleEmailSubmit(event) {
       body: JSON.stringify({ email })
     });
     const checkData = await checkRes.json();
- 
+
     if (!checkData.valid) {
-      emailInput.style.border = '2px solid #ff5555';
-      emailInput.setAttribute('placeholder', '⚠️ Adresse email non valide ou jetable');
+      const reasons = {
+        disposable_domain: '⚠️ Les adresses jetables (yopmail, etc.) ne sont pas acceptées',
+        no_mx_record: '⚠️ Ce domaine ne peut pas recevoir d\'emails',
+        domain_not_found: '⚠️ Ce domaine email n\'existe pas'
+      };
+      showFeedback(emailInput, reasons[checkData.reason] || '⚠️ Adresse email invalide', 'error');
       btn.textContent = originalText;
       btn.disabled = false;
-      setTimeout(() => {
-        emailInput.style.border = '';
-        emailInput.setAttribute('placeholder', 'votre@email.com');
-      }, 3000);
       return; // on bloque l'envoi vers Brevo
     }
   } catch (err) {
@@ -1094,46 +1119,47 @@ async function handleEmailSubmit(event) {
     console.error('Erreur vérif email:', err);
   }
   // ─── FIN vérification ───
- 
+
   btn.textContent = '⏳ Envoi...';
 
-                // Formulaire invisible qui soumet vers Brevo
+  // Formulaire invisible qui soumet vers Brevo
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = BREVO_FORM_URL;
+  form.target = 'hidden-iframe';
 
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = BREVO_FORM_URL;
-                form.target = 'hidden-iframe';
+  const emailField = document.createElement('input');
+  emailField.type = 'hidden';
+  emailField.name = 'EMAIL';
+  emailField.value = email;
+  form.appendChild(emailField);
 
-                const emailField = document.createElement('input');
-                emailField.type = 'hidden';
-                emailField.name = 'EMAIL';
-                emailField.value = email;
-                form.appendChild(emailField);
+  const localeField = document.createElement('input');
+  localeField.type = 'hidden';
+  localeField.name = 'locale';
+  localeField.value = 'fr';
+  form.appendChild(localeField);
 
-                const localeField = document.createElement('input');
-                localeField.type = 'hidden';
-                localeField.name = 'locale';
-                localeField.value = 'fr';
-                form.appendChild(localeField);
+  const honeypot = document.createElement('input');
+  honeypot.type = 'hidden';
+  honeypot.name = 'email_address_check';
+  honeypot.value = '';
+  form.appendChild(honeypot);
 
-                const honeypot = document.createElement('input');
-                honeypot.type = 'hidden';
-                honeypot.name = 'email_address_check';
-                honeypot.value = '';
-                form.appendChild(honeypot);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
 
-                document.body.appendChild(form);
-                form.submit();
-                document.body.removeChild(form);
+  showFeedback(emailInput, '✅ Email envoyé ! Redirection...', 'success');
 
-                // Rediriger vers la page "Thank You" après soumission
-                setTimeout(() => {
-                    showScreen('thankyou');
-                }, 1000);
+  // Rediriger vers la page "Thank You" après soumission
+  setTimeout(() => {
+    showScreen('thankyou');
+  }, 1000);
 
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }
+  btn.textContent = originalText;
+  btn.disabled = false;
+}
 
             // SCREENS
             function showScreen(s) {

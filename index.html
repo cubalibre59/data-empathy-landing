@@ -1043,32 +1043,59 @@
             //
             // ══════════════════════════════════════════════════════
             // ⬆️ REMPLACEZ XXXXXX PAR VOTRE IDENTIFIANT brevo
-            const BREVO_FORM_URL = 'https://7896d569.sibforms.com/serve/MUIFAFk6ji3Aob8e2dq4utzSfPkq1wnpPHVORQ6en10HoiPe2gJlT3jI0PgcJQkx8FddrH_s30MKFSLz3FU0VBUuogYvyT_XMasI0qqfkmfMNSAqgR_xSBDOvKzRkDh7ZgzfFHMgTnvEpIN9R1MgOqHuh6vctXFZCl22eOJNPvsOAPxlLNqdMW2Dj6Ni2k0hCmI7Xu8EGtkxu_lAow==';
-
-
-            function handleEmailSubmit(event) {
-                event.preventDefault();
-
-                const emailInput = document.getElementById('email-input');
-                const email = emailInput.value.trim();
-
-                // Validation email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    emailInput.style.border = '2px solid #ff5555';
-                    emailInput.setAttribute('placeholder', '⚠️ Entrez un email valide');
-                    setTimeout(() => {
-                        emailInput.style.border = '';
-                        emailInput.setAttribute('placeholder', 'votre@email.com');
-                    }, 2000);
-                    return;
-                }
-
-                // Désactiver le bouton pendant l'envoi
-                const btn = emailInput.nextElementSibling;
-                const originalText = btn.textContent;
-                btn.textContent = '⏳ Envoi...';
-                btn.disabled = true;
+const BREVO_FORM_URL = 'https://7896d569.sibforms.com/serve/MUIFAFk6ji3Aob8e2dq4utzSfPkq1wnpPHVORQ6en10HoiPe2gJlT3jI0PgcJQkx8FddrH_s30MKFSLz3FU0VBUuogYvyT_XMasI0qqfkmfMNSAqgR_xSBDOvKzRkDh7ZgzfFHMgTnvEpIN9R1MgOqHuh6vctXFZCl22eOJNPvsOAPxlLNqdMW2Dj6Ni2k0hCmI7Xu8EGtkxu_lAow==';
+ 
+async function handleEmailSubmit(event) {
+  event.preventDefault();
+ 
+  const emailInput = document.getElementById('email-input');
+  const email = emailInput.value.trim();
+ 
+  // Validation email (format)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    emailInput.style.border = '2px solid #ff5555';
+    emailInput.setAttribute('placeholder', '⚠️ Entrez un email valide');
+    setTimeout(() => {
+      emailInput.style.border = '';
+      emailInput.setAttribute('placeholder', 'votre@email.com');
+    }, 2000);
+    return;
+  }
+ 
+  // Désactiver le bouton pendant la vérification + l'envoi
+  const btn = emailInput.nextElementSibling;
+  const originalText = btn.textContent;
+  btn.textContent = '⏳ Vérification...';
+  btn.disabled = true;
+ 
+  // ─── NOUVEAU : vérification MX / domaines jetables ───
+  try {
+    const checkRes = await fetch('/api/verify-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const checkData = await checkRes.json();
+ 
+    if (!checkData.valid) {
+      emailInput.style.border = '2px solid #ff5555';
+      emailInput.setAttribute('placeholder', '⚠️ Adresse email non valide ou jetable');
+      btn.textContent = originalText;
+      btn.disabled = false;
+      setTimeout(() => {
+        emailInput.style.border = '';
+        emailInput.setAttribute('placeholder', 'votre@email.com');
+      }, 3000);
+      return; // on bloque l'envoi vers Brevo
+    }
+  } catch (err) {
+    // Si l'API de vérif est down, on laisse passer pour ne pas bloquer un vrai utilisateur
+    console.error('Erreur vérif email:', err);
+  }
+  // ─── FIN vérification ───
+ 
+  btn.textContent = '⏳ Envoi...';
 
                 // Formulaire invisible qui soumet vers Brevo
 

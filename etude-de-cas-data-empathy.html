@@ -443,7 +443,7 @@
         </iframe>
       </section>
       <!-- ═══════════ FIN MATRICE ═══════════ -->
-    <!-- ═══════════ BLOC CTA — à coller au milieu de l'article ET à la fin ═══════════ -->
+ <!-- ═══════════ BLOC CTA — à coller au milieu de l'article ET à la fin ═══════════ -->
 <div class="capture-cta" style="background:#181828;border:1px solid #2a2a45;border-radius:16px;padding:32px 28px;margin:50px auto;max-width:600px;text-align:center;">
   <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin:0 0 8px;color:#e8e8f0;">
     📥 Recevez le Guide Gratuit
@@ -465,6 +465,19 @@
 <!-- Script d'initialisation — à coller UNE SEULE FOIS, juste avant </body> -->
 <script>
 const BREVO_FORM_URL_CTA = 'https://7896d569.sibforms.com/serve/MUIFAFk6ji3Aob8e2dq4utzSfPkq1wnpPHVORQ6en10HoiPe2gJlT3jI0PgcJQkx8FddrH_s30MKFSLz3FU0VBUuogYvyT_XMasI0qqfkmfMNSAqgR_xSBDOvKzRkDh7ZgzfFHMgTnvEpIN9R1MgOqHuh6vctXFZCl22eOJNPvsOAPxlLNqdMW2Dj6Ni2k0hCmI7Xu8EGtkxu_lAow==';
+
+// Crée l'iframe caché s'il n'existe pas déjà sur la page (nécessaire pour que
+// le formulaire Brevo ne redirige pas hors de la page)
+function ensureHiddenIframe() {
+  let frame = document.querySelector('iframe[name="hidden-iframe"]');
+  if (!frame) {
+    frame = document.createElement('iframe');
+    frame.name = 'hidden-iframe';
+    frame.style.display = 'none';
+    document.body.appendChild(frame);
+  }
+  return frame;
+}
 
 document.querySelectorAll('.capture-cta-form').forEach(form => {
   const input = form.querySelector('.capture-cta-input');
@@ -518,6 +531,8 @@ document.querySelectorAll('.capture-cta-form').forEach(form => {
 
     btn.textContent = '⏳ Envoi...';
 
+    ensureHiddenIframe();
+
     const brevoForm = document.createElement('form');
     brevoForm.method = 'POST';
     brevoForm.action = BREVO_FORM_URL_CTA;
@@ -546,7 +561,6 @@ document.querySelectorAll('.capture-cta-form').forEach(form => {
   });
 });
 </script>
-
 
     <div class="soft-cta">
         <div class="wrap">

@@ -443,12 +443,110 @@
         </iframe>
       </section>
       <!-- ═══════════ FIN MATRICE ═══════════ -->
+    <!-- ═══════════ BLOC CTA — à coller au milieu de l'article ET à la fin ═══════════ -->
+<div class="capture-cta" style="background:#181828;border:1px solid #2a2a45;border-radius:16px;padding:32px 28px;margin:50px auto;max-width:600px;text-align:center;">
+  <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin:0 0 8px;color:#e8e8f0;">
+    📥 Recevez le Guide Gratuit
+  </h3>
+  <p style="color:#8888aa;font-size:0.9rem;margin:0 0 18px;">
+    "Top 10 Outils IA pour Doubler vos Conversions" + audit IA gratuit de votre tunnel
+  </p>
+  <form class="capture-cta-form" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+    <input type="email" class="capture-cta-input" placeholder="votre@email.com" required
+      style="flex:1;min-width:220px;padding:14px 18px;border-radius:8px;border:none;font-size:16px;" />
+    <button type="submit" style="background:linear-gradient(135deg,#7c3aed,#00e5a0);color:#fff;border:none;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;padding:14px 26px;border-radius:8px;cursor:pointer;white-space:nowrap;">
+      Envoyer →
+    </button>
+  </form>
+  <p style="color:#5c5c78;font-size:0.75rem;margin:12px 0 0;">🔒 Zéro spam. Désabonnement en 1 clic.</p>
+</div>
+<!-- ═══════════ FIN BLOC CTA ═══════════ -->
 
-<div class="soft-cta">
-    <div class="wrap">
-        <div class="box">
-            <h3>Envie de voir la méthode complète ?</h3>
-            ...
+<!-- Script d'initialisation — à coller UNE SEULE FOIS, juste avant </body> -->
+<script>
+const BREVO_FORM_URL_CTA = 'https://7896d569.sibforms.com/serve/MUIFAFk6ji3Aob8e2dq4utzSfPkq1wnpPHVORQ6en10HoiPe2gJlT3jI0PgcJQkx8FddrH_s30MKFSLz3FU0VBUuogYvyT_XMasI0qqfkmfMNSAqgR_xSBDOvKzRkDh7ZgzfFHMgTnvEpIN9R1MgOqHuh6vctXFZCl22eOJNPvsOAPxlLNqdMW2Dj6Ni2k0hCmI7Xu8EGtkxu_lAow==';
+
+document.querySelectorAll('.capture-cta-form').forEach(form => {
+  const input = form.querySelector('.capture-cta-input');
+  const btn = form.querySelector('button[type="submit"]');
+  const originalBtnText = btn.textContent;
+
+  function showMsg(text, ok) {
+    let msg = form.parentElement.querySelector('.capture-cta-msg');
+    if (!msg) {
+      msg = document.createElement('p');
+      msg.className = 'capture-cta-msg';
+      msg.style.fontSize = '0.85rem';
+      msg.style.fontWeight = '600';
+      msg.style.marginTop = '10px';
+      form.insertAdjacentElement('afterend', msg);
+    }
+    msg.textContent = text;
+    msg.style.color = ok ? '#4ade80' : '#ff5555';
+    input.style.border = ok ? '2px solid #4ade80' : '2px solid #ff5555';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = input.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showMsg('⚠️ Entrez un email valide', false);
+      return;
+    }
+
+    btn.textContent = '⏳ Vérification...';
+    btn.disabled = true;
+
+    try {
+      const checkRes = await fetch('/api/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const checkData = await checkRes.json();
+      if (!checkData.valid) {
+        showMsg('⚠️ Adresse email non valide ou jetable', false);
+        btn.textContent = originalBtnText;
+        btn.disabled = false;
+        return;
+      }
+    } catch (err) {
+      console.error('Erreur vérif email:', err);
+    }
+
+    btn.textContent = '⏳ Envoi...';
+
+    const brevoForm = document.createElement('form');
+    brevoForm.method = 'POST';
+    brevoForm.action = BREVO_FORM_URL_CTA;
+    brevoForm.target = 'hidden-iframe';
+
+    const emailField = document.createElement('input');
+    emailField.type = 'hidden';
+    emailField.name = 'EMAIL';
+    emailField.value = email;
+    brevoForm.appendChild(emailField);
+
+    const localeField = document.createElement('input');
+    localeField.type = 'hidden';
+    localeField.name = 'locale';
+    localeField.value = 'fr';
+    brevoForm.appendChild(localeField);
+
+    document.body.appendChild(brevoForm);
+    brevoForm.submit();
+    document.body.removeChild(brevoForm);
+
+    showMsg('✅ Email envoyé ! Merci.', true);
+    btn.textContent = originalBtnText;
+    btn.disabled = false;
+    form.reset();
+  });
+});
+</script>
+
 
     <div class="soft-cta">
         <div class="wrap">

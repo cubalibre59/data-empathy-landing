@@ -37,18 +37,19 @@ Plateforme d'analyse comportementale IA. Le site sert de tunnel de vente complet
 - **Domaine :** [data-empathy.click](https://www.data-empathy.click)
 - **Repo :** `github.com/cubalibre59/data-empathy-landing`
 - **Déploiement :** Vercel (auto-deploy sur push vers `main`)
-- **Type :** site statique HTML/CSS/JS (pas de framework front, Vite présent mais non utilisé au build)
+- **Type :** site statique HTML/CSS/JS — **tous les fichiers sont à la racine du repo**, pas dans un sous-dossier `public/` (Vite est présent dans `package.json` mais non utilisé au build ; `outputDirectory` est `.` dans `vercel.json`)
 
 ### Stack technique
 
 | Brique | Outil | Rôle |
 |---|---|---|
-| Domaine | OVHcloud | Gestion DNS de data-empathy.click |
+| Domaine | OVHcloud | Gestion DNS de data-empathy.click  email Zimbra/Roundcube |
 | Hébergement | Vercel | Déploiement statique + fonctions serverless |
 | Code | GitHub | Versioning, déclenche le déploiement auto |
-| Email / CRM | Brevo | Capture de leads, automatisation, listes |
-| Paiement | Stripe | Paiement du Guide PRO (19€), vérification serverless |
+| Email / CRM | Brevo | Capture de leads (listes #7 et #8), automatisation, listes campagnes|
+| Paiement | Stripe | Paiement du Guide PRO (19€), vérification serverless **pas de webhook Stripe configuré**, la vérification se fait à la demande via `session_id` |
 | Analytics comportemental | ContentSquare | Tracking UX (déjà installé sur les pages clés) |
+| Outil externe | [Matrice SEO × GEO-IA × Performance](https://matrice-seo-geo-ia-data-empathy.vercel.app) | Projet Vite séparé, intégré en iframe sur l'étude de cas |
 --------------------
 ## 🔗 Tunnel de Vente (Flux Utilisateur)
 
@@ -56,15 +57,14 @@ Plateforme d'analyse comportementale IA. Le site sert de tunnel de vente complet
 Visiteur → index.html (landing + audit IA interactif)
               │
               ▼
-     Formulaire Brevo (email uniquement)
+     Formulaire Brevo (email) + vérification MX/domaine jetable
+     via /api/verify-email.js avant tout envoi
               │
               ▼
    Liste Brevo "Guide gratuit - Data Empathy" (#7)
               │
               ▼
    Automatisation Brevo — 6 emails (J0 → J+9)
-   (bienvenue, prise en main, astuce, étude de cas,
-    teaser PRO, offre finale)
               │
               ▼
    Clic sur lien Stripe (19€) dans un email ou sur
@@ -75,11 +75,13 @@ Visiteur → index.html (landing + audit IA interactif)
               │
               ▼
    guide-pro.html vérifie le paiement via
-   api/guide-pro-content.js (fonction serverless)
+   api/guide-pro-content.js (fonction serverless),
+   qui logue aussi user-agent/IP de chaque tentative
+   d'accès via stripe-webhook-log.js
               │
               ▼
    Contenu débloqué : méthode E.M.P.A.T.H.Y,
-   15 fiches outils, 3 templates PDF, tutoriels vidéo (à venir)
+   10 fiches outils, 3 templates PDF, tutoriels vidéo (à venir))
 ```
 
 ## 🧩 Architecture SaaS Finale
@@ -163,7 +165,7 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 
 - **Prix :** 19€ (paiement unique)
 - **Lien Stripe :** `https://buy.stripe.com/28E00i3MIbmUf1C1yNgQE00`
-- **Contenu livré :** méthode E.M.P.A.T.H.Y complète, 15 fiches outils, 3 templates PDF téléchargeables, 3 tutoriels vidéo *(en cours de production)*
+- **Contenu livré :** méthode E.M.P.A.T.H.Y complète, 10 fiches outils, 3 templates PDF téléchargeables, 3 tutoriels vidéo *(en cours de production)*
 - **Accès :** consultation en ligne (pas de PDF envoyé par email) + bouton "Enregistrer en PDF" (impression navigateur) pour une copie hors-ligne
 
 ### Statut actuel
@@ -174,8 +176,11 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 ✅ Pages légales (CGV, politique de confidentialité) déployées
 ✅ Templates PDF créés et liés
 ✅ Reçus de paiement Stripe activés
+✅ Schema.org déployé sur 4 pages clés (homepage, étude de cas, guide gratuit, taux de conversion)
+✅ Matrice SEO/GEO-IA développée, déployée, intégrée à l'étude de cas
+✅ CTA de capture email ajouté sur l'étude de cas (composant réutilisable, iframe caché auto-créé)
 
-### statut  valide - 27/07/2026
+### statut  valide - 07/09/2026
 
 ✅Compléter les mentions légales définitives (SIRET, statut juridique) dans CGV et politique de confidentialité
 ✅ Enregistrer et intégrer les 3 tutoriels vidéo
@@ -184,9 +189,11 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 
 ### Principes de travail
 
-- Toute modification est commitée sur `main` avec un message en français, puis auto-déployée par Vercel
+- Toute modification est commitée sur `main` avec un message clair, puis auto-déployée par Vercel
 - Le dossier `/deco` reste strictement hors périmètre
-- Les changements de contenu marketing (emails, CTA, prix) doivent rester cohérents entre `guide-gratuit.html`, `guide-pro.html`/`guide-pro-content.js` et les emails Brevo
+- Les changements de contenu marketing (emails, CTA, prix, stats affichées) doivent rester **vérifiables et honnêtes** — ne jamais afficher de chiffres non sourcés comme des faits
+- Cohérence entre `guide-gratuit.html`, `guide-pro.html`/`guide-pro-content.js` et les emails Brevo à maintenir à chaque changement
+- Toujours vérifier le déploiement Vercel (statut "Ready" + bon commit) après un push, et tester en navigation privée pour écarter les faux positifs liés au cache navigateur
 ---
 
 
@@ -208,31 +215,40 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 | `analyse-besoins-clients.html` | analyse des besoins clients | E (Explorer) | ✅ Indexation demandée, à confirmer |
 
 Chaque article inclut : meta title/description optimisés, JSON-LD Article, canonical, CTA vers le Guide PRO, et maillage interne bidirectionnel avec `guide-gratuit.html` et `bibliotheque-methode-empathy.html`.
+- Teasing progressif : aperçu léger sur `index.html`/`guide-gratuit.html`, détail complet uniquement après paiement.
+### Sécurité & anti-bot
+ 
+- **`vercel.json`** définit une Content-Security-Policy stricte (`default-src 'self'`), avec exceptions explicites pour Stripe, Brevo (sibforms), ContentSquare, Google Fonts, et l'iframe de la matrice SEO/GEO-IA.
+- **`X-Frame-Options: SAMEORIGIN`** + **`X-Content-Type-Options: nosniff`** + **`Referrer-Policy`** activés sur toutes les pages.
+- **`/api/verify-email.js`** bloque les domaines email jetables connus (yopmail, mailinator, etc.) et vérifie l'existence d'un enregistrement MX avant toute inscription à la newsletter.
+- **`/api/guide-pro-content.js`** logue user-agent et IP de chaque tentative d'accès au contenu payant (via `stripe-webhook-log.js`), visible dans les logs Vercel (Dashboard → Functions).
 
 ### Netlinking
 
 - **Disavow complet** : ~206 domaines spam/PBN désavoués via Search Console (remplace l'ancien fichier à 43 domaines)
 - **FranceSaaS.fr** : fiche créée, badge dofollow installé et vérifié dans le footer de `index.html`, soumise pour validation manuelle
 - À faire : AlternativeTo, Crunchbase, réapplication Awin/Lucky Orange (dossier renforcé par les pages légales + premier backlink légitime)
-
+  
+### Schema.org / GEO-IA — état d'avancement par page
+ 
+| Page | Schema en place | Statut |
+|---|---|---|
+| `index.html` | Organization + WebSite | ✅ Validé (0 erreur) |
+| `etude-de-cas-data-empathy.html` | Article + FAQPage | ✅ Validé, 6/6 critères GEO-IA |
+| `guide-gratuit.html` | CollectionPage + ItemList | ✅ Validé, référence l'étude de cas via `mentions` |
+| `taux-conversion-landing-page-saas.html` | Article + FAQPage | ✅ Déjà en place à la création, auteur corrigé |
+| `guide-pro.html` | — | ⏳ Pas encore audité |
+| `bibliotheque-methode-empathy.html` | — | ⏳ Pas encore audité |
+| `analyse-besoins-clients.html` | — | ⏳ Pas encore audité |
+| `cgv.html` / `politique-confidentialite.html` | — | Non prioritaire (pages légales) |
+ 
+Outil de suivi : [Matrice SEO × GEO-IA × Performance](https://matrice-seo-geo-ia-data-empathy.vercel.app) (projet séparé, données à mettre à jour manuellement — ne scanne pas le site automatiquement).
 ### Indexation
 
 - Chaque nouvel article est soumis manuellement via GSC "Demander une indexation" après déploiement
 - Sitemap mis à jour à chaque nouvelle page publiée
 
 ---
-Schema.org / GEO-IA — état d'avancement par page
-Page	Schema en place	Statut
-index.html	Organization + WebSite	✅ Validé (0 erreur)
-etude-de-cas-data-empathy.html	Article + FAQPage	✅ Validé, 6/6 critères GEO-IA
-guide-gratuit.html	CollectionPage + ItemList	✅ Validé, référence l'étude de cas via mentions
-taux-conversion-landing-page-saas.html	Article + FAQPage	✅ Déjà en place à la création, auteur corrigé
-guide-pro.html	—	⏳ Pas encore audité
-bibliotheque-methode-empathy.html	—	⏳ Pas encore audité
-analyse-besoins-clients.html	—	⏳ Pas encore audité
-cgv.html / politique-confidentialite.html	—	Non prioritaire (pages légales)
-
-Outil de suivi : Matrice SEO × GEO-IA × Performance (projet séparé, données à mettre à jour manuellement — ne scanne pas le site automatiquement).
 
 ## ⚙️ Configuration DNS (OVH → Vercel)
 
@@ -400,7 +416,12 @@ vercel domains inspect data-empathy.click
 # Redéployer manuellement
 vercel --prod
 ```
-
+### Présence externe
+ 
+- **LinkedIn** : page Entreprise créée (`linkedin.com/company/146270225`), en cours de complétion
+- **Facebook** : page créée
+- **Product Hunt** : lancement effectué, référencé dans `sameAs` du schema Organization
+- **Discord** : communauté planifiée (pseudo recommandé : `data.empathy`) pour remplacer la mention "Communauté Slack privée" actuellement fausse sur `guide-gratuit.html` — **pas encore créée**
 ---
 
 © 2026 DATA-EMPATHY — Architecture SaaS complète

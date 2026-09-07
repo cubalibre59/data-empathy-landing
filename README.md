@@ -94,28 +94,48 @@ Visiteur → index.html (landing + audit IA interactif)
 
 ---
 
-## 📂 Structure du Projet
+## 📂 Structure du Projet (réelle, vérifiée sur GitHub)
 
 ```
-landing-page/
+data-empathy-landing/
 ├── api/
-│   └── guide-pro-content.js      # Vérifie le paiement Stripe, renvoie le contenu PRO
-├── public/
-│   ├── index.html                 # Landing page + audit IA interactif
-│   ├── guide-gratuit.html         # Guide gratuit (10 outils) + CTA Guide PRO
-│   ├── guide-pro.html             # Coquille protégée par paywall
-│   ├── cgv.html                   # Conditions Générales de Vente
-│   ├── politique-confidentialite.html
-│   ├── templates/
-│   │   ├── template-1-audit-tunnel.pdf
-│   │   ├── template-2-matrice-priorisation.pdf
-│   │   └── template-3-checklist-tracking.pdf
-│   ├── robots.txt
-│   └── sitemap.xml
+│   ├── guide-pro-content.js       # Vérifie le paiement Stripe, renvoie le contenu PRO protégé
+│   ├── verify-email.js            # Vérif MX + blocage domaines jetables avant capture email
+│   └── stripe-webhook-log.js      # Logging user-agent/IP (appelé depuis guide-pro-content.js,
+│                                   # ce n'est PAS un vrai webhook Stripe — aucun webhook n'est
+│                                   # configuré côté Dashboard Stripe à ce jour)
+├── assets/
+│   ├── dataEmpathyLogo.png
+│   ├── dataEmpathyTransparent.png
+│   └── og-etude-de-cas.jpg
 ├── deco/                          # 🔒 Projet séparé — ne pas toucher
-├── vercel.json                    # buildCommand vide, outputDirectory "."
+│   ├── deco-bg.js
+│   ├── index.html
+│   └── test-sticky-bar.html
+├── templates/
+│   ├── template-1-audit-tunnel.pdf
+│   ├── template-2-matrice-priorisation.pdf
+│   └── template-3-checklist-tracking.pdf
+├── analyse-besoins-clients.html
+├── bibliotheque-methode-empathy.html
+├── cgv.html
+├── data-empathy-media-kit.pdf
+├── etude-de-cas-data-empathy.html
+├── favicon.png
+├── guide-gratuit.html
+├── guide-pro.html
+├── index.html
+├── politique-confidentialite.html
+├── taux-conversion-landing-page-saas.html
+├── llms.txt
+├── package.json / package-lock.json
+├── robots.txt
+├── sitemap.xml
+├── systemeio-setup
+├── vercel.json                    # Rewrites + headers de sécurité (CSP, X-Frame-Options, etc.)
 ├── vite.config.js                 # Présent mais non exécuté au déploiement
-└── package.json
+└── README.md
+
 ```
 ### La méthode E.M.P.A.T.H.Y
 
@@ -201,6 +221,18 @@ Chaque article inclut : meta title/description optimisés, JSON-LD Article, cano
 - Sitemap mis à jour à chaque nouvelle page publiée
 
 ---
+Schema.org / GEO-IA — état d'avancement par page
+Page	Schema en place	Statut
+index.html	Organization + WebSite	✅ Validé (0 erreur)
+etude-de-cas-data-empathy.html	Article + FAQPage	✅ Validé, 6/6 critères GEO-IA
+guide-gratuit.html	CollectionPage + ItemList	✅ Validé, référence l'étude de cas via mentions
+taux-conversion-landing-page-saas.html	Article + FAQPage	✅ Déjà en place à la création, auteur corrigé
+guide-pro.html	—	⏳ Pas encore audité
+bibliotheque-methode-empathy.html	—	⏳ Pas encore audité
+analyse-besoins-clients.html	—	⏳ Pas encore audité
+cgv.html / politique-confidentialite.html	—	Non prioritaire (pages légales)
+
+Outil de suivi : Matrice SEO × GEO-IA × Performance (projet séparé, données à mettre à jour manuellement — ne scanne pas le site automatiquement).
 
 ## ⚙️ Configuration DNS (OVH → Vercel)
 

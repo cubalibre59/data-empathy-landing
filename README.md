@@ -170,22 +170,22 @@ Framework propriétaire DATA-EMPATHY, cœur du contenu du Guide PRO :
 
 ### Statut actuel
 
-✅ Formulaire de capture connecté à Brevo (remplace l'ancien Systeme.io)
-✅ Automatisation 6 emails créée et activée
-✅ Paywall Stripe fonctionnel (`guide-pro.html` + `api/guide-pro-content.js`)
-✅ Pages légales (CGV, politique de confidentialité) déployées
-✅ Templates PDF créés et liés
-✅ Reçus de paiement Stripe activés
-✅ Schema.org déployé sur 4 pages clés (homepage, étude de cas, guide gratuit, taux de conversion)
-✅ Matrice SEO/GEO-IA développée, déployée, intégrée à l'étude de cas
-✅ CTA de capture email ajouté sur l'étude de cas (composant réutilisable, iframe caché auto-créé)
+-✅ Formulaire de capture connecté à Brevo (remplace l'ancien Systeme.io)
+-✅ Automatisation 6 emails créée et activée
+-✅ Paywall Stripe fonctionnel (`guide-pro.html` + `api/guide-pro-content.js`)
+-✅ Pages légales (CGV, politique de confidentialité) déployées
+-✅ Templates PDF créés et liés
+-✅ Reçus de paiement Stripe activés
+-✅ Schema.org déployé sur 4 pages clés (homepage, étude de cas, guide gratuit, taux de conversion)
+-✅ Matrice SEO/GEO-IA développée, déployée, intégrée à l'étude de cas
+-✅ CTA de capture email ajouté sur l'étude de cas (composant réutilisable, iframe caché auto-créé)
 
 ### statut  valide - 07/09/2026
 
-✅Compléter les mentions légales définitives (SIRET, statut juridique) dans CGV et politique de confidentialité
-✅ Enregistrer et intégrer les 3 tutoriels vidéo
-✅ Ajouter le teaser E.M.P.A.T.H.Y sur `index.html` (lien discret dans la nav, sans concurrencer le CTA principal "Obtenir le Guide Gratuit")
-✅ Intégration affiliation ContentSquare (lien : `https://invite.contentsquare.com/mt1dz2ujeux2`)
+-✅Compléter les mentions légales définitives (SIRET, statut juridique) dans CGV et politique de confidentialité
+-✅ Enregistrer et intégrer les 3 tutoriels vidéo
+-✅ Ajouter le teaser E.M.P.A.T.H.Y sur `index.html` (lien discret dans la nav, sans concurrencer le CTA principal "Obtenir le Guide Gratuit")
+-✅ Intégration affiliation ContentSquare (lien : `https://invite.contentsquare.com/mt1dz2ujeux2`)
 
 ### Principes de travail
 
